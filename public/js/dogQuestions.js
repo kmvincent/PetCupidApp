@@ -4,24 +4,42 @@
 dogQuestionArray = [
     {
         question: "question1",
-        answers: {
-            option: "option1",
-            icon: "img.png"
-        }
+        answers: [
+            {
+                option: "option1",
+                icon: "img.png",
+            },
+            {
+                option: "option2",
+                icon: "img.png",
+            }
+        ]
     },
     {
         question: "question2",
-        answers: {
-            option: "option1",
-            icon: "img1.png"
-        }
+        answers: [
+            {
+                option: "option1",
+                icon: "img.png"
+            },
+            {
+                option: "option2",
+                icon: "img.png"
+            }
+        ]
     },
     {
         question: "question3",
-        answers: {
-            option: "option1",
-            icon: "img2.png"
-        }
+        answers: [
+            {
+                option: "option1",
+                icon: "img.png"
+            },
+            {
+                option: "option2",
+                icon: "img.png"
+            }
+        ]
     }
 ]
 
