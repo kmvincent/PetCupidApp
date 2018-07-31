@@ -32,7 +32,7 @@
     <div id="answers" class="row container center">
       <div class="col m12">
         {{#each answers}}
-        <button class="btn-large answer-tile">
+        <button class="btn-large answer-tile" data-ajax={{ajax}}>
           <img src="/images/{{icon}}" width="100px">
           <p>{{option}}</p>
         </button>

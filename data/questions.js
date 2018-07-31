@@ -36,6 +36,7 @@ questionArray = [
             {
                 option: "No preference",
                 icon: "placeholder.png",
+                ajax: ""
             },
             {
                 option: "Yes",
@@ -54,6 +55,7 @@ questionArray = [
             {
                 option: "No Preference",
                 icon: "placeholder.png",
+                ajax: ""
             },
             {
                 option: "Small",
@@ -88,6 +90,7 @@ questionArray = [
             {
                 option: "No Preference",
                 icon: "placeholder.png",
+                ajax: ""
             },
             {
                 option: "Female",
@@ -121,6 +124,7 @@ questionArray = [
             {
                 option: "No Preference",
                 icon: "placeholder.png",
+                ajax: "",
             },
             {
                 option: "Female",
@@ -261,6 +265,7 @@ questionArray = [
             {
                 option: "No Preference",
                 icon: "placeholder.png",
+                ajax: ""
             },
             {
                 option: "Small",
@@ -295,6 +300,7 @@ questionArray = [
             {
                 option: "No Preference",
                 icon: "placeholder.png",
+                ajax: ""
             },
             {
                 option: "Female",

@@ -5,12 +5,13 @@ $(document).ready(function () {
     let queryArray = [];
     let newAnswer = "";
 
+    // hide current Q section, show the next Q section
     function goToNextQuestion(currentQuestionID) {
         $("#questionSection-" + currentQuestionID).addClass("hide");
         $("#questionSection-" + (parseInt(currentQuestionID) + 1)).removeClass("hide");
     };
 
-    // reveal the first Q of survey
+    // reveal the first Q to begin survey
     $("#questionSection-1").removeClass("hide");
 
     // drop down to 1st Q and hide headers
@@ -19,10 +20,32 @@ $(document).ready(function () {
         $("#questionnaireStart").addClass("hide");
     });
 
-    // if didn't click the qStart button, clicking the first next-btn will
+    // changes value of newAnswer to the most recently clicked answer-tile 
+    $(".answer-tile").on("click", function () {
+        if ($(this).attr("data-ajax") === "" || $(this).attr("data-ajax") != "") {
+            newAnswer = $(this).attr("data-ajax");
+        } else {
+            newAnswer = $(this).children("p").html();
+        };
+    });
+
+    // submit answer to survey Q
     $(".survey-btn").on("click", function () {
+        // if didn't click the qStart button, clicking the first next-btn will hide the header as well
         $("#questionnaireStart").addClass("hide");
+        // switch case to hide/reveal each Q as user moves through survey
         switch ($(this).attr("id")) {
+            case "next-btn-1":
+                // if cat answer was selected, jump down to cat Qs next
+                if (newAnswer === "&animal=cat") {
+                    $("#questionSection-1").addClass("hide");
+                    $("#questionSection-12").removeClass("hide");
+                } else {
+                    // else stick with dog Qs
+                    $("#questionSection-1").addClass("hide");
+                    $("#questionSection-2").removeClass("hide");
+                };
+                break;
             case "next-btn-2":
                 goToNextQuestion(2);
                 break;
@@ -85,24 +108,7 @@ $(document).ready(function () {
                 console.log("cat last Q)");
                 break;
         };
-    });
-
-    // console logs which answer was most recently clicked
-    $(".answer-tile").on("click", function () {
-        newAnswer = $(this).children("p").html();
-        console.log(newAnswer)
-    });
-
-    // when submit first question answer
-    $("#next-btn-1").on("click", function () {
-        // if cat answer was selected, jump down to cat Qs next
-        if (newAnswer == "Cat") {
-            $("#questionSection-1").addClass("hide");
-            $("#questionSection-12").removeClass("hide");
-        } else {
-            // else stick with dog Qs
-            $("#questionSection-1").addClass("hide");
-            $("#questionSection-2").removeClass("hide");
-        }
+        queryArray.push(newAnswer);
+        console.log(queryArray);
     });
 });
