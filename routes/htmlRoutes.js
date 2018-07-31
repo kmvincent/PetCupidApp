@@ -13,3 +13,6 @@ app.get("/results", function(req, res) {
     // Will need to set up another handlebars page for it as well as object to pass along
     res.render("results",);
 });
+
+// exporting routes to be used in server.js
+module.exports = router;
