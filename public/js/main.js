@@ -5,8 +5,7 @@ $(document).ready(function () {
         $("#questionnaireStart").addClass("hide");
     });
 
-    // $(".btn-large").on("click", function () {
-    //     console.log("clicked on da cat")
-    // });
-
+    $(".btn-large").on("click", function () {
+        console.log("clicked on da cat");
+    });
 });
