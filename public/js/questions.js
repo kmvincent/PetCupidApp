@@ -1,6 +1,7 @@
 // array of Qs, each one has Question and answers, and each answer has an icon
-// for ranking importance of each Q, need to grab each Q then be able to place in the order you want...from there is assigns a value to each position....
-// first four are often listed in the "options" sections of api response
+// for ranking importance of each Q, need to grab each Q then be able to place in the order you want...from there it assigns a value to each position....
+
+// first four in keyWordArray are sometimes listed in the "options" sections of api response
 dogKeyWordArray = ["noKids", "noCats", "specialNeeds", "housetrained", ""]
 
 
@@ -40,6 +41,7 @@ questionArray = [
         ]
     },
     {
+        // this will relate to pf filter
         question: "What size dog would you prefer?",
         id: 3,
         answers: [
@@ -71,6 +73,7 @@ questionArray = [
         ]
     },
     {
+        // this will relate to pf filter
         question: "Which sex would you prefer?",
         id: 4,
         answers: [
@@ -91,6 +94,7 @@ questionArray = [
         ]
     },
     {
+        // this will relate to pf filter
         question: "Enter your zip code.",
         id: 5,
         textBox: "12345",
@@ -99,4 +103,4 @@ questionArray = [
     },
 ]
 
-module.exports = dogQuestionArray;
+module.exports = questionArray;
