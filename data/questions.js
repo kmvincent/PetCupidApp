@@ -10,6 +10,7 @@ questionArray = [
         // this will relate to pf filter
         question: "Are you looking for a cat or dog?",
         id: 1,
+        questionNo: 1,
         progress: "9.09%",
         showing: true,
         answers: [
@@ -30,6 +31,7 @@ questionArray = [
         // first ___ Qs are for dogs, then switches to cats
         question: "Do you have a specific breed in mind?",
         id: 2,
+        questionNo: 2,
         progress: "18.18%",
         showing: false,
         answers: [
@@ -48,6 +50,7 @@ questionArray = [
         // this will relate to pf filter
         question: "What size dog would you prefer?",
         id: 3,
+        questionNo: 3,
         progress: "27.27%",
         showing: false,
         answers: [
@@ -82,6 +85,7 @@ questionArray = [
         // this will relate to pf filter
         question: "Which sex would you prefer?",
         id: 4,
+        questionNo: 4,
         progress: "36.36%",
         showing: false,
         answers: [
@@ -105,6 +109,7 @@ questionArray = [
         // this will relate to pf filter
         question: "Enter your zip code.",
         id: 5,
+        questionNo: 5,
         progress: "45.45%",
         showing: false,
         textBox: "12345",
@@ -115,6 +120,7 @@ questionArray = [
         // this will relate to pf filter
         question: "Which sex would you prefer?",
         id: 6,
+        questionNo: 6,
         progress: "54.54%",
         showing: false,
         answers: [
@@ -138,6 +144,7 @@ questionArray = [
         // this will relate to pf filter
         question: "Which sex would you prefer?",
         id: 7,
+        questionNo: 7,
         progress: "63.63%",
         showing: false,
         answers: [
@@ -161,6 +168,7 @@ questionArray = [
         // this will relate to pf filter
         question: "Which sex would you prefer?",
         id: 8,
+        questionNo: 8,
         progress: "72.72%",
         showing: false,
         answers: [
@@ -184,6 +192,7 @@ questionArray = [
         // this will relate to pf filter
         question: "Which sex would you prefer?",
         id: 9,
+        questionNo: 9,
         progress: "81.81%",
         showing: false,
         answers: [
@@ -207,6 +216,7 @@ questionArray = [
         // this will relate to pf filter
         question: "Which sex would you prefer?",
         id: 10,
+        questionNo: 10,
         progress: "90.9%",
         showing: false,
         answers: [
@@ -230,6 +240,7 @@ questionArray = [
         // this will relate to pf filter
         question: "Which sex would you prefer?",
         id: 11,
+        questionNo: 11,
         progress: "100%",
         showing: false,
         answers: [
@@ -249,6 +260,6 @@ questionArray = [
             }
         ]
     },
-]
+];
 
 module.exports = questionArray;

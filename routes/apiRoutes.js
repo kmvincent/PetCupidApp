@@ -8,6 +8,7 @@
 
 
 const express = require("express");
+const questions = require("../data/questions");
 
 const router = express.Router();
 
@@ -34,7 +35,3 @@ module.exports = function (app) {
         
     });
 }
-
-
-
-// module.exports = router;

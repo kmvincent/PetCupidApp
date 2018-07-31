@@ -20,7 +20,7 @@
     <div class="row container center">
       <div class="col m12">
         <p> - QUESTION
-          <span id="questionNo">{{id}}</span> OF 14 - </p>
+          <span id="questionNo">{{questionNo}}</span> OF 14 - </p>
         <h4 id="q{{id}}" class="center question show">{{question}}</h4>
       </div>
     </div>
@@ -32,10 +32,10 @@
   <div id="answers" class="row container center">
     <div class="col m12">
       {{#each answers}}
-      <a class="btn-large answer-tile show">
+      <button class="btn-large answer-tile"> 
         <img src="/images/{{icon}}" width="100px">
         <p>{{option}}</p>
-      </a>
+      </button>
       {{/each}}
     </div>
     <a class="waves-effect waves-light btn-large survey-btn" id="next-btn-{{id}}">Next Question</a>

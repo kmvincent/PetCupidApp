@@ -6,7 +6,7 @@
 
 // every time they answer a question, it is added to array...then api is pulled based on that array after last submit, then text parser is run on those results, and compared to my math somehow?...then can click save and it's saved to db....
 
-let questions = require("../public/js/questions");
+let questions = require("../data/questions");
 
 // exporting routes to be used in server.js
 module.exports = function (app) {
@@ -16,13 +16,3 @@ module.exports = function (app) {
         res.render("index", { questions: questions });
     });
 };
-
-
-
-
-// this will later be added to main.js
-// let queryArray = [];
-
-// $("#submit-btn").on("click", function () {
-//     queryArray.push("somehow capture which image is active");
-// });
