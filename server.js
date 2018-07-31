@@ -32,11 +32,7 @@ app.set("view engine", "handlebars");
 // Routes
 // =============================================================
 // require("./routes/apiRoutes.js")(app);
-// require("./routes/htmlRoutes.js")(app);
-let apiRoutes = require("./routes/apiRoutes.js");
-app.use(apiRoutes);
-let htmlRoutes = require("./routes/htmlRoutes.js");
-app.use(htmlRoutes);
+require("./routes/htmlRoutes.js")(app);
 
 // Starting our Express app
 // =============================================================
