@@ -2,7 +2,7 @@
     font-size: 1.5em;
 }
 
-#questions {
+.question {
     font-weight: 500;
     color: white;
 }
@@ -45,10 +45,14 @@ img{
     background-color: pink;
 }
 
-.waves-light {
-    font-size: 26px;
+.survey-btn {
+    font-size: 23px;
     margin: 25px;
 }
+
+
+
+
 
 /* last css style */
 .rank-box {
