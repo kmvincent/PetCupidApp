@@ -10,7 +10,8 @@ questionArray = [
         // this will relate to pf filter
         question: "Are you looking for a cat or dog?",
         id: 1,
-        progress: "10%",
+        progress: "9.09%",
+        showing: true,
         answers: [
             {
                 option: "Cat",
@@ -29,7 +30,8 @@ questionArray = [
         // first ___ Qs are for dogs, then switches to cats
         question: "Do you have a specific breed in mind?",
         id: 2,
-        progress: "10%",
+        progress: "18.18%",
+        showing: false,
         answers: [
             {
                 option: "No preference",
@@ -46,7 +48,8 @@ questionArray = [
         // this will relate to pf filter
         question: "What size dog would you prefer?",
         id: 3,
-        progress: "10%",
+        progress: "27.27%",
+        showing: false,
         answers: [
             {
                 option: "No Preference",
@@ -79,7 +82,8 @@ questionArray = [
         // this will relate to pf filter
         question: "Which sex would you prefer?",
         id: 4,
-        progress: "10%",
+        progress: "36.36%",
+        showing: false,
         answers: [
             {
                 option: "No Preference",
@@ -101,10 +105,149 @@ questionArray = [
         // this will relate to pf filter
         question: "Enter your zip code.",
         id: 5,
-        progress: "10%",
+        progress: "45.45%",
+        showing: false,
         textBox: "12345",
         // need a way to add their zip to this...
         ajax: "&location="
+    },
+    {
+        // this will relate to pf filter
+        question: "Which sex would you prefer?",
+        id: 6,
+        progress: "54.54%",
+        showing: false,
+        answers: [
+            {
+                option: "No Preference",
+                icon: "placeholder.png",
+            },
+            {
+                option: "Female",
+                icon: "placeholder.png",
+                ajax: "&sex=F"
+            },
+            {
+                option: "Male",
+                icon: "placeholder.png",
+                ajax: "&sex=M"
+            }
+        ]
+    },
+    {
+        // this will relate to pf filter
+        question: "Which sex would you prefer?",
+        id: 7,
+        progress: "63.63%",
+        showing: false,
+        answers: [
+            {
+                option: "No Preference",
+                icon: "placeholder.png",
+            },
+            {
+                option: "Female",
+                icon: "placeholder.png",
+                ajax: "&sex=F"
+            },
+            {
+                option: "Male",
+                icon: "placeholder.png",
+                ajax: "&sex=M"
+            }
+        ]
+    },
+    {
+        // this will relate to pf filter
+        question: "Which sex would you prefer?",
+        id: 8,
+        progress: "72.72%",
+        showing: false,
+        answers: [
+            {
+                option: "No Preference",
+                icon: "placeholder.png",
+            },
+            {
+                option: "Female",
+                icon: "placeholder.png",
+                ajax: "&sex=F"
+            },
+            {
+                option: "Male",
+                icon: "placeholder.png",
+                ajax: "&sex=M"
+            }
+        ]
+    },
+    {
+        // this will relate to pf filter
+        question: "Which sex would you prefer?",
+        id: 9,
+        progress: "81.81%",
+        showing: false,
+        answers: [
+            {
+                option: "No Preference",
+                icon: "placeholder.png",
+            },
+            {
+                option: "Female",
+                icon: "placeholder.png",
+                ajax: "&sex=F"
+            },
+            {
+                option: "Male",
+                icon: "placeholder.png",
+                ajax: "&sex=M"
+            }
+        ]
+    },
+    {
+        // this will relate to pf filter
+        question: "Which sex would you prefer?",
+        id: 10,
+        progress: "90.9%",
+        showing: false,
+        answers: [
+            {
+                option: "No Preference",
+                icon: "placeholder.png",
+            },
+            {
+                option: "Female",
+                icon: "placeholder.png",
+                ajax: "&sex=F"
+            },
+            {
+                option: "Male",
+                icon: "placeholder.png",
+                ajax: "&sex=M"
+            }
+        ]
+    },
+    {
+        // this will relate to pf filter
+        question: "Which sex would you prefer?",
+        id: 11,
+        progress: "100%",
+        showing: false,
+        answers: [
+            {
+                option: "No Preference",
+                icon: "placeholder.png",
+            },
+            {
+                option: "Female",
+                icon: "placeholder.png",
+                ajax: "&sex=F"
+            },
+            {
+                option: "Male",
+                icon: "placeholder.png",
+                ajax: "&sex=M"
+            }
+        ]
     },
 ]
 

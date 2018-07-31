@@ -5,7 +5,10 @@ $(document).ready(function () {
         $("#questionnaireStart").addClass("hide");
     });
 
-    $(".btn-large").on("click", function () {
-        console.log("clicked on da cat");
+    $("#survey-btn").on("click", function () {
+        $("#questionnaireStart").addClass("hide");
     });
+
+    // if submit cat option, splices first part of Q array 
+    // if submit dog option, splices second part of Q array
 });

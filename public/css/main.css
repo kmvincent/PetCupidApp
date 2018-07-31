@@ -64,3 +64,9 @@ img{
     padding: 10px;
     color: #000;
 }
+
+/* Amanda's CSS */
+/* to offset Qs below navbar */
+#questionSection {
+    padding-top: 56px;
+}

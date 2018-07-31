@@ -1,37 +1,45 @@
-<div class="parallax-container">
-  <div class="parallax"><img src="images/image1.png" alt="cat and dog snuggling"></div>
-</div>
-
-<div class="section white">
-  <div class="row container center">
-    <h1>Pet Finder</h1>
-    <p class="header">Make your selection below, and find your perfect pet!</p>
-    <a href="#questionNo" class="waves-effect waves-light btn-large survey-btn">Get Started</a>
-  </div>
-</div>
-
-
-<div class="section-survey">
-  <div class="row container center">
-    <div class="col m12">
-       {{#each questions}}
-        <p class="show"> - QUESTION <span id="questionNo">{{id}}</span> OF 14 - </p>  
-        <h4 id="q{{id}}" class="center question show">{{question}}</h4>
+<header id="questionnaireStart">
+  <div class="parallax-container">
+    <div class="parallax">
+      <img src="images/image1.png" alt="cat and dog snuggling">
     </div>
   </div>
-  <div class="progress">
-      <div class="determinate" style="width: {{progress}}"></div>
+  <div class="section white">
+    <div class="row container center">
+      <h1>Pet Finder</h1>
+      <p class="header">Make your selection below, and find your perfect pet!</p>
+      <a href="#questionSection" class="waves-effect waves-light btn-large survey-btn">Get Started</a>
+    </div>
   </div>
-</div>
+</header>
 
-<div id="answers" class="row container center">
-  <div class="col m12">
-    <a class="btn-large answer-tile show">
-      <img src="/images/{{choiceImg}}" width="100px">
-      <p>{{choiceText}}</p>
-    </a>
-    {{/each}}
+<article id="questionSection">
+  {{#each questions}}
+    {{#if showing}}
+  <div class="section-survey">
+    <div class="row container center">
+      <div class="col m12">
+        <p> - QUESTION
+          <span id="questionNo">{{id}}</span> OF 14 - </p>
+        <h4 id="q{{id}}" class="center question show">{{question}}</h4>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="determinate" style="width: {{progress}}"></div>
+    </div>
   </div>
-    <a id="next" class="waves-effect waves-light btn-large survey-btn">Next Question</a>
-</div>
-</div>
+
+  <div id="answers" class="row container center">
+    <div class="col m12">
+      {{#each answers}}
+      <a class="btn-large answer-tile show">
+        <img src="/images/{{icon}}" width="100px">
+        <p>{{option}}</p>
+      </a>
+      {{/each}}
+    </div>
+    <a class="waves-effect waves-light btn-large survey-btn" id="next-btn-{{id}}">Next Question</a>
+  </div>
+  {{/if}}
+  {{/each}}
+</article>
