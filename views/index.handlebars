@@ -2,20 +2,20 @@
   <div class="parallax"><img src="images/image1.jpg" alt="cat and dog snuggling"></div>
 </div>
 
-<div class="section white">
+<div class="section white" id="questionnaireStart">
   <div class="row container center">
     <p class="header">Make your selection below, and find your perfect pet!</p>
-    <a href="#questions" class="waves-effect waves-light btn-large">Get Started</a>
+    <a id="questionnaireStart" href="#questionnaireHeader" class="waves-effect waves-light btn-large">Get Started</a>
   </div>
 </div>
 
 
-<div class="section-survey">
+<div class="section-survey" id="questionnaireHeader">
   <div class="row container center">
     <div class="col m12">
       <p> - QUESTION <span id="questionNo">1</span> OF 14 - </p>  
     {{#each questions}}
-        <h4 id="q{{id}}" class="center">{{question}}</h4>
+        <h4 id="q{{id}}" class="center question">{{question}}</h4>
     {{/each}}
     </div>
   </div>
