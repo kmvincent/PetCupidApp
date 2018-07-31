@@ -1,0 +1,62 @@
+.header {
+    font-size: 1.5em;
+}
+
+#questions {
+    font-weight: 500;
+    color: white;
+}
+
+.section-survey{
+    background: #2c2c2c;
+}
+
+.section-survey p {
+    color: #6c6c6d;
+    font-size: 14pt;
+    font-weight: bold;
+    position: relative;
+}
+
+h4{
+    margin-bottom: 35px;
+}
+
+.answer-tile {
+    margin: 15px 10px 35px;
+    width: 210px;
+    height: 210px;
+    background-color: transparent;
+    font-size: 16px;
+    border: 1px solid #22a757;
+    color: #2c2c2c;
+}
+
+img{
+    margin-top: 25px;
+}
+
+.answer-tile:hover {
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.answer-tile:visited {
+    background-color: pink;
+}
+
+.waves-light {
+    font-size: 26px;
+    margin: 25px;
+}
+
+/* last css style */
+.rank-box {
+    border: 1px solid #22a757;
+    border-radius: 10px;
+    box-shadow: -1px 6px 19px -5px rgba(0,0,0,.27);
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: #000;
+}
