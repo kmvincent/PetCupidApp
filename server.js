@@ -20,8 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Static directory
-app.use(express.static(__dirname + '/public'));
-// app.use(express.static("public"));
+// app.use(express.static(__dirname + './public'));
+app.use(express.static("public"));
 
 // Sets up Handlebars
 // =============================================================
@@ -39,6 +39,6 @@ require("./routes/htmlRoutes.js")(app);
 //will sync all of your databases after listening to port. 
 db.sequelize.sync().then(function(){
   app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
+    console.log("Server listening on: http://localhost:" + PORT);
   });
 });
