@@ -5,16 +5,13 @@
 
 
 // every time they answer a question, it needs to be saved in session memory...then api is pulled from session memory on the last page, then text parser is run on those results, and compared to my math somehow?...then can click save and it's saved to db....
+
+
+
+
 let express = require("express");
+let questions = require("../public/js/dogQuestions");
 
 let router = express.Router();
 
-// route to display the question html pages
-router.get("/step:stepNumber", function (req, res) {
-    let step = req.params.stepNumber;
 
-    console.log(step);
-    let hbsObject = 
-    res.render("index", hbsObject);
-
-});
