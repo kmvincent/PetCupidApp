@@ -10,6 +10,7 @@ questionArray = [
         // this will relate to pf filter
         question: "Are you looking for a cat or dog?",
         id: 1,
+        progress: "10%",
         answers: [
             {
                 option: "Cat",
@@ -28,6 +29,7 @@ questionArray = [
         // first ___ Qs are for dogs, then switches to cats
         question: "Do you have a specific breed in mind?",
         id: 2,
+        progress: "10%",
         answers: [
             {
                 option: "No preference",
@@ -44,6 +46,7 @@ questionArray = [
         // this will relate to pf filter
         question: "What size dog would you prefer?",
         id: 3,
+        progress: "10%",
         answers: [
             {
                 option: "No Preference",
@@ -76,6 +79,7 @@ questionArray = [
         // this will relate to pf filter
         question: "Which sex would you prefer?",
         id: 4,
+        progress: "10%",
         answers: [
             {
                 option: "No Preference",
@@ -97,6 +101,7 @@ questionArray = [
         // this will relate to pf filter
         question: "Enter your zip code.",
         id: 5,
+        progress: "10%",
         textBox: "12345",
         // need a way to add their zip to this...
         ajax: "&location="
