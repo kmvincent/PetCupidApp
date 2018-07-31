@@ -1,40 +1,37 @@
 <div class="parallax-container">
-  <div class="parallax">
-    <img src="images/image1.jpg" alt="cat and dog snuggling">
-  </div>
+  <div class="parallax"><img src="images/image1.png" alt="cat and dog snuggling"></div>
 </div>
 
-<div class="section white" id="questionnaireStart">
+<div class="section white">
   <div class="row container center">
     <h1>Pet Finder</h1>
     <p class="header">Make your selection below, and find your perfect pet!</p>
-    <a id="questionnaireStart" href="#questionnaireHeader" class="waves-effect waves-light btn-large">Get Started</a>
+    <a href="#questionNo" class="waves-effect waves-light btn-large survey-btn">Get Started</a>
   </div>
 </div>
 
 
-<div class="section-survey" id="questionnaireHeader">
+<div class="section-survey">
   <div class="row container center">
     <div class="col m12">
-      <p> - QUESTION
-        {{#each questions}}
-        <span id="questionNo">{{id}}</span> OF 14 - </p>
-      
-        <h4 id="q{{id}}" class="center">{{question}}</h4>
-        {{/each}}
+       {{#each questions}}
+        <p class="show"> - QUESTION <span id="questionNo">{{id}}</span> OF 14 - </p>  
+        <h4 id="q{{id}}" class="center question show">{{question}}</h4>
     </div>
   </div>
   <div class="progress">
-    <div class="determinate" style="width: 70%"></div>
+      <div class="determinate" style="width: {{progress}}"></div>
   </div>
 </div>
 
-<div id="answers" class="row container center white">
+<div id="answers" class="row container center">
   <div class="col m12">
-    <a class="btn-large answer-tile">
-      <img src="/images/caticon.png" width="100px">
-      <p>Cat</p>
+    <a class="btn-large answer-tile show">
+      <img src="/images/{{choiceImg}}" width="100px">
+      <p>{{choiceText}}</p>
     </a>
+    {{/each}}
   </div>
-  <a href="" class="waves-effect waves-light btn-large">Next Question</a>
+    <a id="next" class="waves-effect waves-light btn-large survey-btn">Next Question</a>
+</div>
 </div>
