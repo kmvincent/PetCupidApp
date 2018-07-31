@@ -12,7 +12,6 @@ questionArray = [
         id: 1,
         questionNo: 1,
         progress: "9.09%",
-        showing: true,
         answers: [
             {
                 option: "Cat",
@@ -33,7 +32,6 @@ questionArray = [
         id: 2,
         questionNo: 2,
         progress: "18.18%",
-        showing: false,
         answers: [
             {
                 option: "No preference",
@@ -52,7 +50,6 @@ questionArray = [
         id: 3,
         questionNo: 3,
         progress: "27.27%",
-        showing: false,
         answers: [
             {
                 option: "No Preference",
@@ -87,7 +84,6 @@ questionArray = [
         id: 4,
         questionNo: 4,
         progress: "36.36%",
-        showing: false,
         answers: [
             {
                 option: "No Preference",
@@ -111,7 +107,6 @@ questionArray = [
         id: 5,
         questionNo: 5,
         progress: "45.45%",
-        showing: false,
         textBox: "12345",
         // need a way to add their zip to this...
         ajax: "&location="
@@ -122,7 +117,6 @@ questionArray = [
         id: 6,
         questionNo: 6,
         progress: "54.54%",
-        showing: false,
         answers: [
             {
                 option: "No Preference",
@@ -146,7 +140,6 @@ questionArray = [
         id: 7,
         questionNo: 7,
         progress: "63.63%",
-        showing: false,
         answers: [
             {
                 option: "No Preference",
@@ -170,7 +163,6 @@ questionArray = [
         id: 8,
         questionNo: 8,
         progress: "72.72%",
-        showing: false,
         answers: [
             {
                 option: "No Preference",
@@ -194,7 +186,6 @@ questionArray = [
         id: 9,
         questionNo: 9,
         progress: "81.81%",
-        showing: false,
         answers: [
             {
                 option: "No Preference",
@@ -218,7 +209,6 @@ questionArray = [
         id: 10,
         questionNo: 10,
         progress: "90.9%",
-        showing: false,
         answers: [
             {
                 option: "No Preference",
@@ -242,7 +232,6 @@ questionArray = [
         id: 11,
         questionNo: 11,
         progress: "100%",
-        showing: false,
         answers: [
             {
                 option: "No Preference",
@@ -265,7 +254,8 @@ questionArray = [
     {
         // this will relate to pf filter
         question: "What size cat would you prefer?",
-        id: 2,
+        id: 12,
+        questionNo: 2,
         progress: "10%",
         answers: [
             {
@@ -298,7 +288,8 @@ questionArray = [
     {
         // this will relate to pf filter
         question: "Which sex would you prefer?",
-        id: 3,
+        id: 13,
+        questionNo: 3,
         progress: "10%",
         answers: [
             {
@@ -320,7 +311,8 @@ questionArray = [
     {
         // this will relate to pf filter
         question: "Enter your zip code.",
-        id: 4,
+        id: 14,
+        questionNo: 4,
         progress: "10%",
         textBox: "12345",
         // need a way to add their zip to this...
@@ -330,7 +322,8 @@ questionArray = [
     {
         // this will relate to pf filter
         question: "Which criteria would you like to REQUIRE?",
-        id: 5,
+        id: 15,
+        questionNo: 5,
         progress: "10%",
         //should be checkboxes that allow multiple options to be chosen (or we can make these separate questions)
         answers: [
@@ -370,7 +363,8 @@ questionArray = [
     {
         // this will relate to pf filter
         question: "How playful is your ideal cat?",
-        id: 6,
+        id: 16,
+        questionNo: 6,
         progress: "10%",
         answers: [
             {
@@ -401,7 +395,8 @@ questionArray = [
     {
         // this will relate to pf filter
         question: "How much physical affection does your ideal cat like (petting, lap-sitting, etc.)?",
-        id: 7,
+        id: 17,
+        questionNo: 7,
         progress: "10%",
         answers: [
             {
@@ -432,7 +427,8 @@ questionArray = [
     {
         // this will relate to pf filter
         question: "How social is your ideal cat?",
-        id: 8,
+        id: 18,
+        questionNo: 8,
         progress: "10%",
         answers: [
             {
@@ -463,7 +459,8 @@ questionArray = [
     {
         // this will relate to pf filter
         question: "How independent is your ideal cat?",
-        id: 9,
+        id: 19,
+        questionNo: 9,
         progress: "10%",
         answers: [
             {
@@ -494,7 +491,8 @@ questionArray = [
     {
         // this will relate to pf filter
         question: "How vocal is your ideal cat?",
-        id: 10,
+        id: 20,
+        questionNo: 10,
         progress: "10%",
         answers: [
             {
@@ -525,7 +523,8 @@ questionArray = [
     {
         // this will relate to pf filter
         question: "How cautious around strangers can your ideal cat be?",
-        id: 11,
+        id: 21,
+        questionNo: 11,
         progress: "10%",
         answers: [
             {

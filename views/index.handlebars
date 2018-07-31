@@ -13,33 +13,33 @@
   </div>
 </header>
 
-<article id="questionSection">
-  {{#each questions}}
-    {{!-- {{#if showing}} --}}
-  <div class="section-survey">
-    <div class="row container center">
-      <div class="col m12">
-        <p> - QUESTION
-          <span id="questionNo">{{questionNo}}</span> OF 14 - </p>
-        <h4 id="q{{id}}" class="center question show">{{question}}</h4>
+<article>
+  {{#each questions}} {{!-- {{#if showing}} --}}
+  <div class="hide" id="questionSection-{{id}}">
+    <div class="section-survey">
+      <div class="row container center">
+        <div class="col m12">
+          <p> - QUESTION
+            <span id="questionNo">{{questionNo}}</span> OF 14 - </p>
+          <h4 id="q{{id}}" class="center question show">{{question}}</h4>
+        </div>
+      </div>
+      <div class="progress">
+        <div class="determinate" style="width: {{progress}}"></div>
       </div>
     </div>
-    <div class="progress">
-      <div class="determinate" style="width: {{progress}}"></div>
-    </div>
-  </div>
 
-  <div id="answers" class="row container center">
-    <div class="col m12">
-      {{#each answers}}
-      <button class="btn-large answer-tile"> 
-        <img src="/images/{{icon}}" width="100px">
-        <p>{{option}}</p>
-      </button>
-      {{/each}}
+    <div id="answers" class="row container center">
+      <div class="col m12">
+        {{#each answers}}
+        <button class="btn-large answer-tile">
+          <img src="/images/{{icon}}" width="100px">
+          <p>{{option}}</p>
+        </button>
+        {{/each}}
+      </div>
+      <a class="waves-effect waves-light btn-large survey-btn" id="next-btn-{{id}}">Next Question</a>
     </div>
-    <a class="waves-effect waves-light btn-large survey-btn" id="next-btn-{{id}}">Next Question</a>
   </div>
-  {{!-- {{/if}} --}}
-  {{/each}}
+  {{!-- {{/if}} --}} {{/each}}
 </article>
