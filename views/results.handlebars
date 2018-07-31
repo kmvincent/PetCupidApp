@@ -1,18 +1,15 @@
-
 <div class="parallax-container">
-    <div class="parallax"><img src="/images/image1.jpg" alt="cat and dog snuggling"></div>
+  <div class="parallax"><img src="images/image1.png" alt="cat and dog snuggling"></div>
 </div>
 
-<div class="section white">
+<div class="section white results-section">
     <div class="row container center">
-        <h1>Results</h1>
         <div class="row container center">
-            <h4>Top 5 Results</h4>
-
+            <h3>Top Results</h3>
             <div class="col s12">
                 <div class="card horizontal">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class= "activator" src="/images/image1.jpg">
+                        <img class= "activator" src="images/image1.png">
                     </div>
 
                     <div class="card-content">
@@ -22,11 +19,76 @@
 
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Pet Name<i class="material-icons right">close</i></span>
-                        <p>About: Here is some more information about this product that is only revealed once clicked on.</p>
-                        <a class="waves-effect waves-light btn">Save</a>
+                        <p>About: Here is some more information about this product that is only revealed once clicked on.e more information about this product that is only revealed once clicked oe more information about this product that is only revealed once clicked o</p>
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Save</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12">
+                <div class="card horizontal">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class= "activator " src="images/image1.png">
+                    </div>
+
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Pet Name</span>
+                        <p><a href="#">Link to petfind url</a></p>
+                    </div>
+
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Pet Name<i class="material-icons right">close</i></span>
+                        <p>About: Here is some more information about this product that is only revealed once clicked on.e more information about this product that is only revealed once clicked oe more information about this product that is only revealed once clicked o</p>
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Save</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+  <!-- Modal Structure -->
+<div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Saved Pets</h4>
+        
+    <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel grey lighten-5 z-depth-1 quicksave">
+          <div class="row valign-wrapper">
+            <div class="col s2">
+              <img class="circle responsive-img saveImg" src="images/image1.png" width="100px" height="150px"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s10">
+              <span class="black-text">
+                This is a square image. Add the "circle" class to it to make it appear circular.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel grey lighten-5 z-depth-1 quicksave">
+          <div class="row valign-wrapper">
+            <div class="col s2">
+              <img class="circle responsive-img saveImg" src="images/image1.png" width="100px" height="150px"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s10">
+              <span class="black-text">
+                This is a square image. Add the "circle" class to it to make it appear circular.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>   
+    </div>
+</div>
+
+
+  <script>
+    $(document).ready(function(){
+    $('.modal').modal();
+  });
+  </script>
+
+  
