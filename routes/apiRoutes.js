@@ -18,7 +18,7 @@ let dotenv = require('dotenv').config();
 module.exports = function (app) {
 
     // will pull pets from database based on quiz criteria (first section, needs to be added as variables)
-    router.post("/pf", function (req, res) {
+    app.post("/pf", function (req, res) {
         let zip = req.body.zip;
         var method = req.body.method;
         var key = process.env.PETFINDER_KEY;
