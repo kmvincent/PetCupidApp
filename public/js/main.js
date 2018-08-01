@@ -259,8 +259,6 @@ $(document).ready(function () {
     // dropdown select menu
     $('select').formSelect();
 
-    // 
-
     let queryArray = [];
     let newAnswer = "";
 
