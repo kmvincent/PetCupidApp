@@ -22,7 +22,7 @@ $(document).ready(function () {
 
     // changes value of newAnswer to the most recently clicked answer-tile 
     $(".answer-tile").on("click", function () {
-        if ($(this).attr("data-ajax") === "" || $(this).attr("data-ajax") != "") {
+        if ($(this).data("ajax") != "") {
             newAnswer = $(this).attr("data-ajax");
         } else {
             newAnswer = $(this).children("p").html();
@@ -30,7 +30,7 @@ $(document).ready(function () {
     });
 
     // submit answer to survey Q
-    $(".survey-btn").on("click", function () {
+    $(".survey-answer-btn").on("click", function () {
         // if didn't click the qStart button, clicking the first next-btn will hide the header as well
         $("#questionnaireStart").addClass("hide");
         // switch case to hide/reveal each Q as user moves through survey
@@ -74,7 +74,7 @@ $(document).ready(function () {
                 goToNextQuestion(10);
                 break;
             case "next-btn-11":
-                // goToNextQuestion(3);
+                $("#questionSection-11").addClass("hide");
                 console.log("dog last Q)");
                 break;
             case "next-btn-12":
@@ -105,9 +105,11 @@ $(document).ready(function () {
                 goToNextQuestion(20);
                 break;
             case "next-btn-21":
+                $("#questionSection-21").addClass("hide");
                 console.log("cat last Q)");
                 break;
         };
+        // add each answer to end of queryArray
         queryArray.push(newAnswer);
         console.log(queryArray);
     });
