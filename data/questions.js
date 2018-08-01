@@ -111,9 +111,12 @@ questionArray = [
         id: 5,
         questionNo: 5,
         progress: "45.45%",
-        textBox: "12345",
-        // need a way to add their zip to this...
-        ajax: "&location="
+        answers: [
+            {
+                textBox: true,
+                id: 5
+            }
+        ]
     },
     {
         // this will relate to pf filter
@@ -261,7 +264,7 @@ questionArray = [
         question: "What size cat would you prefer?",
         id: 12,
         questionNo: 2,
-        progress: "10%",
+        progress: "18.18%",
         answers: [
             {
                 option: "No Preference",
@@ -296,7 +299,7 @@ questionArray = [
         question: "Which sex would you prefer?",
         id: 13,
         questionNo: 3,
-        progress: "10%",
+        progress: "27.27%",
         answers: [
             {
                 option: "No Preference",
@@ -320,10 +323,13 @@ questionArray = [
         question: "Enter your zip code.",
         id: 14,
         questionNo: 4,
-        progress: "10%",
-        textBox: "12345",
-        // need a way to add their zip to this...
-        ajax: "&location="
+        progress: "36.36%",
+        answers: [
+            {
+                textBox: true,
+                id: 14
+            }
+        ]
     },
     // filtered after ajax request and before text parsing (given in "options", but can't send to api to filter for us)
     {
@@ -331,7 +337,7 @@ questionArray = [
         question: "Which criteria would you like to REQUIRE?",
         id: 15,
         questionNo: 5,
-        progress: "10%",
+        progress: "45.45%",
         //should be checkboxes that allow multiple options to be chosen (or we can make these separate questions)
         answers: [
             {
@@ -372,10 +378,11 @@ questionArray = [
         question: "How playful is your ideal cat?",
         id: 16,
         questionNo: 6,
-        progress: "10%",
+        progress: "54.54%",
+        selectOption: true,
         answers: [
             {
-                option: "5",
+                option: "5 - Very playful",
                 icon: "placeholder.png",
             },
             {
@@ -385,17 +392,14 @@ questionArray = [
             {
                 option: "3",
                 icon: "placeholder.png",
-
             },
             {
                 option: "2",
                 icon: "placeholder.png",
-
             },
             {
-                option: "1",
+                option: "1 - Not playful at all",
                 icon: "placeholder.png",
-
             }
         ]
     },
@@ -404,10 +408,11 @@ questionArray = [
         question: "How much physical affection does your ideal cat like (petting, lap-sitting, etc.)?",
         id: 17,
         questionNo: 7,
-        progress: "10%",
+        progress: "63.63%",
+        selectOption: true,
         answers: [
             {
-                option: "5",
+                option: "5 - Very affectionate",
                 icon: "placeholder.png",
             },
             {
@@ -425,7 +430,7 @@ questionArray = [
 
             },
             {
-                option: "1",
+                option: "1 - Not affectionate at all",
                 icon: "placeholder.png",
 
             }
@@ -436,10 +441,11 @@ questionArray = [
         question: "How social is your ideal cat?",
         id: 18,
         questionNo: 8,
-        progress: "10%",
+        progress: "72.72%",
+        selectOption: true,
         answers: [
             {
-                option: "5",
+                option: "5 - Very social",
                 icon: "placeholder.png",
             },
             {
@@ -457,7 +463,7 @@ questionArray = [
 
             },
             {
-                option: "1",
+                option: "1 - Not social at all",
                 icon: "placeholder.png",
 
             }
@@ -468,10 +474,11 @@ questionArray = [
         question: "How independent is your ideal cat?",
         id: 19,
         questionNo: 9,
-        progress: "10%",
+        progress: "81.81%",
+        selectOption: true,
         answers: [
             {
-                option: "5",
+                option: "5 - Very independent",
                 icon: "placeholder.png",
             },
             {
@@ -489,7 +496,7 @@ questionArray = [
 
             },
             {
-                option: "1",
+                option: "1 - Very dependent",
                 icon: "placeholder.png",
 
             }
@@ -500,10 +507,11 @@ questionArray = [
         question: "How vocal is your ideal cat?",
         id: 20,
         questionNo: 10,
-        progress: "10%",
+        progress: "90.9%",
+        selectOption: true,
         answers: [
             {
-                option: "5",
+                option: "5 - Very vocal",
                 icon: "placeholder.png",
             },
             {
@@ -521,7 +529,7 @@ questionArray = [
 
             },
             {
-                option: "1",
+                option: "1 - Not vocal at all",
                 icon: "placeholder.png",
 
             }
@@ -532,10 +540,11 @@ questionArray = [
         question: "How cautious around strangers can your ideal cat be?",
         id: 21,
         questionNo: 11,
-        progress: "10%",
+        progress: "100%",
+        selectOption: true,
         answers: [
             {
-                option: "5",
+                option: "5 - Very cautious",
                 icon: "placeholder.png",
             },
             {
@@ -553,7 +562,7 @@ questionArray = [
 
             },
             {
-                option: "1",
+                option: "1 - Not cautious at all",
                 icon: "placeholder.png",
 
             }
