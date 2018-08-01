@@ -259,6 +259,9 @@ $(document).ready(function () {
     // dropdown select menu
     $('select').formSelect();
 
+    // // auth code 
+    // $('select').material_select();
+
     let queryArray = [];
     let newAnswer = "";
 
@@ -482,7 +485,9 @@ $(document).ready(function () {
 
                 break;
         };
-        // add each answer to end of queryArray
+    });
+
+    $("#register-btn").on("click", function() {
 
     });
 });

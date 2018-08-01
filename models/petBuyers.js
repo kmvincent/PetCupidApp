@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
     PetBuyer = sequelize.define('PetBuyer', {
-        role: DataTypes.STRING
+        // role: DataTypes.STRING
     });
 
     return PetBuyer;

@@ -73,7 +73,7 @@ module.exports = function (app) {
                 }
                 //console.log(petOptions)
 
-                
+
                 //if user checks must be already fixed
                 if (fixed == true) {
                     //loop through options list from api
@@ -105,8 +105,8 @@ module.exports = function (app) {
                             ineligibleIds.push(petsObject[i].id.$t);
                             break;
                         }
-                        
-                        
+
+
                     }
                 }
                 //if user checks must be already housetrained
@@ -139,7 +139,7 @@ module.exports = function (app) {
                             ineligibleIds.push(petsObject[i].id.$t);
                             break;
                         }
-                        
+
                     }
                 }
                 //if user doesn't check special needs are ok
@@ -152,7 +152,7 @@ module.exports = function (app) {
                             ineligibleIds.push(petsObject[i].id.$t);
                             break;
                         }
-                        
+
                     }
                 }
                 //if user doesn't check no kids is ok
@@ -165,7 +165,7 @@ module.exports = function (app) {
                             ineligibleIds.push(petsObject[i].id.$t);
                             break;
                         }
-                        
+
                     }
                 }
                 //if user doesn't check no other cats is ok
@@ -178,7 +178,7 @@ module.exports = function (app) {
                             ineligibleIds.push(petsObject[i].id.$t);
                             break;
                         }
-                        
+
                     }
                 }
                 //if user doesn't check no other dogs is ok
@@ -191,14 +191,14 @@ module.exports = function (app) {
                             ineligibleIds.push(petsObject[i].id.$t);
                             break;
                         }
-                        
+
                     }
                 }
-            
+
             }
             console.log(ineligibleIds)
 
-            
+
 
             //console.log('body:', body.petfinder); // Print the HTML for the PetFinder api request homepage.
 
@@ -220,5 +220,23 @@ module.exports = function (app) {
         //count number of words in each array and calculate cat personality results
         //})
 
+    });
+
+    // POST route for saving a new user
+    app.post("/api/users", function (req, res) {
+
+    })
+
+    // POST route for saving a new post
+    app.post("/api/posts", function (req, res) {
+        console.log(req.body);
+        db.Post.create({
+            title: req.body.title,
+            body: req.body.body,
+            category: req.body.category
+        })
+            .then(function (dbPost) {
+                res.json(dbPost);
+            });
     });
 }

@@ -7,4 +7,7 @@ module.exports = function (app) {
     app.get("/", function (req, res) {
         res.render("index", { questions: questions });
     });
+    app.get("/results", function (req, res) {
+        res.render("results");
+    });
 };
