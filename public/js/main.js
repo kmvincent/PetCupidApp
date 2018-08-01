@@ -351,6 +351,13 @@ $(document).ready(function () {
                 goToNextQuestion(14);
                 break;
             case "next-btn-15":
+                if ($('input[type=checkbox]:checked').length > 0) {
+                    console.log("checked")
+                    
+                } else {
+                    newAnswer = "";
+                }
+
                 goToNextQuestion(15);
                 break;
             case "next-btn-16":

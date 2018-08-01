@@ -338,6 +338,7 @@ questionArray = [
         id: 15,
         questionNo: 5,
         progress: "45.45%",
+        checkbox: true,
         //should be checkboxes that allow multiple options to be chosen (or we can make these separate questions)
         answers: [
             {
@@ -372,7 +373,6 @@ questionArray = [
 
     },
     //personality questions; answers will be filtered through text parser
-    //drop down lists of 1-5?
     {
         // this will relate to pf filter
         question: "How playful is your ideal cat?",

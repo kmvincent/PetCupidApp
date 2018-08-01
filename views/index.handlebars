@@ -40,6 +40,17 @@
               </select>
               <label>Materialize Select</label>
             </div>
+          {{else if checkbox}}
+            <form action="#">
+              {{#each answers}} 
+                <p>
+                  <label>
+                    <input type="checkbox" />
+                    <span>{{option}}</span>
+                  </label>
+                </p>
+              {{/each}}
+            </form>
           {{else}}
             {{#each answers}} 
               {{#if autocomplete}}
