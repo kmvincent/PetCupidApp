@@ -1,8 +1,4 @@
-// array of Qs, each one has Question and answers, and each answer has an icon
 // for ranking importance of each Q, need to grab each Q then be able to place in the order you want...from there it assigns a value to each position....
-
-// first four in keyWordArray are sometimes listed in the "options" sections of api response
-dogKeyWordArray = ["noKids", "noCats", "specialNeeds", "housetrained", ""]
 
 
 questionArray = [
@@ -163,18 +159,26 @@ questionArray = [
         question: "Placeholder",
         id: 7,
         questionNo: 7,
-        progress: "63.63%",
+        selectOption: true,
         answers: [
             {
-                option: "No Preference",
+                option: "5 - Very playful",
                 icon: "placeholder.png",
             },
             {
-                option: "Female",
+                option: "4",
                 icon: "placeholder.png",
             },
             {
-                option: "Male",
+                option: "3",
+                icon: "placeholder.png",
+            },
+            {
+                option: "2",
+                icon: "placeholder.png",
+            },
+            {
+                option: "1 - Not playful at all",
                 icon: "placeholder.png",
             }
         ]
@@ -184,17 +188,26 @@ questionArray = [
         id: 8,
         questionNo: 8,
         progress: "72.72%",
+        selectOption: true,
         answers: [
             {
-                option: "No Preference",
+                option: "5 - Very playful",
                 icon: "placeholder.png",
             },
             {
-                option: "Female",
+                option: "4",
                 icon: "placeholder.png",
             },
             {
-                option: "Male",
+                option: "3",
+                icon: "placeholder.png",
+            },
+            {
+                option: "2",
+                icon: "placeholder.png",
+            },
+            {
+                option: "1 - Not playful at all",
                 icon: "placeholder.png",
             }
         ]
@@ -204,17 +217,26 @@ questionArray = [
         id: 9,
         questionNo: 9,
         progress: "81.81%",
+        selectOption: true,
         answers: [
             {
-                option: "No Preference",
+                option: "5 - Very playful",
                 icon: "placeholder.png",
             },
             {
-                option: "Female",
+                option: "4",
                 icon: "placeholder.png",
             },
             {
-                option: "Male",
+                option: "3",
+                icon: "placeholder.png",
+            },
+            {
+                option: "2",
+                icon: "placeholder.png",
+            },
+            {
+                option: "1 - Not playful at all",
                 icon: "placeholder.png",
             }
         ]
@@ -225,17 +247,26 @@ questionArray = [
         id: 10,
         questionNo: 10,
         progress: "90.9%",
+        selectOption: true,
         answers: [
             {
-                option: "No Preference",
+                option: "5 - Very playful",
                 icon: "placeholder.png",
             },
             {
-                option: "Female",
+                option: "4",
                 icon: "placeholder.png",
             },
             {
-                option: "Male",
+                option: "3",
+                icon: "placeholder.png",
+            },
+            {
+                option: "2",
+                icon: "placeholder.png",
+            },
+            {
+                option: "1 - Not playful at all",
                 icon: "placeholder.png",
             }
         ]
@@ -246,17 +277,26 @@ questionArray = [
         id: 11,
         questionNo: 11,
         progress: "100%",
+        selectOption: true,
         answers: [
             {
-                option: "No Preference",
+                option: "5 - Very playful",
                 icon: "placeholder.png",
             },
             {
-                option: "Female",
+                option: "4",
                 icon: "placeholder.png",
             },
             {
-                option: "Male",
+                option: "3",
+                icon: "placeholder.png",
+            },
+            {
+                option: "2",
+                icon: "placeholder.png",
+            },
+            {
+                option: "1 - Not playful at all",
                 icon: "placeholder.png",
             }
         ]

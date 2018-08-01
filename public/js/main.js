@@ -290,7 +290,7 @@ $(document).ready(function () {
     $(".survey-answer-btn").on("click", function () {
         // if didn't click the qStart button, clicking the first next-btn will hide the header as well
         $("#questionnaireStart").addClass("hide");
-        // switch case to hide/reveal each Q as user moves through survey
+        // switch case to hide/reveal each Q as user moves through survey and add to queryArray
         switch ($(this).attr("id")) {
             case "next-btn-1":
                 // if cat answer was selected, jump down to cat Qs next
@@ -302,22 +302,36 @@ $(document).ready(function () {
                     $("#questionSection-1").addClass("hide");
                     $("#questionSection-2").removeClass("hide");
                 };
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-2":
                 if ($("#autocomplete-input").val() != "") {
                     newAnswer = "&breed=" + $("#autocomplete-input").val();
                 }
                 goToNextQuestion(2);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-3":
                 goToNextQuestion(3);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-4":
                 goToNextQuestion(4);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-5":
-                newAnswer = "&location=" + $("#zip_code_5").val();
+                if ($("#zip_code_5").val() === "") {
+                    newAnswer = "&location=55401";
+                } else {
+                    newAnswer = "&location=" + $("#zip_code_5").val();
+                }
                 goToNextQuestion(5);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-6":
                 if ($('input[type=checkbox]:checked').length > 0) {
@@ -329,32 +343,76 @@ $(document).ready(function () {
                     newAnswer = "";
                 }
                 goToNextQuestion(6);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-7":
+                newAnswer = $("#select-7").val();
                 goToNextQuestion(7);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-8":
+                newAnswer = $("#select-8").val();
                 goToNextQuestion(8);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-9":
+                newAnswer = $("#select-9").val();
                 goToNextQuestion(9);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-10":
+                newAnswer = $("#select-10").val();
                 goToNextQuestion(10);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-11":
+                newAnswer = $("#select-11").val();
                 $("#questionSection-11").addClass("hide");
-                console.log("dog last Q)");
+                queryArray.push(newAnswer);
+                console.log(queryArray);
+
+                // new dog search
+                let dogSearch = {
+                    queryUrlParams: queryArray[0] + queryArray[1] + queryArray[2] + queryArray[3] + queryArray[4],
+                    requiredOptions: queryArray[5],
+                    personalityQ1: queryArray[6],
+                    personalityQ2: queryArray[7],
+                    personalityQ3: queryArray[8],
+                    personalityQ4: queryArray[9],
+                    personalityQ5: queryArray[10],
+                }
+                console.log(dogSearch);
+                // post to backend to be sent to petfinder
+                $.post("/pf", dogSearch).then(function (data) {
+                    console.log(data);
+                });
                 break;
+
+            // Switch to cat Qs
             case "next-btn-12":
                 goToNextQuestion(12);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-13":
                 goToNextQuestion(13);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-14":
-                newAnswer = "&location=" + $("#zip_code_14").val();
+                if ($("#zip_code_14").val() === "") {
+                    newAnswer = "&location=55401";
+                } else {
+                    newAnswer = "&location=" + $("#zip_code_14").val();
+                }
                 goToNextQuestion(14);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-15":
                 if ($('input[type=checkbox]:checked').length > 0) {
@@ -366,35 +424,64 @@ $(document).ready(function () {
                     newAnswer = "";
                 }
                 goToNextQuestion(15);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-16":
                 newAnswer = $("#select-16").val();
                 goToNextQuestion(16);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-17":
                 newAnswer = $("#select-17").val();
                 goToNextQuestion(17);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-18":
                 newAnswer = $("#select-18").val();
                 goToNextQuestion(18);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-19":
                 newAnswer = $("#select-19").val();
                 goToNextQuestion(19);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-20":
                 newAnswer = $("#select-20").val();
                 goToNextQuestion(20);
+                queryArray.push(newAnswer);
+                console.log(queryArray);
                 break;
             case "next-btn-21":
                 newAnswer = $("#select-21").val();
                 $("#questionSection-21").addClass("hide");
-                console.log("cat last Q)");
+                queryArray.push(newAnswer);
+                console.log(queryArray);
+
+                // new cat search
+                let catSearch = {
+                    queryUrlParams: queryArray[0] + queryArray[1] + queryArray[2] + queryArray[3] + queryArray[4],
+                    requiredOptions: queryArray[5],
+                    personalityQ1: queryArray[6],
+                    personalityQ2: queryArray[7],
+                    personalityQ3: queryArray[8],
+                    personalityQ4: queryArray[9],
+                    personalityQ5: queryArray[10],
+                }
+                console.log(catSearch);
+                // post to backend to be sent to petfinder
+                $.post("/pf", catSearch).then(function (data) {
+                    console.log(data);
+                });
+
                 break;
         };
         // add each answer to end of queryArray
-        queryArray.push(newAnswer);
-        console.log(queryArray);
+
     });
 });

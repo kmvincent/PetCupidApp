@@ -21,7 +21,7 @@
           <div class="col m12">
             <p> - QUESTION
               <span id="questionNo">{{questionNo}}</span> OF 11 - </p>
-            <h4 id="q{{id}}" class="center question show">{{question}}</h4>
+            <h4 id="q{{id}}" class="center question">{{question}}</h4>
           </div>
         </div>
         <div class="progress">
@@ -70,7 +70,7 @@
                   <div class="row">
                     <div class="input-field col s6">
                       <input placeholder="12345" id="zip_code_{{id}}" type="number" class="validate">
-                      <label for="first_name">Zip Code</label>
+                      <label for="first_name">Zip Code - Required</label>
                     </div>
                   </div>
                 </form>
@@ -88,4 +88,10 @@
         </div>
       </div>
     {{/each}}
+{{!-- Ranking each characteristic section --}}
+{{!-- <ul>
+  {{#each questions}}
+    <li id="ql{{id}}" class="center question">{{question}}</li>
+  {{/each}}
+</ul> --}}
 </article>
