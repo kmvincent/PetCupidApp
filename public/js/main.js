@@ -259,6 +259,8 @@ $(document).ready(function () {
     // dropdown select menu
     $('select').formSelect();
 
+    // 
+
     let queryArray = [];
     let newAnswer = "";
 
@@ -352,21 +354,27 @@ $(document).ready(function () {
                 goToNextQuestion(15);
                 break;
             case "next-btn-16":
+                newAnswer = $("#select-16").val();
                 goToNextQuestion(16);
                 break;
             case "next-btn-17":
+                newAnswer = $("#select-17").val();
                 goToNextQuestion(17);
                 break;
             case "next-btn-18":
+                newAnswer = $("#select-18").val();
                 goToNextQuestion(18);
                 break;
             case "next-btn-19":
+                newAnswer = $("#select-19").val();
                 goToNextQuestion(19);
                 break;
             case "next-btn-20":
+                newAnswer = $("#select-20").val();
                 goToNextQuestion(20);
                 break;
             case "next-btn-21":
+                newAnswer = $("#select-21").val();
                 $("#questionSection-21").addClass("hide");
                 console.log("cat last Q)");
                 break;
