@@ -11,12 +11,12 @@ questionArray = [
         answers: [
             {
                 option: "Cat",
-                icon: "placeholder.png",
+                icon: "cat.png",
                 ajax: "&animal=cat"
             },
             {
                 option: "Dog",
-                icon: "placeholder.png",
+                icon: "dog.png",
                 ajax: "&animal=dog"
             }
         ]
@@ -31,7 +31,7 @@ questionArray = [
         answers: [
             {
                 option: "No preference",
-                icon: "placeholder.png",
+                icon: "nopref.png",
                 ajax: '&breed=""'
             },
             {
@@ -51,28 +51,28 @@ questionArray = [
         answers: [
             {
                 option: "No Preference",
-                icon: "placeholder.png",
+                icon: "nopref.png",
                 ajax: '&size=""'
             },
             {
                 option: "Small",
-                icon: "placeholder.png",
+                icon: "dogsmall.png",
                 ajax: "&size=S"
             },
             {
                 option: "Medium",
-                icon: "placeholder.png",
+                icon: "dogmedium.png",
                 ajax: "&size=M"
             },
             {
                 option: "Large",
-                icon: "placeholder.png",
+                icon: "doglarge.png",
                 ajax: "&size=L"
 
             },
             {
                 option: "Extra Large",
-                icon: "placeholder.png",
+                icon: "dogxlarge.png",
                 ajax: "&size=XL"
             }
         ]
@@ -86,17 +86,17 @@ questionArray = [
         answers: [
             {
                 option: "No Preference",
-                icon: "placeholder.png",
+                icon: "nopref.png",
                 ajax: '&sex=""'
             },
             {
                 option: "Female",
-                icon: "placeholder.png",
+                icon: "female.png",
                 ajax: "&sex=F"
             },
             {
                 option: "Male",
-                icon: "placeholder.png",
+                icon: "male.png",
                 ajax: "&sex=M"
             }
         ]
@@ -319,28 +319,28 @@ questionArray = [
         answers: [
             {
                 option: "No Preference",
-                icon: "placeholder.png",
+                icon: "nopref.png",
                 ajax: '&size=""'
             },
             {
                 option: "Small",
-                icon: "placeholder.png",
+                icon: "catsmall.png",
                 ajax: "&size=S"
             },
             {
                 option: "Medium",
-                icon: "placeholder.png",
+                icon: "catmedium.png",
                 ajax: "&size=M"
             },
             {
                 option: "Large",
-                icon: "placeholder.png",
+                icon: "catlarge.png",
                 ajax: "&size=L"
 
             },
             {
                 option: "Extra Large",
-                icon: "placeholder.png",
+                icon: "catxlarge.png",
                 ajax: "&size=XL"
             }
         ]
@@ -354,17 +354,17 @@ questionArray = [
         answers: [
             {
                 option: "No Preference",
-                icon: "placeholder.png",
+                icon: "nopref.png",
                 ajax: '&sex=""'
             },
             {
                 option: "Female",
-                icon: "placeholder.png",
+                icon: "female.png",
                 ajax: "&sex=F"
             },
             {
                 option: "Male",
-                icon: "placeholder.png",
+                icon: "male.png",
                 ajax: "&sex=M"
             }
         ]
@@ -446,24 +446,29 @@ questionArray = [
         selectOption: true,
         answers: [
             {
-                option: "5 - Very playful",
+                option: "1",
                 icon: "placeholder.png",
-            },
-            {
-                option: "4",
-                icon: "placeholder.png",
-            },
-            {
-                option: "3",
-                icon: "placeholder.png",
+                descriptor: "Not playful at all"
             },
             {
                 option: "2",
                 icon: "placeholder.png",
+                descriptor: "2"
             },
             {
-                option: "1 - Not playful at all",
+                option: "3",
                 icon: "placeholder.png",
+                descriptor: "3"
+            },
+            {
+                option: "4",
+                icon: "placeholder.png",
+                descriptor: "4"
+            },
+            {
+                option: "5",
+                icon: "placeholder.png",
+                descriptor: "Very playful"
             }
         ]
     },
