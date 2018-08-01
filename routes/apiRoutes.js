@@ -92,6 +92,11 @@ module.exports = function (app) {
             for (let i = 0; i < petsObject.length; i++) {
 
                 //if something ineligible happens, remove from petsObject (within each loop)
+                if (!petsObject[i].description.$t) {
+                    console.log(`${[i]}: undefined`)
+                    ineligibleIds.push(petsObject[i].id.$t);
+                }
+
 
                 let petOptions = petsObject[i].options.option
                 //console.log(typeof petOptions)
@@ -242,69 +247,274 @@ module.exports = function (app) {
             //console.log(petsObject)
             //console.log(petsObject.length)
             let parsePetsObject = petsObject;
+
             //console.log(parsePetsObject)
 
             //TEXT PARSING
 
-        //CATS
-        if (parsePetsObject[0].animal.$t == "Cat") {
-            console.log('meow')
-            //full array of words to find
-            let playfulCatKeyWordArr = ['play', 'playful', 'energy', 'energetic', 'trouble', 'entertain', 'entertaining', 'wrestle', 'run', 'running', 'active']
-            let lapCatKeyWordArr = ['lap', 'lapcat', 'sit', 'curl', 'snuggle', 'snuggler', 'brush', 'rub', 'tummy', 'burrow', 'hold', 'held', 'rub', 'rubbing', 'rubbed']
-            let socialCatKeyWordArr = ['outgoing', 'people', 'social', 'hangout', 'hang-out', 'attention', 'follow']
-            let independentCatKeyWordArr = ['independent', 'solitary', 'own', 'alone', 'aloof']
-            let vocalCatKeyWordArr = ['voice', 'vocal', 'chatterbox', 'sing', 'singing', 'singer', 'chirp', 'chirps', 'chirping', 'chat', 'chatty', 'meow', 'meowing', 'conversation', 'converse']
-            let cautiousCatKeyWordArr = ['cautious', 'shy', 'hide', 'hiding', 'patient', 'patience', 'noises', 'scare', 'timid']
-            //need to do for each result (pets object has been cut down by options logic above)
-            for (let i = 0; i < parsePetsObject.length; i++) {
+            //CATS
+            if (parsePetsObject[0].animal.$t == "Cat") {
+                console.log('meow')
+                //full array of words to find
+                let playfulCatKeyWordArr = ['play', 'playful', 'energy', 'energetic', 'trouble', 'entertain', 'entertaining', 'wrestle', 'run', 'running', 'active', 'chase', 'chasing']
+                let lapCatKeyWordArr = ['lap', 'lapcat', 'sit', 'curl', 'snuggle', 'snuggler', 'brush', 'brushing', 'rub', 'tummy', 'burrow', 'hold', 'held', 'rub', 'rubbing', 'rubbed', 'pet', 'petting', 'petted']
+                let socialCatKeyWordArr = ['outgoing', 'people', 'social', 'hangout', 'hang-out', 'attention', 'follow']
+                let independentCatKeyWordArr = ['independent', 'solitary', 'own', 'alone', 'aloof']
+                let vocalCatKeyWordArr = ['voice', 'vocal', 'chatterbox', 'sing', 'singing', 'singer', 'chirp', 'chirps', 'chirping', 'chat', 'chatty', 'meow', 'meowing', 'conversation', 'converse']
+                let cautiousCatKeyWordArr = ['cautious', 'shy', 'hide', 'hiding', 'patient', 'patience', 'noises', 'scare', 'timid', 'spook']
+                //need to do for each result (pets object has been cut down by options logic above)
+                console.log("parsePetsObject")
+                console.log(parsePetsObject)
+                for (let i = 0; i < parsePetsObject.length; i++) {
+                    console.log(`---PET INDEX ${i}---`)
+                    //empty arrays to push found words into
+                    let foundPlayfulCatKeyWordArr = [];
+                    let playfulCount = 0;
+                    let foundLapCatKeyWordArr = [];
+                    let lapCount = 0;
+                    let foundSocialCatKeyWordArr = [];
+                    let socialCount = 0;
+                    let foundIndependentCatKeyWordArr = [];
+                    let independentCount = 0;
+                    let foundVocalCatKeyWordArr = [];
+                    let vocalCount = 0;
+                    let foundCautiousCatKeyWordArr = [];
+                    let cautiousCount = 0;
 
-                //empty arrays to push found words into
-                let foundPlayfulCatKeyWordArr = [];
-                let foundLapCatKeyWordArr = [];
-                let foundSocialCatKeyWordArr = [];
-                let foundIndependentCatKeyWordArr = [];
-                let foundVocalCatKeyWordArr = [];
-                let foundCautiousCatKeyWordArr = [];
 
-                //pull out string of text from each result
-                let text = parsePetsObject[i].description.$t;
-                //console.log(`${parsePetsObject[i].name.$t}: ${text}`)
+                    //pull out string of text from each result
+                    let text;
+                    if (!parsePetsObject[i].description.$t) {
+                        text = "aaaaaa"
+                    }
+                    else {
+                        text = parsePetsObject[i].description.$t
+                    };
+                    //console.log("IS THIS UNDEFINED!?!?!?!")
+                    //console.log(text)
+                    //console.log(`${parsePetsObject[i].name.$t}: ${text}`)
 
-                //for each keyword in each array, scan through each text and push into found__KeyWordArr
-                for (let j=0; j<playfulCatKeyWordArr.length; j++) {
-                    console.log(playfulCatKeyWordArr[j])
+                    //for each keyword in each array, scan through each text and push into found__KeyWordArr
+                    for (let j = 0; j < playfulCatKeyWordArr.length; j++) {
+                        //console.log(playfulCatKeyWordArr[j])
+                        function parse() {
+                            var result = text.search(playfulCatKeyWordArr[j]);
+                            //console.log(result);
+                            foundPlayfulCatKeyWordArr.push(result)
+                        }
+                        parse();
+                    }
+                    //console.log(text)
+                    console.log(`playful: ${foundPlayfulCatKeyWordArr}`)
+                    for (let n=0; n<foundPlayfulCatKeyWordArr.length; n++) {
+                        if (foundPlayfulCatKeyWordArr[n] != -1) {
+                            playfulCount ++
+                        }
+                    }
+                    console.log(`playful total: ${playfulCount} out of ${foundPlayfulCatKeyWordArr.length}`)
+                    for (let j = 0; j < lapCatKeyWordArr.length; j++) {
+                        //console.log(lapCatKeyWordArr[j])
+                        function parse() {
+                            var result = text.search(lapCatKeyWordArr[j]);
+                            foundLapCatKeyWordArr.push(result)
+                        }
+                        parse();
+                    }
+                    console.log(`lap: ${foundLapCatKeyWordArr}`)
+                    for (let n=0; n<foundLapCatKeyWordArr.length; n++) {
+                        if (foundLapCatKeyWordArr[n] != -1) {
+                            lapCount ++
+                        }
+                    }
+                    console.log(`lap total: ${lapCount} out of ${foundLapCatKeyWordArr.length}`)
+                    for (let j = 0; j < socialCatKeyWordArr.length; j++) {
+                        function parse() {
+                            var result = text.search(socialCatKeyWordArr[j]);
+                            foundSocialCatKeyWordArr.push(result)
+                        }
+                        parse();
+                    }
+                    console.log(`social: ${foundSocialCatKeyWordArr}`)
+                    for (let n=0; n<foundSocialCatKeyWordArr.length; n++) {
+                        if (foundSocialCatKeyWordArr[n] != -1) {
+                            socialCount ++
+                        }
+                    }
+                    console.log(`social total: ${socialCount} out of ${foundSocialCatKeyWordArr.length}`)
+                    for (let j = 0; j < independentCatKeyWordArr.length; j++) {
+                        function parse() {
+                            var result = text.search(independentCatKeyWordArr[j]);
+                            foundIndependentCatKeyWordArr.push(result)
+                        }
+                        parse();
+                    }
+                    console.log(`independent: ${foundIndependentCatKeyWordArr}`)
+                    for (let n=0; n<foundIndependentCatKeyWordArr.length; n++) {
+                        if (foundIndependentCatKeyWordArr[n] != -1) {
+                            independentCount ++
+                        }
+                    }
+                    console.log(`independent total: ${independentCount} out of ${foundIndependentCatKeyWordArr.length}`)
+                    for (let j = 0; j < vocalCatKeyWordArr.length; j++) {
+                        function parse() {
+                            var result = text.search(vocalCatKeyWordArr[j]);
+                            foundVocalCatKeyWordArr.push(result)
+                        }
+                        parse();
+                    }
+                    console.log(`vocal: ${foundVocalCatKeyWordArr}`)
+                    for (let n=0; n<foundVocalCatKeyWordArr.length; n++) {
+                        if (foundVocalCatKeyWordArr[n] != -1) {
+                            vocalCount ++
+                        }
+                    }
+                    console.log(`vocal total: ${vocalCount} out of ${foundVocalCatKeyWordArr.length}`)
+                    for (let j = 0; j < cautiousCatKeyWordArr.length; j++) {
+                        function parse() {
+                            var result = text.search(cautiousCatKeyWordArr[j]);
+                            foundCautiousCatKeyWordArr.push(result)
+                        }
+                        parse();
+                    }
+                    console.log(`cautious: ${foundCautiousCatKeyWordArr}`)
+                    for (let n=0; n<foundCautiousCatKeyWordArr.length; n++) {
+                        if (foundCautiousCatKeyWordArr[n] != -1) {
+                            cautiousCount ++
+                        }
+                    }
+                    console.log(`cautious total: ${cautiousCount} out of ${foundCautiousCatKeyWordArr.length}`)
+                    //count number of words in each array and calculate cat personality results
+
                 }
-                for (let j=0; j<lapCatKeyWordArr.length; j++) {
-                    console.log(lapCatKeyWordArr[j])
-                }
-                for (let j=0; j<socialCatKeyWordArr.length; j++) {
-                    console.log(socialCatKeyWordArr[j])
-                }
-                for (let j=0; j<independentCatKeyWordArr.length; j++) {
-                    console.log(independentCatKeyWordArr[j])
-                }
-                for (let j=0; j<vocalCatKeyWordArr.length; j++) {
-                    console.log(vocalCatKeyWordArr[j])
-                }
-                for (let j=0; j<cautiousCatKeyWordArr.length; j++) {
-                    console.log(cautiousCatKeyWordArr[j])
-                }
-                //count number of words in each array and calculate cat personality results
             }
-        }
 
-        //DAWGS
-        if (parsePetsObject[0].animal.$t == "Dog") {
-            console.log('woof')
-        }
+            //DAWGS
+            if (parsePetsObject[0].animal.$t == "Dog") {
+                console.log('woof')
+                //full array of words to find
+                let playfulDogKeyWordArr = ['play', 'playful', 'energy', 'energetic', 'trouble', 'entertain', 'entertaining', 'wrestle', 'run', 'running', 'active', 'chase', 'chasing']
+                let lapDogKeyWordArr = ['lap', 'lapcat', 'sit', 'curl', 'snuggle', 'snuggler', 'brush', 'brushing', 'rub', 'tummy', 'burrow', 'hold', 'held', 'rub', 'rubbing', 'rubbed', 'pet', 'petting', 'petted']
+                let socialDogKeyWordArr = ['outgoing', 'people', 'social', 'hangout', 'hang-out', 'attention', 'follow']
+                let independentDogKeyWordArr = ['independent', 'solitary', 'own', 'alone', 'aloof']
+                let cautiousDogKeyWordArr = ['cautious', 'shy', 'hide', 'hiding', 'patient', 'patience', 'noises', 'scare', 'timid', 'spook']
+                //need to do for each result (pets object has been cut down by options logic above)
+                console.log("parsePetsObject")
+                console.log(parsePetsObject)
+                for (let i = 0; i < parsePetsObject.length; i++) {
+                    console.log(`---PET INDEX ${i}---`)
+                    //empty arrays to push found words into
+                    let foundPlayfulDogKeyWordArr = [];
+                    let playfulCount = 0;
+                    let foundLapDogKeyWordArr = [];
+                    let lapCount = 0;
+                    let foundSocialDogKeyWordArr = [];
+                    let socialCount = 0;
+                    let foundIndependentDogKeyWordArr = [];
+                    let independentCount = 0;
+                    let foundVocalDogKeyWordArr = [];
+                    let vocalCount = 0;
+                    let foundCautiousDogKeyWordArr = [];
+                    let cautiousCount = 0;
+
+
+                    //pull out string of text from each result
+                    let text;
+                    if (!parsePetsObject[i].description.$t) {
+                        text = "aaaaaa"
+                    }
+                    else {
+                        text = parsePetsObject[i].description.$t
+                    };
+                    //console.log("IS THIS UNDEFINED!?!?!?!")
+                    //console.log(text)
+                    //console.log(`${parsePetsObject[i].name.$t}: ${text}`)
+
+                    //for each keyword in each array, scan through each text and push into found__KeyWordArr
+                    for (let j = 0; j < playfulDogKeyWordArr.length; j++) {
+                        //console.log(playfulCatKeyWordArr[j])
+                        function parse() {
+                            var result = text.search(playfulDogKeyWordArr[j]);
+                            //console.log(result);
+                            foundPlayfulDogKeyWordArr.push(result)
+                        }
+                        parse();
+                    }
+                    //console.log(text)
+                    console.log(`playful: ${foundPlayfulDogKeyWordArr}`)
+                    for (let n=0; n<foundPlayfulDogKeyWordArr.length; n++) {
+                        if (foundPlayfulDogKeyWordArr[n] != -1) {
+                            playfulCount ++
+                        }
+                    }
+                    console.log(`playful total: ${playfulCount} out of ${foundPlayfulDogKeyWordArr.length}`)
+                    for (let j = 0; j < lapDogKeyWordArr.length; j++) {
+                        //console.log(lapCatKeyWordArr[j])
+                        function parse() {
+                            var result = text.search(lapDogKeyWordArr[j]);
+                            foundLapDogKeyWordArr.push(result)
+                        }
+                        parse();
+                    }
+                    console.log(`lap: ${foundLapDogKeyWordArr}`)
+                    for (let n=0; n<foundLapDogKeyWordArr.length; n++) {
+                        if (foundLapDogKeyWordArr[n] != -1) {
+                            lapCount ++
+                        }
+                    }
+                    console.log(`lap total: ${lapCount} out of ${foundLapDogKeyWordArr.length}`)
+                    for (let j = 0; j < socialDogKeyWordArr.length; j++) {
+                        function parse() {
+                            var result = text.search(socialDogKeyWordArr[j]);
+                            foundSocialDogKeyWordArr.push(result)
+                        }
+                        parse();
+                    }
+                    console.log(`social: ${foundSocialDogKeyWordArr}`)
+                    for (let n=0; n<foundSocialDogKeyWordArr.length; n++) {
+                        if (foundSocialDogKeyWordArr[n] != -1) {
+                            socialCount ++
+                        }
+                    }
+                    console.log(`social total: ${socialCount} out of ${foundSocialDogKeyWordArr.length}`)
+                    for (let j = 0; j < independentDogKeyWordArr.length; j++) {
+                        function parse() {
+                            var result = text.search(independentDogKeyWordArr[j]);
+                            foundIndependentDogKeyWordArr.push(result)
+                        }
+                        parse();
+                    }
+                    console.log(`independent: ${foundIndependentDogKeyWordArr}`)
+                    for (let n=0; n<foundIndependentDogKeyWordArr.length; n++) {
+                        if (foundIndependentDogKeyWordArr[n] != -1) {
+                            independentCount ++
+                        }
+                    }
+                    console.log(`independent total: ${independentCount} out of ${foundIndependentDogKeyWordArr.length}`)
+                    for (let j = 0; j < cautiousDogKeyWordArr.length; j++) {
+                        function parse() {
+                            var result = text.search(cautiousDogKeyWordArr[j]);
+                            foundCautiousDogKeyWordArr.push(result)
+                        }
+                        parse();
+                    }
+                    console.log(`cautious: ${foundCautiousDogKeyWordArr}`)
+                    for (let n=0; n<foundCautiousDogKeyWordArr.length; n++) {
+                        if (foundCautiousDogKeyWordArr[n] != -1) {
+                            cautiousCount ++
+                        }
+                    }
+                    console.log(`cautious total: ${cautiousCount} out of ${foundCautiousDogKeyWordArr.length}`)
+                    //count number of words in each array and calculate cat personality results
+
+                }
+            }
 
 
         });
 
 
 
-        
+
 
     });
 
