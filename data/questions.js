@@ -27,7 +27,7 @@ questionArray = [
     },
     {
         // this will relate to pf filter
-        // first ___ Qs are for dogs, then switches to cats
+        // first 11 Qs are for dogs, then switches to cats
         question: "Do you have a specific breed in mind?",
         id: 2,
         questionNo: 2,
@@ -120,31 +120,47 @@ questionArray = [
     },
     {
         // this will relate to pf filter
-        question: "Which sex would you prefer?",
+        question: "Which criteria would you like to REQUIRE?",
         id: 6,
         questionNo: 6,
         progress: "54.54%",
+        checkbox: true,
+        // should these be done differently so can require they MUST be able to live with other pets/kids? And special needs - some people will want specifically - some not at all
         answers: [
             {
-                option: "No Preference",
+                option: "Must already be fixed (spayed/neutered).",
                 icon: "placeholder.png",
-                ajax: "",
+                optionNumber: 1,
             },
             {
-                option: "Female",
+                option: "Must already be up-to-date on shots.",
                 icon: "placeholder.png",
-                ajax: "&sex=F"
+                optionNumber: 2,
             },
             {
-                option: "Male",
+                option: "Must already be house-trained.",
                 icon: "placeholder.png",
-                ajax: "&sex=M"
-            }
+                optionNumber: 3,
+            },
+            {
+                option: "I am able to adopt a special needs dog.",
+                icon: "placeholder.png",
+                optionNumber: 5,
+            },
+            {
+                option: "I would like a dog that can't live with children.",
+                icon: "placeholder.png",
+                optionNumber: 6,
+            },
+            {
+                option: "I would like a dog that can't live with other pets.",
+                icon: "placeholder.png",
+                optionNumber: 7,
+            },
         ]
     },
     {
-        // this will relate to pf filter
-        question: "Which sex would you prefer?",
+        question: "Placeholder",
         id: 7,
         questionNo: 7,
         progress: "63.63%",
@@ -156,18 +172,15 @@ questionArray = [
             {
                 option: "Female",
                 icon: "placeholder.png",
-                ajax: "&sex=F"
             },
             {
                 option: "Male",
                 icon: "placeholder.png",
-                ajax: "&sex=M"
             }
         ]
     },
     {
-        // this will relate to pf filter
-        question: "Which sex would you prefer?",
+        question: "Placeholder",
         id: 8,
         questionNo: 8,
         progress: "72.72%",
@@ -179,18 +192,15 @@ questionArray = [
             {
                 option: "Female",
                 icon: "placeholder.png",
-                ajax: "&sex=F"
             },
             {
                 option: "Male",
                 icon: "placeholder.png",
-                ajax: "&sex=M"
             }
         ]
     },
     {
-        // this will relate to pf filter
-        question: "Which sex would you prefer?",
+        question: "Placeholder",
         id: 9,
         questionNo: 9,
         progress: "81.81%",
@@ -202,18 +212,16 @@ questionArray = [
             {
                 option: "Female",
                 icon: "placeholder.png",
-                ajax: "&sex=F"
             },
             {
                 option: "Male",
                 icon: "placeholder.png",
-                ajax: "&sex=M"
             }
         ]
     },
     {
         // this will relate to pf filter
-        question: "Which sex would you prefer?",
+        question: "Placeholder",
         id: 10,
         questionNo: 10,
         progress: "90.9%",
@@ -225,18 +233,16 @@ questionArray = [
             {
                 option: "Female",
                 icon: "placeholder.png",
-                ajax: "&sex=F"
             },
             {
                 option: "Male",
                 icon: "placeholder.png",
-                ajax: "&sex=M"
             }
         ]
     },
     {
         // this will relate to pf filter
-        question: "Which sex would you prefer?",
+        question: "Placeholder",
         id: 11,
         questionNo: 11,
         progress: "100%",
@@ -248,12 +254,10 @@ questionArray = [
             {
                 option: "Female",
                 icon: "placeholder.png",
-                ajax: "&sex=F"
             },
             {
                 option: "Male",
                 icon: "placeholder.png",
-                ajax: "&sex=M"
             }
         ]
     },
@@ -339,35 +343,41 @@ questionArray = [
         questionNo: 5,
         progress: "45.45%",
         checkbox: true,
-        //should be checkboxes that allow multiple options to be chosen (or we can make these separate questions)
         answers: [
             {
                 option: "Must already be fixed (spayed/neutered).",
                 icon: "placeholder.png",
+                optionNumber: 1,
             },
             {
                 option: "Must already be up-to-date on shots.",
                 icon: "placeholder.png",
+                optionNumber: 2,
             },
             {
                 option: "Must already be house-trained.",
                 icon: "placeholder.png",
+                optionNumber: 3,
             },
             {
                 option: "Must be declawed. DECLAWING IS MUTILATION. DO NOT DECLAW AN UNDECLAWED ANIMAL. IF HAVING A DECLAWED CAT IS IMPORTANT TO YOU, PLEASE CHECK THIS BOX TO SAVE AN ALREADY DECLAWED CAT.",
                 icon: "placeholder.png",
+                optionNumber: 4,
             },
             {
                 option: "I am able to adopt a special needs cat!",
                 icon: "placeholder.png",
+                optionNumber: 5,
             },
             {
                 option: "I am able to adopt a cat that can't live with children!",
                 icon: "placeholder.png",
+                optionNumber: 6,
             },
             {
                 option: "I am able to adopt a cat that can't live with other pets!",
                 icon: "placeholder.png",
+                optionNumber: 7,
             },
         ]
 

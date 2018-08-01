@@ -322,6 +322,14 @@ $(document).ready(function () {
                 goToNextQuestion(5);
                 break;
             case "next-btn-6":
+                if ($('input[type=checkbox]:checked').length > 0) {
+                    var checkedQVals = $('input[type=checkbox]:checked').map(function () {
+                        return this.value;
+                    }).get();
+                    newAnswer = checkedQVals;
+                } else {
+                    newAnswer = "";
+                }
                 goToNextQuestion(6);
                 break;
             case "next-btn-7":
@@ -352,12 +360,13 @@ $(document).ready(function () {
                 break;
             case "next-btn-15":
                 if ($('input[type=checkbox]:checked').length > 0) {
-                    console.log("checked")
-                    
+                    var checkedQVals = $('input[type=checkbox]:checked').map(function () {
+                        return this.value;
+                    }).get();
+                    newAnswer = checkedQVals;
                 } else {
                     newAnswer = "";
                 }
-
                 goToNextQuestion(15);
                 break;
             case "next-btn-16":
