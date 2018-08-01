@@ -11,12 +11,12 @@ questionArray = [
         answers: [
             {
                 option: "Cat",
-                icon: "placeholder.png",
+                icon: "cat.png",
                 ajax: "&animal=cat"
             },
             {
                 option: "Dog",
-                icon: "placeholder.png",
+                icon: "dog.png",
                 ajax: "&animal=dog"
             }
         ]
@@ -31,7 +31,7 @@ questionArray = [
         answers: [
             {
                 option: "No preference",
-                icon: "placeholder.png",
+                icon: "nopref.png",
                 ajax: '&breed='
             },
             {
@@ -51,28 +51,28 @@ questionArray = [
         answers: [
             {
                 option: "No Preference",
-                icon: "placeholder.png",
+                icon: "nopref.png",
                 ajax: '&size='
             },
             {
                 option: "Small",
-                icon: "placeholder.png",
+                icon: "dogsmall.png",
                 ajax: "&size=S"
             },
             {
                 option: "Medium",
-                icon: "placeholder.png",
+                icon: "dogmedium.png",
                 ajax: "&size=M"
             },
             {
                 option: "Large",
-                icon: "placeholder.png",
+                icon: "doglarge.png",
                 ajax: "&size=L"
 
             },
             {
                 option: "Extra Large",
-                icon: "placeholder.png",
+                icon: "dogxlarge.png",
                 ajax: "&size=XL"
             }
         ]
@@ -86,17 +86,17 @@ questionArray = [
         answers: [
             {
                 option: "No Preference",
-                icon: "placeholder.png",
+                icon: "nopref.png",
                 ajax: '&sex='
             },
             {
                 option: "Female",
-                icon: "placeholder.png",
+                icon: "female.png",
                 ajax: "&sex=F"
             },
             {
                 option: "Male",
-                icon: "placeholder.png",
+                icon: "male.png",
                 ajax: "&sex=M"
             }
         ]
@@ -313,28 +313,28 @@ questionArray = [
         answers: [
             {
                 option: "No Preference",
-                icon: "placeholder.png",
+                icon: "nopref.png",
                 ajax: '&size='
             },
             {
                 option: "Small",
-                icon: "placeholder.png",
+                icon: "catsmall.png",
                 ajax: "&size=S"
             },
             {
                 option: "Medium",
-                icon: "placeholder.png",
+                icon: "catmedium.png",
                 ajax: "&size=M"
             },
             {
                 option: "Large",
-                icon: "placeholder.png",
+                icon: "catlarge.png",
                 ajax: "&size=L"
 
             },
             {
                 option: "Extra Large",
-                icon: "placeholder.png",
+                icon: "catxlarge.png",
                 ajax: "&size=XL"
             }
         ]
@@ -348,17 +348,17 @@ questionArray = [
         answers: [
             {
                 option: "No Preference",
-                icon: "placeholder.png",
+                icon: "nopref.png",
                 ajax: '&sex='
             },
             {
                 option: "Female",
-                icon: "placeholder.png",
+                icon: "female.png",
                 ajax: "&sex=F"
             },
             {
                 option: "Male",
-                icon: "placeholder.png",
+                icon: "male.png",
                 ajax: "&sex=M"
             }
         ]

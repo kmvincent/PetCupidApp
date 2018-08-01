@@ -31,6 +31,7 @@
       <div id="answers" class="row container center">
         <div class="col m12">
           {{#if selectOption}}
+
             <div class="input-field col s12">
               <select id="select-{{id}}">
                 <option value="" disabled selected>Choose your option</option>
@@ -40,6 +41,7 @@
               </select>
               <label>Materialize Select</label>
             </div>
+
           {{else if checkbox}}
             <form action="#">
               {{#each answers}} 
