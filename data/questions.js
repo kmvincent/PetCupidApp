@@ -32,7 +32,7 @@ questionArray = [
             {
                 option: "No preference",
                 icon: "placeholder.png",
-                ajax: '&breed=""'
+                ajax: '&breed='
             },
             {
                 option: "Yes",
@@ -52,7 +52,7 @@ questionArray = [
             {
                 option: "No Preference",
                 icon: "placeholder.png",
-                ajax: '&size=""'
+                ajax: '&size='
             },
             {
                 option: "Small",
@@ -87,7 +87,7 @@ questionArray = [
             {
                 option: "No Preference",
                 icon: "placeholder.png",
-                ajax: '&sex=""'
+                ajax: '&sex='
             },
             {
                 option: "Female",
@@ -142,19 +142,19 @@ questionArray = [
                 descriptor: "housetrained"
             },
             {
-                option: "I am able to adopt a special needs dog.",
+                option: "Must not have special needs.",
                 icon: "placeholder.png",
                 optionNumber: 5,
                 descriptor: "specialNeeds"
             },
             {
-                option: "I would like a dog that can't live with children.",
+                option: "Must be able to live with kids.",
                 icon: "placeholder.png",
                 optionNumber: 6,
                 descriptor: "noKids"
             },
             {
-                option: "I would like a dog that can't live with cats.",
+                option: "Must be able to live with cats.",
                 icon: "placeholder.png",
                 optionNumber: 7,
                 descriptor: "noCats"
@@ -320,7 +320,7 @@ questionArray = [
             {
                 option: "No Preference",
                 icon: "placeholder.png",
-                ajax: '&size=""'
+                ajax: '&size='
             },
             {
                 option: "Small",
@@ -355,7 +355,7 @@ questionArray = [
             {
                 option: "No Preference",
                 icon: "placeholder.png",
-                ajax: '&sex=""'
+                ajax: '&sex='
             },
             {
                 option: "Female",
@@ -416,23 +416,29 @@ questionArray = [
                 descriptor: "declawed"
             },
             {
-                option: "I am able to adopt a special needs cat!",
+                option: "Must not have special needs.",
                 icon: "placeholder.png",
                 optionNumber: 5,
                 descriptor: "specialNeeds"
             },
             {
-                option: "I am able to adopt a cat that can't live with children!",
+                option: "Must be able to live with kids.",
                 icon: "placeholder.png",
                 optionNumber: 6,
                 descriptor: "noKids"
             },
             {
-                option: "I am able to adopt a cat that can't live with other pets!",
+                option: "Must be able to live with dogs.",
                 icon: "placeholder.png",
                 optionNumber: 7,
                 descriptor: "noDogs"
             },
+            {
+                option: "Must be able to live with other cats.",
+                icon: "placeholder.png",
+                optionNumber: 7,
+                descriptor: "noCats"
+            }
         ]
 
     },
