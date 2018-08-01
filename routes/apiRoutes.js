@@ -8,6 +8,7 @@ const express = require("express");
 const questions = require("../data/questions");
 const router = express.Router();
 let dotenv = require('dotenv').config();
+var db = require("../models");
 
 
 module.exports = function (app) {
@@ -224,19 +225,21 @@ module.exports = function (app) {
 
     // POST route for saving a new user
     app.post("/api/users", function (req, res) {
-
-    })
-
-    // POST route for saving a new post
-    app.post("/api/posts", function (req, res) {
         console.log(req.body);
-        db.Post.create({
-            title: req.body.title,
-            body: req.body.body,
-            category: req.body.category
+        db.Buyer.create({
+            buyer_first_name: req.body.firstName,
+            buyer_last_name: req.body.lastName,
+            buyer_email: req.body.email,
+            buyer_password: req.body.password,
         })
-            .then(function (dbPost) {
-                res.json(dbPost);
+            .then(function (data) {
+                db.Buyer.findOne({
+                    where: {
+                        buyer_email: req.body.email,
+                    }
+                }).then(function (result) {
+                    res.json(result.dataValues.id);
+                });
             });
     });
 }
