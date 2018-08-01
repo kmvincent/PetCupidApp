@@ -127,31 +127,38 @@ questionArray = [
                 option: "Must already be fixed (spayed/neutered).",
                 icon: "placeholder.png",
                 optionNumber: 1,
+                descriptor: "fixed"
             },
             {
                 option: "Must already be up-to-date on shots.",
                 icon: "placeholder.png",
                 optionNumber: 2,
+                descriptor: "shots"
             },
             {
                 option: "Must already be house-trained.",
                 icon: "placeholder.png",
                 optionNumber: 3,
+                descriptor: "housetrained"
             },
             {
                 option: "I am able to adopt a special needs dog.",
                 icon: "placeholder.png",
                 optionNumber: 5,
+                descriptor: "specialNeeds"
             },
             {
                 option: "I would like a dog that can't live with children.",
                 icon: "placeholder.png",
                 optionNumber: 6,
+                descriptor: "noKids"
             },
             {
-                option: "I would like a dog that can't live with other pets.",
+                option: "I would like a dog that can't live with cats.",
                 icon: "placeholder.png",
                 optionNumber: 7,
+                descriptor: "noCats"
+
             },
         ]
     },
@@ -388,36 +395,43 @@ questionArray = [
                 option: "Must already be fixed (spayed/neutered).",
                 icon: "placeholder.png",
                 optionNumber: 1,
+                descriptor: "fixed"
             },
             {
                 option: "Must already be up-to-date on shots.",
                 icon: "placeholder.png",
                 optionNumber: 2,
+                descriptor: "shots"
             },
             {
                 option: "Must already be house-trained.",
                 icon: "placeholder.png",
                 optionNumber: 3,
+                descriptor: "housetrained"
             },
             {
                 option: "Must be declawed. DECLAWING IS MUTILATION. DO NOT DECLAW AN UNDECLAWED ANIMAL. IF HAVING A DECLAWED CAT IS IMPORTANT TO YOU, PLEASE CHECK THIS BOX TO SAVE AN ALREADY DECLAWED CAT.",
                 icon: "placeholder.png",
                 optionNumber: 4,
+                descriptor: "declawed"
             },
             {
                 option: "I am able to adopt a special needs cat!",
                 icon: "placeholder.png",
                 optionNumber: 5,
+                descriptor: "specialNeeds"
             },
             {
                 option: "I am able to adopt a cat that can't live with children!",
                 icon: "placeholder.png",
                 optionNumber: 6,
+                descriptor: "noKids"
             },
             {
                 option: "I am able to adopt a cat that can't live with other pets!",
                 icon: "placeholder.png",
                 optionNumber: 7,
+                descriptor: "noDogs"
             },
         ]
 
