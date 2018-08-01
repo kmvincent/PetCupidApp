@@ -19,8 +19,8 @@ module.exports = function (app) {
 
     // will pull pets from database based on quiz criteria (first section, needs to be added as variables)
     app.post("/pf", function (req, res) {
-        let zip = req.body.zip;
-        var method = req.body.method;
+
+        let queryAddendum = req.body.queryUrlParams;
         var key = process.env.PETFINDER_KEY;
         // var fixed = req.body.fixed;
         // var shots = req.body.shots;
@@ -43,26 +43,27 @@ module.exports = function (app) {
         var noCats = true;
         var noDogs = true;
 
-        var queryUrl = `http://api.petfinder.com/${method}?format=json&key=${key}&location=${zip}&output=full`;
+        var queryUrl = `http://api.petfinder.com/pet.find?format=json&key=${key}&output=full${queryAddendum}`;
 
+        console.log(queryUrl)
         var request = require('request');
         request(queryUrl, function (error, response, body) {
             console.log('error:', error); // Print the error if one occurred
             console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
             let responseObject = JSON.parse(body);
             let petsObject = responseObject.petfinder.pets.pet;
-            let eligiblePetId = [];
 
 
             //filter out "options" section in response from petfinder api
 
-            let ineligibleIndices = [];
+            let ineligibleIds = [];
+            let allIds = [];
 
             //loop through each pet
             for (let i = 0; i < petsObject.length; i++) {
 
                 //if something ineligible happens, remove from petsObject (within each loop)
-
+                allIds.push(petsObject[i].id.$t);
 
                 let petOptions = petsObject[i].options.option
                 //console.log(typeof petOptions)
@@ -84,7 +85,7 @@ module.exports = function (app) {
                         }
                         else {
                             console.log(`${petsObject[i].name.$t} ineligible`)
-                            ineligibleIndices.push(i);
+                            ineligibleIds.push(petsObject[i].id.$t);
                             break;
                         }
                         //console.log(`${petsObject[i].name.$t}: ${petOptions[j].$t}`)
@@ -101,7 +102,7 @@ module.exports = function (app) {
                         }
                         else {
                             console.log(`${petsObject[i].name.$t} ineligible`)
-                            ineligibleIndices.push(i);
+                            ineligibleIds.push(petsObject[i].id.$t);
                             break;
                         }
                         
@@ -119,7 +120,7 @@ module.exports = function (app) {
                         }
                         else {
                             console.log(`${petsObject[i].name.$t} ineligible`)
-                            ineligibleIndices.push(i);
+                            ineligibleIds.push(petsObject[i].id.$t);
                             break;
                         }
                     }
@@ -135,7 +136,7 @@ module.exports = function (app) {
                         }
                         else {
                             console.log(`${petsObject[i].name.$t} ineligible`)
-                            ineligibleIndices.push(i);
+                            ineligibleIds.push(petsObject[i].id.$t);
                             break;
                         }
                         
@@ -148,7 +149,7 @@ module.exports = function (app) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'specialNeeds') {
                             console.log(`${petsObject[i].name.$t} has special needs and isn't suitable for this user.`);
-                            ineligibleIndices.push(i);
+                            ineligibleIds.push(petsObject[i].id.$t);
                             break;
                         }
                         
@@ -161,7 +162,7 @@ module.exports = function (app) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'noKids') {
                             console.log(`${petsObject[i].name.$t} can't be around kids and isn't suitable for this user.`);
-                            ineligibleIndices.push(i);
+                            ineligibleIds.push(petsObject[i].id.$t);
                             break;
                         }
                         
@@ -174,7 +175,7 @@ module.exports = function (app) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'noCats') {
                             console.log(`${petsObject[i].name.$t} can't be around other cats and isn't suitable for this user.`);
-                            ineligibleIndices.push(i);
+                            ineligibleIds.push(petsObject[i].id.$t);
                             break;
                         }
                         
@@ -187,7 +188,7 @@ module.exports = function (app) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'noDogs') {
                             console.log(`${petsObject[i].name.$t} can't be around other dogs and isn't suitable for this user.`);
-                            ineligibleIndices.push(i);
+                            ineligibleIds.push(petsObject[i].id.$t);
                             break;
                         }
                         
@@ -195,7 +196,7 @@ module.exports = function (app) {
                 }
             
             }
-            console.log(ineligibleIndices)
+            console.log(ineligibleIds)
 
             
 
