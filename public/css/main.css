@@ -50,10 +50,6 @@ img{
     margin: 25px;
 }
 
-
-
-
-
 /* last css style */
 .rank-box {
     border: 1px solid #22a757;
@@ -63,4 +59,10 @@ img{
     margin-bottom: 10px;
     padding: 10px;
     color: #000;
+}
+
+/* Amanda's CSS */
+/* to offset Qs below navbar */
+#questionSection {
+    padding-top: 56px;
 }
