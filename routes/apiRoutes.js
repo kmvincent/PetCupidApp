@@ -8,6 +8,7 @@ const express = require("express");
 const questions = require("../data/questions");
 const router = express.Router();
 let dotenv = require('dotenv').config();
+var db = require("../models");
 var request = require('request');
 
 
@@ -305,5 +306,25 @@ module.exports = function (app) {
 
         
 
+    });
+
+    // POST route for saving a new user
+    app.post("/api/users", function (req, res) {
+        console.log(req.body);
+        db.Buyer.create({
+            buyer_first_name: req.body.firstName,
+            buyer_last_name: req.body.lastName,
+            buyer_email: req.body.email,
+            buyer_password: req.body.password,
+        })
+            .then(function (data) {
+                db.Buyer.findOne({
+                    where: {
+                        buyer_email: req.body.email,
+                    }
+                }).then(function (result) {
+                    res.json(result.dataValues.id);
+                });
+            });
     });
 }

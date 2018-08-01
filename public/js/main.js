@@ -259,6 +259,9 @@ $(document).ready(function () {
     // dropdown select menu
     $('select').formSelect();
 
+    // // auth code 
+    // $('select').material_select();
+
     let queryArray = [];
     let newAnswer = "";
 
@@ -484,7 +487,32 @@ $(document).ready(function () {
 
                 break;
         };
-        // add each answer to end of queryArray
+    });
+
+    $("#register-btn").on("click", function (event) {
+        event.preventDefault();
+
+        // make a newCharacter obj
+        var newUser = {
+            // name from name input
+            firstName: $("#first_name").val().trim(),
+            // role from role input
+            lastName: $("#last_name").val().trim(),
+            // age from age input
+            email: $("#email").val().trim(),
+            // points from force-points input
+            password: $("#passwords").val()
+        };
+
+        // send an AJAX POST-request with jQuery
+        $.post("/api/users", newUser)
+            // on success, run this callback
+            .then(function (data) {
+                // log the data we found
+                console.log(data);
+                localStorage.clear();
+                localStorage.setItem("id", data);
+            });
 
     });
 });
