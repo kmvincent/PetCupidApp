@@ -31,15 +31,8 @@
       <div id="answers" class="row container center">
         <div class="col m12">
           {{#if selectOption}}
-            {{#each answers}}
 
-             <button id="select-{{id}}" class="btn-large answer-tile" value={{option}}>
-                  <img src="/images/{{icon}}" width="100px">
-                  <p>{{descriptor}}</p>
-              </button>
-            {{/each}}
-
-            {{!-- <div class="input-field col s12">
+            <div class="input-field col s12">
               <select id="select-{{id}}">
                 <option value="" disabled selected>Choose your option</option>
                 {{#each answers}} 
@@ -47,7 +40,7 @@
                 {{/each}}
               </select>
               <label>Materialize Select</label>
-            </div> --}}
+            </div>
 
           {{else if checkbox}}
             <form action="#">

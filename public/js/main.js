@@ -428,7 +428,7 @@ $(document).ready(function () {
                 console.log(queryArray);
                 break;
             case "next-btn-16":
-                newAnswer = $("#select-16").val();
+                // newAnswer = $("#select-16").val();
                 goToNextQuestion(16);
                 queryArray.push(newAnswer);
                 console.log(queryArray);

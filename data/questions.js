@@ -446,29 +446,24 @@ questionArray = [
         selectOption: true,
         answers: [
             {
-                option: "1",
+                option: "5 - Very playful",
                 icon: "placeholder.png",
-                descriptor: "Not playful at all"
-            },
-            {
-                option: "2",
-                icon: "placeholder.png",
-                descriptor: "2"
-            },
-            {
-                option: "3",
-                icon: "placeholder.png",
-                descriptor: "3"
             },
             {
                 option: "4",
                 icon: "placeholder.png",
-                descriptor: "4"
             },
             {
-                option: "5",
+                option: "3",
                 icon: "placeholder.png",
-                descriptor: "Very playful"
+            },
+            {
+                option: "2",
+                icon: "placeholder.png",
+            },
+            {
+                option: "1 - Not playful at all",
+                icon: "placeholder.png",
             }
         ]
     },
