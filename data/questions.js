@@ -1,8 +1,4 @@
-// array of Qs, each one has Question and answers, and each answer has an icon
 // for ranking importance of each Q, need to grab each Q then be able to place in the order you want...from there it assigns a value to each position....
-
-// first four in keyWordArray are sometimes listed in the "options" sections of api response
-dogKeyWordArray = ["noKids", "noCats", "specialNeeds", "housetrained", ""]
 
 
 questionArray = [
@@ -27,7 +23,7 @@ questionArray = [
     },
     {
         // this will relate to pf filter
-        // first ___ Qs are for dogs, then switches to cats
+        // first 11 Qs are for dogs, then switches to cats
         question: "Do you have a specific breed in mind?",
         id: 2,
         questionNo: 2,
@@ -36,11 +32,12 @@ questionArray = [
             {
                 option: "No preference",
                 icon: "placeholder.png",
-                ajax: ""
+                ajax: '&breed=""'
             },
             {
                 option: "Yes",
                 icon: "placeholder.png",
+                autocomplete: true,
                 // Make dropdown of breeds they can choose
             }
         ]
@@ -55,7 +52,7 @@ questionArray = [
             {
                 option: "No Preference",
                 icon: "placeholder.png",
-                ajax: ""
+                ajax: '&size=""'
             },
             {
                 option: "Small",
@@ -90,7 +87,7 @@ questionArray = [
             {
                 option: "No Preference",
                 icon: "placeholder.png",
-                ajax: ""
+                ajax: '&sex=""'
             },
             {
                 option: "Female",
@@ -110,146 +107,204 @@ questionArray = [
         id: 5,
         questionNo: 5,
         progress: "45.45%",
-        textBox: "12345",
-        // need a way to add their zip to this...
-        ajax: "&location="
+        answers: [
+            {
+                textBox: true,
+                id: 5
+            }
+        ]
     },
     {
         // this will relate to pf filter
-        question: "Which sex would you prefer?",
+        question: "Which criteria would you like to REQUIRE?",
         id: 6,
         questionNo: 6,
         progress: "54.54%",
+        checkbox: true,
+        // should these be done differently so can require they MUST be able to live with other pets/kids? And special needs - some people will want specifically - some not at all
         answers: [
             {
-                option: "No Preference",
+                option: "Must already be fixed (spayed/neutered).",
                 icon: "placeholder.png",
-                ajax: "",
+                optionNumber: 1,
+                descriptor: "fixed"
             },
             {
-                option: "Female",
+                option: "Must already be up-to-date on shots.",
                 icon: "placeholder.png",
-                ajax: "&sex=F"
+                optionNumber: 2,
+                descriptor: "shots"
             },
             {
-                option: "Male",
+                option: "Must already be house-trained.",
                 icon: "placeholder.png",
-                ajax: "&sex=M"
-            }
+                optionNumber: 3,
+                descriptor: "housetrained"
+            },
+            {
+                option: "I am able to adopt a special needs dog.",
+                icon: "placeholder.png",
+                optionNumber: 5,
+                descriptor: "specialNeeds"
+            },
+            {
+                option: "I would like a dog that can't live with children.",
+                icon: "placeholder.png",
+                optionNumber: 6,
+                descriptor: "noKids"
+            },
+            {
+                option: "I would like a dog that can't live with cats.",
+                icon: "placeholder.png",
+                optionNumber: 7,
+                descriptor: "noCats"
+
+            },
         ]
     },
     {
-        // this will relate to pf filter
-        question: "Which sex would you prefer?",
+        question: "Placeholder",
         id: 7,
         questionNo: 7,
-        progress: "63.63%",
+        selectOption: true,
         answers: [
             {
-                option: "No Preference",
+                option: "5 - Very playful",
                 icon: "placeholder.png",
             },
             {
-                option: "Female",
+                option: "4",
                 icon: "placeholder.png",
-                ajax: "&sex=F"
             },
             {
-                option: "Male",
+                option: "3",
                 icon: "placeholder.png",
-                ajax: "&sex=M"
+            },
+            {
+                option: "2",
+                icon: "placeholder.png",
+            },
+            {
+                option: "1 - Not playful at all",
+                icon: "placeholder.png",
             }
         ]
     },
     {
-        // this will relate to pf filter
-        question: "Which sex would you prefer?",
+        question: "Placeholder",
         id: 8,
         questionNo: 8,
         progress: "72.72%",
+        selectOption: true,
         answers: [
             {
-                option: "No Preference",
+                option: "5 - Very playful",
                 icon: "placeholder.png",
             },
             {
-                option: "Female",
+                option: "4",
                 icon: "placeholder.png",
-                ajax: "&sex=F"
             },
             {
-                option: "Male",
+                option: "3",
                 icon: "placeholder.png",
-                ajax: "&sex=M"
+            },
+            {
+                option: "2",
+                icon: "placeholder.png",
+            },
+            {
+                option: "1 - Not playful at all",
+                icon: "placeholder.png",
             }
         ]
     },
     {
-        // this will relate to pf filter
-        question: "Which sex would you prefer?",
+        question: "Placeholder",
         id: 9,
         questionNo: 9,
         progress: "81.81%",
+        selectOption: true,
         answers: [
             {
-                option: "No Preference",
+                option: "5 - Very playful",
                 icon: "placeholder.png",
             },
             {
-                option: "Female",
+                option: "4",
                 icon: "placeholder.png",
-                ajax: "&sex=F"
             },
             {
-                option: "Male",
+                option: "3",
                 icon: "placeholder.png",
-                ajax: "&sex=M"
+            },
+            {
+                option: "2",
+                icon: "placeholder.png",
+            },
+            {
+                option: "1 - Not playful at all",
+                icon: "placeholder.png",
             }
         ]
     },
     {
         // this will relate to pf filter
-        question: "Which sex would you prefer?",
+        question: "Placeholder",
         id: 10,
         questionNo: 10,
         progress: "90.9%",
+        selectOption: true,
         answers: [
             {
-                option: "No Preference",
+                option: "5 - Very playful",
                 icon: "placeholder.png",
             },
             {
-                option: "Female",
+                option: "4",
                 icon: "placeholder.png",
-                ajax: "&sex=F"
             },
             {
-                option: "Male",
+                option: "3",
                 icon: "placeholder.png",
-                ajax: "&sex=M"
+            },
+            {
+                option: "2",
+                icon: "placeholder.png",
+            },
+            {
+                option: "1 - Not playful at all",
+                icon: "placeholder.png",
             }
         ]
     },
     {
         // this will relate to pf filter
-        question: "Which sex would you prefer?",
+        question: "Placeholder",
         id: 11,
         questionNo: 11,
         progress: "100%",
+        selectOption: true,
         answers: [
             {
-                option: "No Preference",
+                option: "5 - Very playful",
                 icon: "placeholder.png",
             },
             {
-                option: "Female",
+                option: "4",
                 icon: "placeholder.png",
-                ajax: "&sex=F"
             },
             {
-                option: "Male",
+                option: "3",
                 icon: "placeholder.png",
-                ajax: "&sex=M"
+            },
+            {
+                option: "2",
+                icon: "placeholder.png",
+            },
+            {
+                option: "1 - Not playful at all",
+                icon: "placeholder.png",
             }
         ]
     },
@@ -260,12 +315,12 @@ questionArray = [
         question: "What size cat would you prefer?",
         id: 12,
         questionNo: 2,
-        progress: "10%",
+        progress: "18.18%",
         answers: [
             {
                 option: "No Preference",
                 icon: "placeholder.png",
-                ajax: ""
+                ajax: '&size=""'
             },
             {
                 option: "Small",
@@ -295,12 +350,12 @@ questionArray = [
         question: "Which sex would you prefer?",
         id: 13,
         questionNo: 3,
-        progress: "10%",
+        progress: "27.27%",
         answers: [
             {
                 option: "No Preference",
                 icon: "placeholder.png",
-                ajax: ""
+                ajax: '&sex=""'
             },
             {
                 option: "Female",
@@ -319,10 +374,13 @@ questionArray = [
         question: "Enter your zip code.",
         id: 14,
         questionNo: 4,
-        progress: "10%",
-        textBox: "12345",
-        // need a way to add their zip to this...
-        ajax: "&location="
+        progress: "36.36%",
+        answers: [
+            {
+                textBox: true,
+                id: 14
+            }
+        ]
     },
     // filtered after ajax request and before text parsing (given in "options", but can't send to api to filter for us)
     {
@@ -330,51 +388,65 @@ questionArray = [
         question: "Which criteria would you like to REQUIRE?",
         id: 15,
         questionNo: 5,
-        progress: "10%",
-        //should be checkboxes that allow multiple options to be chosen (or we can make these separate questions)
+        progress: "45.45%",
+        checkbox: true,
         answers: [
             {
                 option: "Must already be fixed (spayed/neutered).",
                 icon: "placeholder.png",
+                optionNumber: 1,
+                descriptor: "fixed"
             },
             {
                 option: "Must already be up-to-date on shots.",
                 icon: "placeholder.png",
+                optionNumber: 2,
+                descriptor: "shots"
             },
             {
                 option: "Must already be house-trained.",
                 icon: "placeholder.png",
+                optionNumber: 3,
+                descriptor: "housetrained"
             },
             {
                 option: "Must be declawed. DECLAWING IS MUTILATION. DO NOT DECLAW AN UNDECLAWED ANIMAL. IF HAVING A DECLAWED CAT IS IMPORTANT TO YOU, PLEASE CHECK THIS BOX TO SAVE AN ALREADY DECLAWED CAT.",
                 icon: "placeholder.png",
+                optionNumber: 4,
+                descriptor: "declawed"
             },
             {
                 option: "I am able to adopt a special needs cat!",
                 icon: "placeholder.png",
+                optionNumber: 5,
+                descriptor: "specialNeeds"
             },
             {
                 option: "I am able to adopt a cat that can't live with children!",
                 icon: "placeholder.png",
+                optionNumber: 6,
+                descriptor: "noKids"
             },
             {
                 option: "I am able to adopt a cat that can't live with other pets!",
                 icon: "placeholder.png",
+                optionNumber: 7,
+                descriptor: "noDogs"
             },
         ]
 
     },
     //personality questions; answers will be filtered through text parser
-    //drop down lists of 1-5?
     {
         // this will relate to pf filter
         question: "How playful is your ideal cat?",
         id: 16,
         questionNo: 6,
-        progress: "10%",
+        progress: "54.54%",
+        selectOption: true,
         answers: [
             {
-                option: "5",
+                option: "5 - Very playful",
                 icon: "placeholder.png",
             },
             {
@@ -384,17 +456,14 @@ questionArray = [
             {
                 option: "3",
                 icon: "placeholder.png",
-
             },
             {
                 option: "2",
                 icon: "placeholder.png",
-
             },
             {
-                option: "1",
+                option: "1 - Not playful at all",
                 icon: "placeholder.png",
-
             }
         ]
     },
@@ -403,10 +472,11 @@ questionArray = [
         question: "How much physical affection does your ideal cat like (petting, lap-sitting, etc.)?",
         id: 17,
         questionNo: 7,
-        progress: "10%",
+        progress: "63.63%",
+        selectOption: true,
         answers: [
             {
-                option: "5",
+                option: "5 - Very affectionate",
                 icon: "placeholder.png",
             },
             {
@@ -424,7 +494,7 @@ questionArray = [
 
             },
             {
-                option: "1",
+                option: "1 - Not affectionate at all",
                 icon: "placeholder.png",
 
             }
@@ -435,10 +505,11 @@ questionArray = [
         question: "How social is your ideal cat?",
         id: 18,
         questionNo: 8,
-        progress: "10%",
+        progress: "72.72%",
+        selectOption: true,
         answers: [
             {
-                option: "5",
+                option: "5 - Very social",
                 icon: "placeholder.png",
             },
             {
@@ -456,7 +527,7 @@ questionArray = [
 
             },
             {
-                option: "1",
+                option: "1 - Not social at all",
                 icon: "placeholder.png",
 
             }
@@ -467,10 +538,11 @@ questionArray = [
         question: "How independent is your ideal cat?",
         id: 19,
         questionNo: 9,
-        progress: "10%",
+        progress: "81.81%",
+        selectOption: true,
         answers: [
             {
-                option: "5",
+                option: "5 - Very independent",
                 icon: "placeholder.png",
             },
             {
@@ -488,7 +560,7 @@ questionArray = [
 
             },
             {
-                option: "1",
+                option: "1 - Very dependent",
                 icon: "placeholder.png",
 
             }
@@ -499,10 +571,11 @@ questionArray = [
         question: "How vocal is your ideal cat?",
         id: 20,
         questionNo: 10,
-        progress: "10%",
+        progress: "90.9%",
+        selectOption: true,
         answers: [
             {
-                option: "5",
+                option: "5 - Very vocal",
                 icon: "placeholder.png",
             },
             {
@@ -520,7 +593,7 @@ questionArray = [
 
             },
             {
-                option: "1",
+                option: "1 - Not vocal at all",
                 icon: "placeholder.png",
 
             }
@@ -531,10 +604,11 @@ questionArray = [
         question: "How cautious around strangers can your ideal cat be?",
         id: 21,
         questionNo: 11,
-        progress: "10%",
+        progress: "100%",
+        selectOption: true,
         answers: [
             {
-                option: "5",
+                option: "5 - Very cautious",
                 icon: "placeholder.png",
             },
             {
@@ -552,7 +626,7 @@ questionArray = [
 
             },
             {
-                option: "1",
+                option: "1 - Not cautious at all",
                 icon: "placeholder.png",
 
             }

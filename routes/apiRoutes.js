@@ -4,19 +4,15 @@
 // how do we assign points based on keywords?
 
 // And then rank each one. 
-
-
-
 const express = require("express");
 const questions = require("../data/questions");
-
 const router = express.Router();
-
 let dotenv = require('dotenv').config();
 
 
-
 module.exports = function (app) {
+    // first four in keyWordArray are sometimes listed in the "options" sections of api response (WORK IN PROGRESS with doggo words)
+    let dogKeyWordArray = ["noKids", "noCats", "specialNeeds", "housetrained", ""]
 
     let playfulCatKeyWordArr = ['play', 'playful', 'energy', 'energetic', 'trouble', 'entertain', 'entertaining', 'wrestle', 'run', 'running', 'active']
     let lapCatKeyWordArr = ['lap', 'lapcat', 'sit', 'curl', 'snuggle', 'snuggler', 'brush', 'rub', 'tummy', 'burrow', 'hold', 'held']
