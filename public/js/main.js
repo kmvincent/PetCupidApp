@@ -391,6 +391,7 @@ $(document).ready(function () {
                 $.post("/pf", dogSearch).then(function (data) {
                     console.log(data);
                 });
+                $("#results").removeClass("hide");
                 break;
 
             // Switch to cat Qs
@@ -479,6 +480,7 @@ $(document).ready(function () {
                 $.post("/pf", catSearch).then(function (data) {
                     console.log(data);
                 });
+                $("#results").removeClass("hide");
 
                 break;
         };
