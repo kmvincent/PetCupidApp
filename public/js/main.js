@@ -465,13 +465,14 @@ $(document).ready(function () {
 
                 // new cat search
                 let catSearch = {
-                    queryUrlParams: queryArray[0] + queryArray[1] + queryArray[2] + queryArray[3] + queryArray[4],
-                    requiredOptions: queryArray[5],
-                    personalityQ1: queryArray[6],
-                    personalityQ2: queryArray[7],
-                    personalityQ3: queryArray[8],
-                    personalityQ4: queryArray[9],
-                    personalityQ5: queryArray[10],
+                    queryUrlParams: queryArray[0] + queryArray[1] + queryArray[2] + queryArray[3],
+                    requiredOptions: queryArray[4],
+                    personalityQ1: queryArray[5],
+                    personalityQ2: queryArray[6],
+                    personalityQ3: queryArray[7],
+                    personalityQ4: queryArray[8],
+                    personalityQ5: queryArray[9],
+                    personalityQ6: queryArray[10],
                 }
                 console.log(catSearch);
                 // post to backend to be sent to petfinder

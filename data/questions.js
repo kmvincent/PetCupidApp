@@ -126,37 +126,31 @@ questionArray = [
             {
                 option: "Must already be fixed (spayed/neutered).",
                 icon: "placeholder.png",
-                optionNumber: 1,
                 descriptor: "fixed"
             },
             {
                 option: "Must already be up-to-date on shots.",
                 icon: "placeholder.png",
-                optionNumber: 2,
                 descriptor: "shots"
             },
             {
                 option: "Must already be house-trained.",
                 icon: "placeholder.png",
-                optionNumber: 3,
                 descriptor: "housetrained"
             },
             {
                 option: "Must not have special needs.",
                 icon: "placeholder.png",
-                optionNumber: 5,
                 descriptor: "specialNeeds"
             },
             {
                 option: "Must be able to live with kids.",
                 icon: "placeholder.png",
-                optionNumber: 6,
                 descriptor: "noKids"
             },
             {
                 option: "Must be able to live with cats.",
                 icon: "placeholder.png",
-                optionNumber: 7,
                 descriptor: "noCats"
 
             },
@@ -394,49 +388,41 @@ questionArray = [
             {
                 option: "Must already be fixed (spayed/neutered).",
                 icon: "placeholder.png",
-                optionNumber: 1,
                 descriptor: "fixed"
             },
             {
                 option: "Must already be up-to-date on shots.",
                 icon: "placeholder.png",
-                optionNumber: 2,
                 descriptor: "shots"
             },
             {
                 option: "Must already be house-trained.",
                 icon: "placeholder.png",
-                optionNumber: 3,
                 descriptor: "housetrained"
             },
             {
                 option: "Must be declawed. DECLAWING IS MUTILATION. DO NOT DECLAW AN UNDECLAWED ANIMAL. IF HAVING A DECLAWED CAT IS IMPORTANT TO YOU, PLEASE CHECK THIS BOX TO SAVE AN ALREADY DECLAWED CAT.",
                 icon: "placeholder.png",
-                optionNumber: 4,
                 descriptor: "declawed"
             },
             {
                 option: "Must not have special needs.",
                 icon: "placeholder.png",
-                optionNumber: 5,
                 descriptor: "specialNeeds"
             },
             {
                 option: "Must be able to live with kids.",
                 icon: "placeholder.png",
-                optionNumber: 6,
                 descriptor: "noKids"
             },
             {
                 option: "Must be able to live with dogs.",
                 icon: "placeholder.png",
-                optionNumber: 7,
                 descriptor: "noDogs"
             },
             {
                 option: "Must be able to live with other cats.",
                 icon: "placeholder.png",
-                optionNumber: 7,
                 descriptor: "noCats"
             }
         ]
