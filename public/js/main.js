@@ -394,6 +394,7 @@ $(document).ready(function () {
                 $.post("/pf", dogSearch).then(function (data) {
                     console.log(data);
                 });
+                $("#results").removeClass("hide");
                 break;
 
             // Switch to cat Qs
@@ -431,7 +432,7 @@ $(document).ready(function () {
                 console.log(queryArray);
                 break;
             case "next-btn-16":
-                newAnswer = $("#select-16").val();
+                // newAnswer = $("#select-16").val();
                 goToNextQuestion(16);
                 queryArray.push(newAnswer);
                 console.log(queryArray);
@@ -482,6 +483,7 @@ $(document).ready(function () {
                 $.post("/pf", catSearch).then(function (data) {
                     console.log(data);
                 });
+                $("#results").removeClass("hide");
 
                 break;
         };
