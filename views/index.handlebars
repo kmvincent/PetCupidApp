@@ -31,11 +31,25 @@
 
     <div id="answers" class="row container center">
       <div class="col m12">
-        {{#each answers}}
-        <button class="btn-large answer-tile" data-ajax={{ajax}}>
-          <img src="/images/{{icon}}" width="100px">
-          <p>{{option}}</p>
-        </button>
+        {{#each answers}} 
+        {{#if autocomplete}}
+          <div class="row">
+            <div class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">textsms</i>
+                  <input type="text" id="autocomplete-input" class="autocomplete">
+                  <label for="autocomplete-input">Autocomplete - click after typing to see matches</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{else}}
+          <button class="btn-large answer-tile" data-ajax={{ajax}}>
+            <img src="/images/{{icon}}" width="100px">
+            <p>{{option}}</p>
+          </button>
+        {{/if}} 
         {{/each}}
       </div>
       <a class="waves-effect waves-light btn-large survey-btn survey-answer-btn" id="next-btn-{{id}}">Next Question</a>

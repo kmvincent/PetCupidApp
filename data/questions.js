@@ -41,6 +41,7 @@ questionArray = [
             {
                 option: "Yes",
                 icon: "placeholder.png",
+                autocomplete: true,
                 // Make dropdown of breeds they can choose
             }
         ]
