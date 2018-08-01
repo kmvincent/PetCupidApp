@@ -32,17 +32,20 @@ module.exports = function (app) {
         // var declawed = req.body.declawed;
         // var specialNeeds = req.body.specialNeeds;
         // var noKids = req.body.noKids;
-        // var noPets = req.body.noPets;
+        // var noCats = req.body.noCats;
+        // var noDogs = req.body.noDogs;
 
         //test values
+        //requirements (ex must be fixed, etc)
         var fixed = true;
-        var shots = true;
-        var housetrained = true;
-        var declawed = true;
-        var specialNeeds = false;
-        var noKids = false;
-        var noCats = false;
-        var noDogs = false;
+        var shots = false;
+        var housetrained = false;
+        var declawed = false;
+        //allowable (ex special needs are ok, wont be around kids, etc)
+        var specialNeeds = true;
+        var noKids = true;
+        var noCats = true;
+        var noDogs = true;
 
         var queryUrl = `http://api.petfinder.com/${method}?format=json&key=${key}&location=${zip}&output=full`;
 
@@ -52,16 +55,22 @@ module.exports = function (app) {
             console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
             let responseObject = JSON.parse(body);
             let petsObject = responseObject.petfinder.pets.pet;
+            let eligiblePetId = [];
 
 
             //filter out "options" section in response from petfinder api
 
+            let ineligibleIndices = [];
 
             //loop through each pet
             for (let i = 0; i < petsObject.length; i++) {
-                
+
+                //if something ineligible happens, remove from petsObject (within each loop)
+
+
                 let petOptions = petsObject[i].options.option
                 //console.log(typeof petOptions)
+                //if nothing has been checked under a pet, insert an empty array so it doesn't break
                 if (typeof petOptions == "undefined") {
                     petOptions = [];
                 }
@@ -75,8 +84,14 @@ module.exports = function (app) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'altered') {
                             console.log(`${petsObject[i].name.$t} is fixed!`);
+                            break;
                         }
-                        console.log(`${petsObject[i].name.$t}: ${petOptions[j].$t}`)
+                        else {
+                            console.log(`${petsObject[i].name.$t} ineligible`)
+                            ineligibleIndices.push(i);
+                            break;
+                        }
+                        //console.log(`${petsObject[i].name.$t}: ${petOptions[j].$t}`)
                     }
                 }
                 //if user checks must be already up to date on shots
@@ -86,7 +101,14 @@ module.exports = function (app) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'hasShots') {
                             console.log(`${petsObject[i].name.$t} is up-to-date on shots!`);
+                            break;
                         }
+                        else {
+                            console.log(`${petsObject[i].name.$t} ineligible`)
+                            ineligibleIndices.push(i);
+                            break;
+                        }
+                        
                         
                     }
                 }
@@ -97,6 +119,12 @@ module.exports = function (app) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'housetrained') {
                             console.log(`${petsObject[i].name.$t} goes wee-wee in the right place!`);
+                            break;
+                        }
+                        else {
+                            console.log(`${petsObject[i].name.$t} ineligible`)
+                            ineligibleIndices.push(i);
+                            break;
                         }
                     }
                 }
@@ -107,6 +135,12 @@ module.exports = function (app) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'declawed') {
                             console.log(`${petsObject[i].name.$t} has been declawed :(`);
+                            break;
+                        }
+                        else {
+                            console.log(`${petsObject[i].name.$t} ineligible`)
+                            ineligibleIndices.push(i);
+                            break;
                         }
                         
                     }
@@ -118,6 +152,8 @@ module.exports = function (app) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'specialNeeds') {
                             console.log(`${petsObject[i].name.$t} has special needs and isn't suitable for this user.`);
+                            ineligibleIndices.push(i);
+                            break;
                         }
                         
                     }
@@ -129,6 +165,8 @@ module.exports = function (app) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'noKids') {
                             console.log(`${petsObject[i].name.$t} can't be around kids and isn't suitable for this user.`);
+                            ineligibleIndices.push(i);
+                            break;
                         }
                         
                     }
@@ -140,6 +178,8 @@ module.exports = function (app) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'noCats') {
                             console.log(`${petsObject[i].name.$t} can't be around other cats and isn't suitable for this user.`);
+                            ineligibleIndices.push(i);
+                            break;
                         }
                         
                     }
@@ -151,11 +191,17 @@ module.exports = function (app) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'noDogs') {
                             console.log(`${petsObject[i].name.$t} can't be around other dogs and isn't suitable for this user.`);
+                            ineligibleIndices.push(i);
+                            break;
                         }
                         
                     }
                 }
+            
             }
+            console.log(ineligibleIndices)
+
+            
 
             //console.log('body:', body.petfinder); // Print the HTML for the PetFinder api request homepage.
 
