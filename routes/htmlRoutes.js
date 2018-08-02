@@ -1,5 +1,6 @@
 let questions = require("../data/questions");
 let results = require("../data/results");
+let saved = require("../data/saved");
 
 // exporting routes to be used in server.js
 module.exports = function (app) {
@@ -12,6 +13,6 @@ module.exports = function (app) {
         res.render("results", {results: results });
     });
     app.get("/saved", function (req, res) {
-        res.render("saved", {results: results });
+        res.render("saved", {saved: saved });
     });
 };
