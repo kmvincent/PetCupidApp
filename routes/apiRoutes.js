@@ -535,7 +535,7 @@ module.exports = function (app) {
                         }
                         parse();
                     }
-                    console.log(`lap: ${foundLoudDogKeyWordArr}`)
+                    console.log(`loud: ${foundLoudDogKeyWordArr}`)
                     for (let n = 0; n < foundLoudDogKeyWordArr.length; n++) {
                         if (foundLoudDogKeyWordArr[n] != -1) {
                             loudCount++
@@ -577,7 +577,7 @@ module.exports = function (app) {
                         }
                         parse();
                     }
-                    console.log(`cautious: ${foundActiveDogKeyWordArr}`)
+                    console.log(`active: ${foundActiveDogKeyWordArr}`)
                     for (let n = 0; n < foundActiveDogKeyWordArr.length; n++) {
                         if (foundActiveDogKeyWordArr[n] != -1) {
                             activeCount++
@@ -685,6 +685,28 @@ module.exports = function (app) {
                 }).then(function (result) {
                     res.json(result.dataValues.id);
                 });
+            });
+    });
+
+    // Get route for retrieving a single pet from DB
+    app.get("/api/pet/:id", function (req, res) {
+        db.Pet.findOne({
+            where: {
+                pf_id: req.params.id
+            },
+        })
+            .then(function (result) {
+                res.json(result);
+            });
+    });
+
+    app.post("/api/pet/:id", function (req, res) {
+        db.Pet.create({
+            pf_id: req.body.id,
+            BuyerId: req.body.BuyerId,
+        })
+            .then(function (result) {
+                res.json(result);
             });
     });
 }
