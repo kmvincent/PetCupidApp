@@ -559,13 +559,13 @@ $(document).ready(function () {
 
     });
 
-    //Not working 
-    $("#reloadBtn").on("click", function (event) {
-        console.log("clicked")
-        // onClick="window.location.reload()
+    // //Not working 
+    // $("#reloadBtn").on("click", function (event) {
+    //     console.log("clicked")
+    //     // onClick="window.location.reload()
 
-        window.location.hash = 'tab2';
-        window.location.reload(true);
+    //     window.location.hash = 'tab2';
+    //     window.location.reload(true);
    
-    });
+    // });
 });
