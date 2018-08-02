@@ -490,7 +490,7 @@ $(document).ready(function () {
         };
     });
 
-    // this is buggy!!!!!
+    // when click save button on results page
     $(".save-btn").on("click", function () {
         // $(“#name-display”).text(localStorage.getItem(“name”));
         if (localStorage.getItem("id") != null) {
@@ -506,8 +506,34 @@ $(document).ready(function () {
             $(".save-btn").attr("href", "#modal1")
         } else {
             $("#userSignInSection").removeClass("hide");
-            console.log("user not signed in")
+            console.log("user not signed in");
+
+            // removing "id" from save btn id to just have petID
+            savedPetId = $(this).attr("id").slice(2);
+            console.log(savedPetId);
+            // unhiding that item from the modal list
+            $("#mid" + savedPetId).removeClass("hide");
         }
+
+        // when click save, need to find out if pet is already in DB, if not, add it to database...even if not signed in?
+        $.get("/api/pet/" + savedPetId)
+            // on success, run this callback
+            .then(function (result) {
+                if (!result) {
+                    newPet = {
+                        id: savedPetId
+                    }
+                    console.log("this pet is not in db")
+                    $.post("/api/pet/" + savedPetId, newPet)
+                        // on success, run this callback
+                        .then(function (data) {
+                            // log the data we found
+                            console.log(data);
+                            console.log("pet has been added to db")
+                        })
+                }
+            });
+
     });
 
 

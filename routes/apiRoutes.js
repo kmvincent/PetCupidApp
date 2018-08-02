@@ -537,4 +537,26 @@ module.exports = function (app) {
                 });
             });
     });
+
+    // Get route for retrieving a single pet from DB
+    app.get("/api/pet/:id", function (req, res) {
+        db.Pet.findOne({
+            where: {
+                pf_id: req.params.id
+            }
+        })
+            .then(function (result) {
+                res.json(result);
+            });
+    });
+
+    app.post("/api/pet/:id", function (req, res) {
+        db.Pet.create({
+            pf_id: req.body.id,
+        })
+            .then(function (result) {
+                console.log(result)
+                res.json(result);
+            });
+    });
 }
