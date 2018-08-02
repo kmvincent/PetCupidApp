@@ -259,8 +259,8 @@ $(document).ready(function () {
     // dropdown select menu
     $('select').formSelect();
 
-    // // auth code 
-    // $('select').material_select();
+    // sign in modal
+    $('.modal').modal();
 
     let queryArray = [];
     let newAnswer = "";
@@ -490,14 +490,25 @@ $(document).ready(function () {
         };
     });
 
-$(".save-btn").on("click", function() {
-    // removing "id" from save btn id to just have petID
-    savedPetId = $(this).attr("id").slice(2);
-    console.log(savedPetId);
-    // unhiding that item from the modal list
-    $("#mid"+savedPetId).removeClass("hide");
+    // this is buggy!!!!!
+    $(".save-btn").on("click", function () {
+        // $(“#name-display”).text(localStorage.getItem(“name”));
+        if (localStorage.getItem("id") != null) {
+            console.log(localStorage.getItem("id"))
 
-});
+            // removing "id" from save btn id to just have petID
+            savedPetId = $(this).attr("id").slice(2);
+            console.log(savedPetId);
+            // unhiding that item from the modal list
+            $("#mid" + savedPetId).removeClass("hide");
+
+            // if logged in, savebtn should trigger modal not sign in
+            $(".save-btn").attr("href", "#modal1")
+        } else {
+            $("#userSignInSection").removeClass("hide");
+            console.log("user not signed in")
+        }
+    });
 
 
     $("#register-btn").on("click", function (event) {

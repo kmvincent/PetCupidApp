@@ -90,12 +90,6 @@
         </div>
       </div>
     {{/each}}
-{{!-- Ranking each characteristic section --}}
-{{!-- <ul>
-  {{#each questions}}
-    <li id="ql{{id}}" class="center question">{{question}}</li>
-  {{/each}}
-</ul> --}}
 </article>
     
 {{!-- Results Handlebar Page Default Hidden --}}
@@ -125,7 +119,7 @@
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{name}}<i class="material-icons right">close</i></span>
                         <p>{{about}}</p>
-                        <a class="waves-effect waves-light btn modal-trigger save-btn" href="#modal1" id="id{{petID}}">Save</a>
+                        <a class="waves-effect waves-light btn modal-trigger save-btn" href="#userSignInSection" id="id{{petID}}">Save</a>
                     </div>
                 </div>
             </div>
@@ -167,7 +161,7 @@
 </section>
 
 {{!-- User SignIn Code --}}
-<section id="userSignInSection" class="hide">
+<section id="userSignInSection" class="hide modal bottom-sheet">
   <div class="container" id="userSignInBox">
       <div class="row">
           <form class="col s12" id="reg-form">
@@ -196,9 +190,9 @@
             <div class="row">
       
               <div class="input-field col s6">
-                <button class="btn btn-large btn-register waves-effect waves-light" type="submit" name="action" id="register-btn">Register
+                <a class="btn btn-large btn-register waves-effect waves-light modal-trigger" type="submit" name="action" id="register-btn" href="#modal1">Register
                   <i class="material-icons right">done</i>
-                </button>
+                </a>
               </div>
             </div>
           </form>

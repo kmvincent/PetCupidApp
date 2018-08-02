@@ -1,11 +1,15 @@
-#userSignInSection {
+/* #userSignInSection {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-  }
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  } */
   #userSignInBox {
-    background: white;
+    /* background: white; */
     padding: 20px 25px;
     border: 5px solid #26a69a;
     width: 550px;
