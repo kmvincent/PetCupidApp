@@ -304,9 +304,9 @@ module.exports = function (app) {
                     }
                     //console.log(text)
                     console.log(`playful: ${foundPlayfulCatKeyWordArr}`)
-                    for (let n=0; n<foundPlayfulCatKeyWordArr.length; n++) {
+                    for (let n = 0; n < foundPlayfulCatKeyWordArr.length; n++) {
                         if (foundPlayfulCatKeyWordArr[n] != -1) {
-                            playfulCount ++
+                            playfulCount++
                         }
                     }
                     console.log(`playful total: ${playfulCount} out of ${foundPlayfulCatKeyWordArr.length}`)
@@ -319,9 +319,9 @@ module.exports = function (app) {
                         parse();
                     }
                     console.log(`lap: ${foundLapCatKeyWordArr}`)
-                    for (let n=0; n<foundLapCatKeyWordArr.length; n++) {
+                    for (let n = 0; n < foundLapCatKeyWordArr.length; n++) {
                         if (foundLapCatKeyWordArr[n] != -1) {
-                            lapCount ++
+                            lapCount++
                         }
                     }
                     console.log(`lap total: ${lapCount} out of ${foundLapCatKeyWordArr.length}`)
@@ -333,9 +333,9 @@ module.exports = function (app) {
                         parse();
                     }
                     console.log(`social: ${foundSocialCatKeyWordArr}`)
-                    for (let n=0; n<foundSocialCatKeyWordArr.length; n++) {
+                    for (let n = 0; n < foundSocialCatKeyWordArr.length; n++) {
                         if (foundSocialCatKeyWordArr[n] != -1) {
-                            socialCount ++
+                            socialCount++
                         }
                     }
                     console.log(`social total: ${socialCount} out of ${foundSocialCatKeyWordArr.length}`)
@@ -347,9 +347,9 @@ module.exports = function (app) {
                         parse();
                     }
                     console.log(`independent: ${foundIndependentCatKeyWordArr}`)
-                    for (let n=0; n<foundIndependentCatKeyWordArr.length; n++) {
+                    for (let n = 0; n < foundIndependentCatKeyWordArr.length; n++) {
                         if (foundIndependentCatKeyWordArr[n] != -1) {
-                            independentCount ++
+                            independentCount++
                         }
                     }
                     console.log(`independent total: ${independentCount} out of ${foundIndependentCatKeyWordArr.length}`)
@@ -361,9 +361,9 @@ module.exports = function (app) {
                         parse();
                     }
                     console.log(`vocal: ${foundVocalCatKeyWordArr}`)
-                    for (let n=0; n<foundVocalCatKeyWordArr.length; n++) {
+                    for (let n = 0; n < foundVocalCatKeyWordArr.length; n++) {
                         if (foundVocalCatKeyWordArr[n] != -1) {
-                            vocalCount ++
+                            vocalCount++
                         }
                     }
                     console.log(`vocal total: ${vocalCount} out of ${foundVocalCatKeyWordArr.length}`)
@@ -375,15 +375,62 @@ module.exports = function (app) {
                         parse();
                     }
                     console.log(`cautious: ${foundCautiousCatKeyWordArr}`)
-                    for (let n=0; n<foundCautiousCatKeyWordArr.length; n++) {
+                    for (let n = 0; n < foundCautiousCatKeyWordArr.length; n++) {
                         if (foundCautiousCatKeyWordArr[n] != -1) {
-                            cautiousCount ++
+                            cautiousCount++
                         }
                     }
                     console.log(`cautious total: ${cautiousCount} out of ${foundCautiousCatKeyWordArr.length}`)
                     //count number of words in each array and calculate cat personality results
 
+
+                    // add a new property to pet object that contains each of the % text matches
+                    parsePetsObject[i].playful = Math.round(playfulCount / foundPlayfulCatKeyWordArr.length * 100);
+
+                    parsePetsObject[i].lap = Math.round(lapCount / foundLapCatKeyWordArr.length * 100);
+
+                    parsePetsObject[i].social = Math.round(socialCount / foundSocialCatKeyWordArr.length * 100);
+
+                    parsePetsObject[i].independent = Math.round(independentCount / foundIndependentCatKeyWordArr.length * 100);
+
+                    parsePetsObject[i].vocal = Math.round(vocalCount / foundVocalCatKeyWordArr.length * 100);
+
+                    parsePetsObject[i].cautious = Math.round(cautiousCount / foundCautiousCatKeyWordArr.length * 100);
                 }
+
+                parsePetsObject.sort(function (pet1, pet2) {
+
+                    // sort by playful
+                    // if user entered 4 or 5 want higher matches towards the top
+                    if (personalityQ1 == "4" || personalityQ1 == "5") {
+                        if (pet1.playful > pet2.playful) return -1;
+                        if (pet1.playful < pet2.playful) return 1;
+                    // if user entered 1 or 2 want lower matches towards the top
+                    } else if (personalityQ1 == "1" || personalityQ1 == "2") {
+                        if (pet1.playful < pet2.playful) return -1;
+                        if (pet1.playful > pet2.playful) return 1;
+                    } else {
+                        console.log(personalityQ1)
+                        console.log("didn't work")
+                    }
+
+                    // sort by lap
+                    
+
+                    // sort by social
+                    
+
+                    // sort by independent
+                    
+
+                    // sort by vocal
+                   
+
+                    // sort by cautious
+                    
+                    // console.log(parsePetsObject);
+
+                })
             }
 
             //DAWGS
@@ -437,9 +484,9 @@ module.exports = function (app) {
                     }
                     //console.log(text)
                     console.log(`playful: ${foundPlayfulDogKeyWordArr}`)
-                    for (let n=0; n<foundPlayfulDogKeyWordArr.length; n++) {
+                    for (let n = 0; n < foundPlayfulDogKeyWordArr.length; n++) {
                         if (foundPlayfulDogKeyWordArr[n] != -1) {
-                            playfulCount ++
+                            playfulCount++
                         }
                     }
                     console.log(`playful total: ${playfulCount} out of ${foundPlayfulDogKeyWordArr.length}`)
@@ -452,9 +499,9 @@ module.exports = function (app) {
                         parse();
                     }
                     console.log(`lap: ${foundLoudDogKeyWordArr}`)
-                    for (let n=0; n<foundLoudDogKeyWordArr.length; n++) {
+                    for (let n = 0; n < foundLoudDogKeyWordArr.length; n++) {
                         if (foundLoudDogKeyWordArr[n] != -1) {
-                            loudCount ++
+                            loudCount++
                         }
                     }
                     console.log(`loud total: ${loudCount} out of ${foundLoudDogKeyWordArr.length}`)
@@ -466,9 +513,9 @@ module.exports = function (app) {
                         parse();
                     }
                     console.log(`social: ${foundSocialDogKeyWordArr}`)
-                    for (let n=0; n<foundSocialDogKeyWordArr.length; n++) {
+                    for (let n = 0; n < foundSocialDogKeyWordArr.length; n++) {
                         if (foundSocialDogKeyWordArr[n] != -1) {
-                            socialCount ++
+                            socialCount++
                         }
                     }
                     console.log(`social total: ${socialCount} out of ${foundSocialDogKeyWordArr.length}`)
@@ -480,9 +527,9 @@ module.exports = function (app) {
                         parse();
                     }
                     console.log(`independent: ${foundIndependentDogKeyWordArr}`)
-                    for (let n=0; n<foundIndependentDogKeyWordArr.length; n++) {
+                    for (let n = 0; n < foundIndependentDogKeyWordArr.length; n++) {
                         if (foundIndependentDogKeyWordArr[n] != -1) {
-                            independentCount ++
+                            independentCount++
                         }
                     }
                     console.log(`independent total: ${independentCount} out of ${foundIndependentDogKeyWordArr.length}`)
@@ -494,9 +541,9 @@ module.exports = function (app) {
                         parse();
                     }
                     console.log(`cautious: ${foundActiveDogKeyWordArr}`)
-                    for (let n=0; n<foundActiveDogKeyWordArr.length; n++) {
+                    for (let n = 0; n < foundActiveDogKeyWordArr.length; n++) {
                         if (foundActiveDogKeyWordArr[n] != -1) {
-                            activeCount ++
+                            activeCount++
                         }
                     }
                     console.log(`cautious total: ${activeCount} out of ${foundActiveDogKeyWordArr.length}`)
