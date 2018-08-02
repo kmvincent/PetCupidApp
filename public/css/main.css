@@ -5,6 +5,10 @@
     font-size: 1.5em;
 }
 
+.brand-logo img {
+    margin-top: 10px;
+}
+
 .question {
     font-weight: 500;
     color: white;
@@ -83,3 +87,14 @@ img{
 #questionSection {
     padding-top: 56px;
 }
+
+/* Sticky Footer */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
