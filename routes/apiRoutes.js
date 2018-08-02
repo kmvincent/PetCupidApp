@@ -483,6 +483,7 @@ module.exports = function (app) {
                     city = parsePetsObject[p].contact.city.$t;
                     state = parsePetsObject[p].contact.state.$t;
                     zip = parsePetsObject[p].contact.zip.$t;
+                    url = `https://www.petfinder.com/petdetail/${parsePetsObject[p].id.$t}`
 
                     let pet = {
                         "smallPhoto": smallPhoto,
@@ -496,7 +497,8 @@ module.exports = function (app) {
                         "address2": address2,
                         "city": city,
                         "state": state,
-                        "zip": zip
+                        "zip": zip,
+                        "url": url
                     }
 
                     resultsArray.push(pet)
@@ -709,6 +711,7 @@ module.exports = function (app) {
                     city = parsePetsObject[p].contact.city.$t;
                     state = parsePetsObject[p].contact.state.$t;
                     zip = parsePetsObject[p].contact.zip.$t;
+                    url = `https://www.petfinder.com/petdetail/${parsePetsObject[p].id.$t}`
 
                     let pet = {
                         "smallPhoto": smallPhoto,
@@ -722,7 +725,8 @@ module.exports = function (app) {
                         "address2": address2,
                         "city": city,
                         "state": state,
-                        "zip": zip
+                        "zip": zip,
+                        "url": url
                     }
 
                     resultsArray.push(pet)
