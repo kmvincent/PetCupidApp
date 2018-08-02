@@ -405,7 +405,7 @@ module.exports = function (app) {
                     if (personalityQ1 == "4" || personalityQ1 == "5") {
                         if (pet1.playful > pet2.playful) return -1;
                         if (pet1.playful < pet2.playful) return 1;
-                    // if user entered 1 or 2 want lower matches towards the top
+                        // if user entered 1 or 2 want lower matches towards the top
                     } else if (personalityQ1 == "1" || personalityQ1 == "2") {
                         if (pet1.playful < pet2.playful) return -1;
                         if (pet1.playful > pet2.playful) return 1;
@@ -416,7 +416,7 @@ module.exports = function (app) {
                     if (personalityQ2 == "4" || personalityQ2 == "5") {
                         if (pet1.lap > pet2.lap) return -1;
                         if (pet1.lap < pet2.lap) return 1;
-                    // if user entered 1 or 2 want lower matches towards the top
+                        // if user entered 1 or 2 want lower matches towards the top
                     } else if (personalityQ2 == "1" || personalityQ2 == "2") {
                         if (pet1.lap < pet2.lap) return -1;
                         if (pet1.lap > pet2.lap) return 1;
@@ -427,7 +427,7 @@ module.exports = function (app) {
                     if (personalityQ3 == "4" || personalityQ3 == "5") {
                         if (pet1.social > pet2.social) return -1;
                         if (pet1.social < pet2.social) return 1;
-                    // if user entered 1 or 2 want lower matches towards the top
+                        // if user entered 1 or 2 want lower matches towards the top
                     } else if (personalityQ3 == "1" || personalityQ3 == "2") {
                         if (pet1.social < pet2.social) return -1;
                         if (pet1.social > pet2.social) return 1;
@@ -438,37 +438,36 @@ module.exports = function (app) {
                     if (personalityQ4 == "4" || personalityQ4 == "5") {
                         if (pet1.independent > pet2.independent) return -1;
                         if (pet1.independent < pet2.independent) return 1;
-                    // if user entered 1 or 2 want lower matches towards the top
+                        // if user entered 1 or 2 want lower matches towards the top
                     } else if (personalityQ4 == "1" || personalityQ4 == "2") {
                         if (pet1.independent < pet2.independent) return -1;
                         if (pet1.independent > pet2.independent) return 1;
                     }
 
                     // sort by vocal
-                   // if user entered 4 or 5 want higher matches towards the top
-                   if (personalityQ5 == "4" || personalityQ5 == "5") {
-                    if (pet1.vocal > pet2.vocal) return -1;
-                    if (pet1.vocal < pet2.vocal) return 1;
-                // if user entered 1 or 2 want lower matches towards the top
-                } else if (personalityQ5 == "1" || personalityQ5 == "2") {
-                    if (pet1.vocal < pet2.vocal) return -1;
-                    if (pet1.vocal > pet2.vocal) return 1;
-                }
+                    // if user entered 4 or 5 want higher matches towards the top
+                    if (personalityQ5 == "4" || personalityQ5 == "5") {
+                        if (pet1.vocal > pet2.vocal) return -1;
+                        if (pet1.vocal < pet2.vocal) return 1;
+                        // if user entered 1 or 2 want lower matches towards the top
+                    } else if (personalityQ5 == "1" || personalityQ5 == "2") {
+                        if (pet1.vocal < pet2.vocal) return -1;
+                        if (pet1.vocal > pet2.vocal) return 1;
+                    }
 
                     // sort by cautious
                     // if user entered 4 or 5 want higher matches towards the top
                     if (personalityQ6 == "4" || personalityQ6 == "5") {
                         if (pet1.cautious > pet2.cautious) return -1;
                         if (pet1.cautious < pet2.cautious) return 1;
-                    // if user entered 1 or 2 want lower matches towards the top
+                        // if user entered 1 or 2 want lower matches towards the top
                     } else if (personalityQ6 == "1" || personalityQ6 == "2") {
                         if (pet1.cautious < pet2.cautious) return -1;
                         if (pet1.cautious > pet2.cautious) return 1;
                     }
-                    
-                    parsePetsObject.splice(5);
-                    console.log(parsePetsObject);
                 });
+                parsePetsObject.splice(5);
+                console.log(parsePetsObject);
             }
 
             //DAWGS
@@ -587,7 +586,77 @@ module.exports = function (app) {
                     console.log(`cautious total: ${activeCount} out of ${foundActiveDogKeyWordArr.length}`)
                     //count number of words in each array and calculate cat personality results
 
+                    // add a new property to pet object that contains each of the % text matches
+                    parsePetsObject[i].playful = Math.round(playfulCount / foundPlayfulDogKeyWordArr.length * 100);
+
+                    parsePetsObject[i].lap = Math.round(loudCount / foundLoudDogKeyWordArr.length * 100);
+
+                    parsePetsObject[i].social = Math.round(socialCount / foundSocialDogKeyWordArr.length * 100);
+
+                    parsePetsObject[i].independent = Math.round(independentCount / foundIndependentDogKeyWordArr.length * 100);
+
+                    parsePetsObject[i].vocal = Math.round(activeCount / foundActiveDogKeyWordArr.length * 100);
                 }
+
+                parsePetsObject.sort(function (pet1, pet2) {
+
+                    // sort by playful
+                    // if user entered 4 or 5 want higher matches towards the top
+                    if (personalityQ1 == "4" || personalityQ1 == "5") {
+                        if (pet1.playful > pet2.playful) return -1;
+                        if (pet1.playful < pet2.playful) return 1;
+                        // if user entered 1 or 2 want lower matches towards the top
+                    } else if (personalityQ1 == "1" || personalityQ1 == "2") {
+                        if (pet1.playful < pet2.playful) return -1;
+                        if (pet1.playful > pet2.playful) return 1;
+                    }
+
+                    // sort by loud
+                    // if user entered 4 or 5 want higher matches towards the top
+                    if (personalityQ2 == "4" || personalityQ2 == "5") {
+                        if (pet1.loud > pet2.loud) return -1;
+                        if (pet1.loud < pet2.loud) return 1;
+                        // if user entered 1 or 2 want lower matches towards the top
+                    } else if (personalityQ2 == "1" || personalityQ2 == "2") {
+                        if (pet1.loud < pet2.loud) return -1;
+                        if (pet1.loud > pet2.loud) return 1;
+                    }
+
+                    // sort by social
+                    // if user entered 4 or 5 want higher matches towards the top
+                    if (personalityQ3 == "4" || personalityQ3 == "5") {
+                        if (pet1.social > pet2.social) return -1;
+                        if (pet1.social < pet2.social) return 1;
+                        // if user entered 1 or 2 want lower matches towards the top
+                    } else if (personalityQ3 == "1" || personalityQ3 == "2") {
+                        if (pet1.social < pet2.social) return -1;
+                        if (pet1.social > pet2.social) return 1;
+                    }
+
+                    // sort by independent
+                    // if user entered 4 or 5 want higher matches towards the top
+                    if (personalityQ4 == "4" || personalityQ4 == "5") {
+                        if (pet1.independent > pet2.independent) return -1;
+                        if (pet1.independent < pet2.independent) return 1;
+                        // if user entered 1 or 2 want lower matches towards the top
+                    } else if (personalityQ4 == "1" || personalityQ4 == "2") {
+                        if (pet1.independent < pet2.independent) return -1;
+                        if (pet1.independent > pet2.independent) return 1;
+                    }
+
+                    // sort by active
+                    // if user entered 4 or 5 want higher matches towards the top
+                    if (personalityQ5 == "4" || personalityQ5 == "5") {
+                        if (pet1.active > pet2.active) return -1;
+                        if (pet1.active < pet2.active) return 1;
+                        // if user entered 1 or 2 want lower matches towards the top
+                    } else if (personalityQ5 == "1" || personalityQ5 == "2") {
+                        if (pet1.active < pet2.active) return -1;
+                        if (pet1.active > pet2.active) return 1;
+                    }
+                });
+                parsePetsObject.splice(5);
+                console.log(parsePetsObject);
             }
 
 
