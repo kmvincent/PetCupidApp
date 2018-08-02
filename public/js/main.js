@@ -381,11 +381,21 @@ $(document).ready(function () {
                 }
                 console.log(dogSearch);
                 // post to backend to be sent to petfinder
-                $.post("/pf", dogSearch).then(function (data) {
-                    console.log(data);
-                });
+                $.post("/pf", dogSearch).then(function (results) {
+                    console.log(results.array[0]);
+                    // let anotherArray = [];
+                    // for (let i=0;i<results.length;i++) {
+                    //     anotherArray.push(results.array[i])
+                    // }
+                    // console.log(anotherArray)
 
-                $("#results").removeClass("hide");
+                    window.location.replace("/results")
+                    // $.get("/results", function(req,res) {
+                    //     res.sendFile(path.join(__dirname,"../../views/results.handlebars"))
+                    // })
+                });
+                
+                // $("#results").removeClass("hide");
                 break;
 
             // Switch to cat Qs
@@ -466,7 +476,7 @@ $(document).ready(function () {
                     console.log(data);
                 });
 
-                $("#results").removeClass("hide");
+                // $("#results").removeClass("hide");
                 break;
         };
     });

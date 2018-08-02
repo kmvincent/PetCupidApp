@@ -17,6 +17,9 @@ module.exports = function (app) {
 
     // will pull pets from database based on quiz criteria (first section, needs to be added as variables)
     app.post("/pf", function (req, res) {
+        let pleasework = {
+            array: []
+        };
 
         let queryAddendum = req.body.queryUrlParams;
         let requiredOptions = req.body.requiredOptions;
@@ -485,8 +488,9 @@ module.exports = function (app) {
                         "about": about
                     }
 
-                    console.log(smallPhoto)
+                    console.log(pet)
                     resultsArray.push(pet)
+                    
                 }
             }
 
@@ -697,15 +701,19 @@ module.exports = function (app) {
                         "about": about
                     }
 
-                    resultsArray.push(pet)
+
+
+                    pleasework.array.push(pet)
                 }
+                //console.log(pleasework);
+                
             }
 
-
+            res.send(pleasework);
         });
 
 
-
+       
 
 
     });
