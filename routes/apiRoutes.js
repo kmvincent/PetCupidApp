@@ -488,6 +488,7 @@ module.exports = function (app) {
                     console.log(smallPhoto)
                     resultsArray.push(pet)
                 }
+                console.log("HI WE ARE HERE")
             }
 
             //DAWGS
@@ -699,11 +700,13 @@ module.exports = function (app) {
 
                     resultsArray.push(pet)
                 }
+                
             }
 
+            // res.sendStatus(200);
+            console.log("end of func")
 
         });
-
 
 
 
