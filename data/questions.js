@@ -157,7 +157,7 @@ questionArray = [
         ]
     },
     {
-        question: "Placeholder",
+        question: "How playful is your ideal dog?",
         id: 7,
         questionNo: 7,
         selectOption: true,
@@ -185,14 +185,14 @@ questionArray = [
         ]
     },
     {
-        question: "Placeholder",
+        question: "How much barking can you tolerate?",
         id: 8,
         questionNo: 8,
         progress: "72.72%",
         selectOption: true,
         answers: [
             {
-                option: "5 - Very playful",
+                option: "5 - The louder the better!",
                 icon: "placeholder.png",
             },
             {
@@ -208,20 +208,20 @@ questionArray = [
                 icon: "placeholder.png",
             },
             {
-                option: "1 - Not playful at all",
+                option: "1 - Quiet please",
                 icon: "placeholder.png",
             }
         ]
     },
     {
-        question: "Placeholder",
+        question: "How friendly is your ideal dog?",
         id: 9,
         questionNo: 9,
         progress: "81.81%",
         selectOption: true,
         answers: [
             {
-                option: "5 - Very playful",
+                option: "5 - Very friendly",
                 icon: "placeholder.png",
             },
             {
@@ -237,21 +237,21 @@ questionArray = [
                 icon: "placeholder.png",
             },
             {
-                option: "1 - Not playful at all",
+                option: "1 - Not friendly at all",
                 icon: "placeholder.png",
             }
         ]
     },
     {
         // this will relate to pf filter
-        question: "Placeholder",
+        question: "How independent is your ideal dog?",
         id: 10,
         questionNo: 10,
         progress: "90.9%",
         selectOption: true,
         answers: [
             {
-                option: "5 - Very playful",
+                option: "5 - Very independent",
                 icon: "placeholder.png",
             },
             {
@@ -267,21 +267,21 @@ questionArray = [
                 icon: "placeholder.png",
             },
             {
-                option: "1 - Not playful at all",
+                option: "1 - Very dependent",
                 icon: "placeholder.png",
             }
         ]
     },
     {
         // this will relate to pf filter
-        question: "Placeholder",
+        question: "How active is your ideal dog",
         id: 11,
         questionNo: 11,
         progress: "100%",
         selectOption: true,
         answers: [
             {
-                option: "5 - Very playful",
+                option: "5 - Very active",
                 icon: "placeholder.png",
             },
             {
@@ -297,7 +297,7 @@ questionArray = [
                 icon: "placeholder.png",
             },
             {
-                option: "1 - Not playful at all",
+                option: "1 - Doesn't need much exercise",
                 icon: "placeholder.png",
             }
         ]
