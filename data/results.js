@@ -1,29 +1,36 @@
 resultsArray = [
     {
         //============What we need from ajax===============
-        // photo
+        // smallPhoto
+        // largePhoto
         // name
         // petID
         // url
         // about
-
-        // this will relate to pf filter
-        test1: "Are you looking for a cat or dog?",
-        id: 1,
-        test2: 1,
-        progress: "9.09%",
-        link: [
-            {
-                option: "Cat",
-                icon: "cat.png",
-                ajax: "&animal=cat"
-            },
-            {
-                option: "Dog",
-                icon: "dog.png",
-                ajax: "&animal=dog"
-            }
-        ]
+    
+        // testing array
+        smallPhoto: "http://photos.petfinder.com/photos/pets/41722847/1/?bust=1527257194&width=95&-fpm.jpg",
+        largePhoto: "http://photos.petfinder.com/photos/pets/41722847/1/?bust=1527257194&width=300&-pn.jpg",
+        name: "Benji",
+        petID: "42214712",
+        // url
+        about: "BENJI IS LOCATED IN A PRIVATE FOSTER HOME NEAR MINNEAPOLIS, MN.  WE WELCOME ALL APPLICATIONS, HOWEVER, IF APPROVED FOR ADOPTION IT IS THE RESPONSIBILITY OF THE ADOPTING FAMILY TO GO TO THE FOSTER HOME TO FINALIZE THE ADOPTION. \nIf you wish to apply to adopt Benji, you'll need to fill out our Adoption Application at www.cairnrescueusa.com/adopt/frm_adopt.htm.\n\n*****************************************************************************************************\n\nBenji will acclimate to any environment he is dropped into, although we are only considering him for a home with at least one other dog and a fenced yard.   He is happy-go-lucky and excited for whatever any day will bring.  He LOVES being outside, finding adventures in the yard, and engaging in an active home life.  Benji is a very gentle terrier, very happy, and has an excellent disposition.   \n \n\nWhat are his best qualities?\n\nHeâ\u0080\u0099s a sweetheart\n\nHeâ\u0080\u0099s ALWAYS happy\n\nLoves people & animals\n\nEasy going â\u0080\u0093 will adapt to anything\n\nGoes into his kennel well\n\nGentle\n\nHe may do very well in a home with kids (7 or older), other dogs, and activity\n\nHe is good meeting strangers\n\nHe is not afraid of loud noises or anything else thatâ\u0080\u0099s startling\n\nHe seems to be a good car rider\n\nHe does not bark much at all.   He barks to go outside, and will join in with other dogs in the home if they are barking.\n\n\nWhat are his challenges?\n\nOverweight\n\nDoesnâ\u0080\u0099t know commands, yet he is willing\n\nHe may struggle on steps due to his weight\n\nDevelopmentally heâ\u0080\u0099s like a puppyâ\u0080\u0094heâ\u0080\u0099s inquisitive, everything seems â\u0080\u009cnewâ\u0080\u009d, and he is eager to please and ready to learn.\n\nHis previous home said he wasnâ\u0080\u0099t housebroken, but upon intake we realized he had a Urinary tract infection.  He hasnâ\u0080\u0099t had an accident in his kennel or in the house since his first incident.  He is likely much more housebroken than we were led to believe.  He knows what he needs to do and what he shouldnâ\u0080\u0099t and does seem to signal when has to go out.\n\nHe seems new to a fenced yard.  He LOVES the fenced yard and will run, romp, and play with the other Cairn in the home.  He is watching squirrels, chasing chipmunks and rabbits, and is tireless.  With time and additional freedom we believe he will trim up.\n\nHe is not leash trainedâ\u0080\u0094he is willing to walk, wants to walk, but doesnâ\u0080\u0099t have leash manners. He knows what a leash is, gets excited and runs to the door. Due to his willingness to please, we believe he will learn quickl\n \nIf you are looking for a great family dog that is eager to please and engage in all life activities...if you have another dog and a fenced yard, please welcome Benji into your home.",
+    },
+    {
+        smallPhoto: "http://photos.petfinder.com/photos/pets/41722847/1/?bust=1527257194&width=95&-fpm.jpg",
+        largePhoto: "http://photos.petfinder.com/photos/pets/41722847/1/?bust=1527257194&width=300&-pn.jpg",
+        name: "Benji2",
+        petID: "42214713",
+        // url
+        about: "BENJI IS LOCATED IN A PRIVATE FOSTER HOME NEAR MINNEAPOLIS, MN.  WE WELCOME ALL APPLICATIONS, HOWEVER, IF APPROVED FOR ADOPTION IT IS THE RESPONSIBILITY OF THE ADOPTING FAMILY TO GO TO THE FOSTER HOME TO FINALIZE THE ADOPTION. \nIf you wish to apply to adopt Benji, you'll need to fill out our Adoption Application at www.cairnrescueusa.com/adopt/frm_adopt.htm.\n\n*****************************************************************************************************\n\nBenji will acclimate to any environment he is dropped into, although we are only considering him for a home with at least one other dog and a fenced yard.   He is happy-go-lucky and excited for whatever any day will bring.  He LOVES being outside, finding adventures in the yard, and engaging in an active home life.  Benji is a very gentle terrier, very happy, and has an excellent disposition.   \n \n\nWhat are his best qualities?\n\nHeâ\u0080\u0099s a sweetheart\n\nHeâ\u0080\u0099s ALWAYS happy\n\nLoves people & animals\n\nEasy going â\u0080\u0093 will adapt to anything\n\nGoes into his kennel well\n\nGentle\n\nHe may do very well in a home with kids (7 or older), other dogs, and activity\n\nHe is good meeting strangers\n\nHe is not afraid of loud noises or anything else thatâ\u0080\u0099s startling\n\nHe seems to be a good car rider\n\nHe does not bark much at all.   He barks to go outside, and will join in with other dogs in the home if they are barking.\n\n\nWhat are his challenges?\n\nOverweight\n\nDoesnâ\u0080\u0099t know commands, yet he is willing\n\nHe may struggle on steps due to his weight\n\nDevelopmentally heâ\u0080\u0099s like a puppyâ\u0080\u0094heâ\u0080\u0099s inquisitive, everything seems â\u0080\u009cnewâ\u0080\u009d, and he is eager to please and ready to learn.\n\nHis previous home said he wasnâ\u0080\u0099t housebroken, but upon intake we realized he had a Urinary tract infection.  He hasnâ\u0080\u0099t had an accident in his kennel or in the house since his first incident.  He is likely much more housebroken than we were led to believe.  He knows what he needs to do and what he shouldnâ\u0080\u0099t and does seem to signal when has to go out.\n\nHe seems new to a fenced yard.  He LOVES the fenced yard and will run, romp, and play with the other Cairn in the home.  He is watching squirrels, chasing chipmunks and rabbits, and is tireless.  With time and additional freedom we believe he will trim up.\n\nHe is not leash trainedâ\u0080\u0094he is willing to walk, wants to walk, but doesnâ\u0080\u0099t have leash manners. He knows what a leash is, gets excited and runs to the door. Due to his willingness to please, we believe he will learn quickl\n \nIf you are looking for a great family dog that is eager to please and engage in all life activities...if you have another dog and a fenced yard, please welcome Benji into your home.",
+    },
+    {
+        smallPhoto: "http://photos.petfinder.com/photos/pets/41722847/1/?bust=1527257194&width=95&-fpm.jpg",
+        largePhoto: "http://photos.petfinder.com/photos/pets/41722847/1/?bust=1527257194&width=300&-pn.jpg",
+        name: "Benji3",
+        petID: "42214714",
+        // url
+        about: "BENJI IS LOCATED IN A PRIVATE FOSTER HOME NEAR MINNEAPOLIS, MN.  WE WELCOME ALL APPLICATIONS, HOWEVER, IF APPROVED FOR ADOPTION IT IS THE RESPONSIBILITY OF THE ADOPTING FAMILY TO GO TO THE FOSTER HOME TO FINALIZE THE ADOPTION. \nIf you wish to apply to adopt Benji, you'll need to fill out our Adoption Application at www.cairnrescueusa.com/adopt/frm_adopt.htm.\n\n*****************************************************************************************************\n\nBenji will acclimate to any environment he is dropped into, although we are only considering him for a home with at least one other dog and a fenced yard.   He is happy-go-lucky and excited for whatever any day will bring.  He LOVES being outside, finding adventures in the yard, and engaging in an active home life.  Benji is a very gentle terrier, very happy, and has an excellent disposition.   \n \n\nWhat are his best qualities?\n\nHeâ\u0080\u0099s a sweetheart\n\nHeâ\u0080\u0099s ALWAYS happy\n\nLoves people & animals\n\nEasy going â\u0080\u0093 will adapt to anything\n\nGoes into his kennel well\n\nGentle\n\nHe may do very well in a home with kids (7 or older), other dogs, and activity\n\nHe is good meeting strangers\n\nHe is not afraid of loud noises or anything else thatâ\u0080\u0099s startling\n\nHe seems to be a good car rider\n\nHe does not bark much at all.   He barks to go outside, and will join in with other dogs in the home if they are barking.\n\n\nWhat are his challenges?\n\nOverweight\n\nDoesnâ\u0080\u0099t know commands, yet he is willing\n\nHe may struggle on steps due to his weight\n\nDevelopmentally heâ\u0080\u0099s like a puppyâ\u0080\u0094heâ\u0080\u0099s inquisitive, everything seems â\u0080\u009cnewâ\u0080\u009d, and he is eager to please and ready to learn.\n\nHis previous home said he wasnâ\u0080\u0099t housebroken, but upon intake we realized he had a Urinary tract infection.  He hasnâ\u0080\u0099t had an accident in his kennel or in the house since his first incident.  He is likely much more housebroken than we were led to believe.  He knows what he needs to do and what he shouldnâ\u0080\u0099t and does seem to signal when has to go out.\n\nHe seems new to a fenced yard.  He LOVES the fenced yard and will run, romp, and play with the other Cairn in the home.  He is watching squirrels, chasing chipmunks and rabbits, and is tireless.  With time and additional freedom we believe he will trim up.\n\nHe is not leash trainedâ\u0080\u0094he is willing to walk, wants to walk, but doesnâ\u0080\u0099t have leash manners. He knows what a leash is, gets excited and runs to the door. Due to his willingness to please, we believe he will learn quickl\n \nIf you are looking for a great family dog that is eager to please and engage in all life activities...if you have another dog and a fenced yard, please welcome Benji into your home.",
     }
 ]
 

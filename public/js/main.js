@@ -1,4 +1,4 @@
-// need function that will hide/show based on parameter that matches id i think....
+// NEED to create log out btn that erases id from local memory and separate page for displaying results when logged in
 
 // onclick functions for index.html page
 $(document).ready(function () {
@@ -259,8 +259,8 @@ $(document).ready(function () {
     // dropdown select menu
     $('select').formSelect();
 
-    // // auth code 
-    // $('select').material_select();
+    // sign in modal
+    $('.modal').modal();
 
     let queryArray = [];
     let newAnswer = "";
@@ -274,7 +274,7 @@ $(document).ready(function () {
     // reveal the first Q to begin survey
     $("#questionSection-1").removeClass("hide");
 
-    // drop down to 1st Q and hide headers
+    // drop down to 1st Q and hide headers when begin survey
     $("#questionnaireStart").on("click", function (event) {
         console.log("Start Questionnaire");
         $("#questionnaireStart").addClass("hide");
@@ -289,14 +289,14 @@ $(document).ready(function () {
         };
     });
 
-    // submit answer to survey Q
+    // when click submit btn to answer to each survey Q
     $(".survey-answer-btn").on("click", function () {
         // if didn't click the qStart button, clicking the first next-btn will hide the header as well
         $("#questionnaireStart").addClass("hide");
-        // switch case to hide/reveal each Q as user moves through survey and add to queryArray
+        // switch case to hide/reveal each Q as user moves through survey and add answer to queryArray
         switch ($(this).attr("id")) {
             case "next-btn-1":
-                // if cat answer was selected, jump down to cat Qs next
+                // if cat answer was selected, jump down to cat Qs next (start at 12)
                 if (newAnswer === "&animal=cat") {
                     $("#questionSection-1").addClass("hide");
                     $("#questionSection-12").removeClass("hide");
@@ -384,6 +384,7 @@ $(document).ready(function () {
                 $.post("/pf", dogSearch).then(function (data) {
                     console.log(data);
                 });
+
                 $("#results").removeClass("hide");
                 break;
 
@@ -464,32 +465,82 @@ $(document).ready(function () {
                 $.post("/pf", catSearch).then(function (data) {
                     console.log(data);
                 });
-                $("#results").removeClass("hide");
 
+                $("#results").removeClass("hide");
                 break;
         };
     });
 
+    // when click save button on results page
+    $(".save-btn").on("click", function () {
+
+        // if user already signed in
+        if (localStorage.getItem("id") != null) {
+            console.log("User ID: ", localStorage.getItem("id"))
+
+            // removing "id" from save btn id to just have petID "number"
+            savedPetId = $(this).attr("id").slice(2);
+            console.log(savedPetId);
+            // unhiding that item from the modal list
+            $("#mid" + savedPetId).removeClass("hide");
+
+            // if logged in, change the savebtn href to trigger modal not sign in
+            $(".save-btn").attr("href", "#modal1")
+        } else {
+            // Show the log in pop-up
+            $("#userSignInSection").removeClass("hide");
+
+            // still want to unhide pet from saved modal once log in complete
+            savedPetId = $(this).attr("id").slice(2);
+            console.log(savedPetId);
+            // unhiding that item from the modal list
+            $("#mid" + savedPetId).removeClass("hide");
+        }
+
+        // this is currently not making an association
+        // left DB part off here
+        $.get("/api/pet/" + savedPetId)
+            .then(function (result) {
+                // if the pet is not already in db, add it
+                if (!result) {
+                    newPet = {
+                        id: savedPetId, 
+                        BuyerId: localStorage.getItem("id")
+                    }
+
+                    $.post("/api/pet/" + savedPetId, newPet)
+                        //
+                        .then(function (data) {
+                            // log the data we found
+                            console.log(data);
+                            console.log("pet has been added to db")
+                        })
+                } else {
+                    // $.put("/api/pet/" + savedPetId, function(req, res) {
+                    //     db.Pet.update
+                    // })
+                }
+            });
+
+    });
+
+    // when register as new user (click register btn)
     $("#register-btn").on("click", function (event) {
         event.preventDefault();
 
-        // make a newCharacter obj
+        // makes a newUser obj from the info the user enters
         var newUser = {
-            // name from name input
             firstName: $("#first_name").val().trim(),
-            // role from role input
             lastName: $("#last_name").val().trim(),
-            // age from age input
             email: $("#email").val().trim(),
-            // points from force-points input
             password: $("#passwords").val()
         };
 
-        // send an AJAX POST-request with jQuery
+        // send an AJAX POST-request with jQuery to save that user to DB
         $.post("/api/users", newUser)
-            // on success, run this callback
+            
             .then(function (data) {
-                // log the data we found
+                // then adds their user ID to local storage so their pet saves will continue to be associated with them
                 console.log(data);
                 localStorage.clear();
                 localStorage.setItem("id", data);

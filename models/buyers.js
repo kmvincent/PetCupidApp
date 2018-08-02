@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
     // creating a many to many association...I think sequelize will create the join table for us called petBuyers...more info  https://gist.github.com/elliette/20ddc4e827efd9d62bc98752e7a62610
     Buyer.associate = function (models) {
         Buyer.belongsToMany(models.Pet, {
-            through: models.PetBuyer
+            through: models.PetsBuyers
         });
     };
     return Buyer;
