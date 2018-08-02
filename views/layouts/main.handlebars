@@ -14,33 +14,137 @@
     <link href="../../css/main.css" type="text/css" rel="stylesheet" media="screen,projection" />
     {{!-- <script src="../../routes/htmlRoutes.js"></script> --}}
     <script src="../../js/main.js"></script>
-    {{!-- <script src="../../js/ath.js"></script> --}}
-
-    <title>Pet Finder</title>
+    <link rel="shortcut icon" type="image/jpg" href="images/logo.png">
+    <title>Pet Cupid</title>
 </head>
 
 <body>
-    <div class="navbar-fixed">
-        <nav class="white" role="navigation">
-            <div class="nav-wrapper container">
-                <a id="logo-container" href="#" class="brand-logo">Logo</a>
-                <ul class="right hide-on-med-and-down">
-                    <li>
-                        <a href="#">Navbar Link</a>
-                    </li>
-                </ul>
+<!-- DropDown -->
+<ul id="dropdown1" class="dropdown-content">
+    <!-- Modal Trigger -->
+    <li><a class="waves-effect waves-light modal-trigger" href="#returnUser" style="font:bolder">Sign In</a>
+    <li><a class="waves-effect waves-light modal-trigger" href="#userSignInSection" style="font-size:14px">Create an Account</a>
+    <li class="divider"></li>
+    <li><a href="#!">My Pets</a></li>
+</ul>
 
-                <ul id="nav-mobile" class="sidenav">
-                    <li>
-                        <a href="#">Navbar Link</a>
-                    </li>
-                </ul>
-                <a href="#" data-target="nav-mobile" class="sidenav-trigger">
-                    <i class="material-icons">menu</i>
-                </a>
-            </div>
-        </nav>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="/" class="brand-logo"><img src="images/logo.png" alt="pet food bowl" width="40px" height="40px"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Hello, Sign In<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a class="waves-effect waves-light modal-trigger" href="#returnUser" style="font:bolder">Sign In</a>
+        <li><a class="waves-effect waves-light modal-trigger" href="#userSignInSection" style="font-size:14px">Create an Account</a>
+        <li class="divider"></li>
+        <li><a href="#!">My Pets</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
+  </nav>
+
+  <!-- Modal Structure Sign-In-->
+  <div id="returnUser" class="modal">
+    <div class="modal-content">
+      <h4>Sign into Account</h4>
+        <form class="col s12" id="reg-form1">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="email1" type="email" class="validate" required>
+                <label for="email">Email</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password1" type="password" class="validate" minlength="6" required>
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="row">
+      
+              <div class="input-field col s6">
+                <a class="btn btn-large btn-register waves-effect waves-light" type="submit" id="register-btn">Secure Sign In
+                  <i class="material-icons right">done</i>
+                </a>
+              </div>
+            </div>
+          </form>
+    </div>
+  </div>
+
+<!-- Modal Structure Sign-Up-->
+  <div id="userSignInSection" class="modal">
+    <div class="modal-content">
+      <h4>Create an Account</h4>
+      <p>Fill in the fields below to create a Pet Cupid.com account.</p>
+          <form class="col s12" id="reg-form">
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="first_name" type="text" class="validate" required>
+                <label for="first_name">First Name</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="last_name" type="text" class="validate" required>
+                <label for="last_name">Last Name</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="email" type="email" class="validate" required>
+                <label for="email">Email</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" type="password" class="validate" minlength="6" required>
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="row">
+      
+              <div class="input-field col s6">
+                <a class="btn btn-large btn-register waves-effect waves-light" type="submit" id="register-btn">Register
+                  <i class="material-icons right">done</i>
+                </a>
+              </div>
+            </div>
+          </form>
+    </div>
+  </div>
+
+<!-- Modal Structure Quick Save -->
+<div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Saved Pets</h4>
+        {{#each results}}
+           <div class="col s12 m8 offset-m2 l6 offset-l3 hide" id="mid{{petID}}">
+            <div class="card-panel grey lighten-5 z-depth-1 quicksave">
+              <div class="row valign-wrapper">
+                <div class="col s2">
+                  <img class="circle responsive-img saveImg" src="{{smallPhoto}}" width="100px" height="150px"> <!-- notice the "circle" class -->
+                </div>
+                <div class="col s10">
+                  <span class="black-text">
+                    You've saved {{name}}!
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div> 
+        {{/each}}
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $(".dropdown-trigger").dropdown();
+        $('.sidenav').sidenav();
+        $('.modal').modal();
+    });
+</script>
+
 
     {{{ body }}}
 
