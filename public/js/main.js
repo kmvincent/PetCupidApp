@@ -394,6 +394,7 @@ $(document).ready(function () {
                 $.post("/pf", dogSearch).then(function (data) {
                     console.log(data);
                 });
+
                 $("#results").removeClass("hide");
                 break;
 
@@ -488,6 +489,16 @@ $(document).ready(function () {
                 break;
         };
     });
+
+$(".save-btn").on("click", function() {
+    // removing "id" from save btn id to just have petID
+    savedPetId = $(this).attr("id").slice(2);
+    console.log(savedPetId);
+    // unhiding that item from the modal list
+    $("#mid"+savedPetId).removeClass("hide");
+
+});
+
 
     $("#register-btn").on("click", function (event) {
         event.preventDefault();
