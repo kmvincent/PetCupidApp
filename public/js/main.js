@@ -306,7 +306,6 @@ $(document).ready(function () {
                     $("#questionSection-2").removeClass("hide");
                 };
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-2":
                 if ($("#autocomplete-input").val() != "") {
@@ -314,17 +313,14 @@ $(document).ready(function () {
                 }
                 goToNextQuestion(2);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-3":
                 goToNextQuestion(3);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-4":
                 goToNextQuestion(4);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-5":
                 if ($("#zip_code_5").val() === "") {
@@ -334,7 +330,6 @@ $(document).ready(function () {
                 }
                 goToNextQuestion(5);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-6":
                 if ($('input[type=checkbox]:checked').length > 0) {
@@ -347,31 +342,26 @@ $(document).ready(function () {
                 }
                 goToNextQuestion(6);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-7":
                 newAnswer = $("#select-7").val();
                 goToNextQuestion(7);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-8":
                 newAnswer = $("#select-8").val();
                 goToNextQuestion(8);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-9":
                 newAnswer = $("#select-9").val();
                 goToNextQuestion(9);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-10":
                 newAnswer = $("#select-10").val();
                 goToNextQuestion(10);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-11":
                 newAnswer = $("#select-11").val();
@@ -401,12 +391,10 @@ $(document).ready(function () {
             case "next-btn-12":
                 goToNextQuestion(12);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-13":
                 goToNextQuestion(13);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-14":
                 if ($("#zip_code_14").val() === "") {
@@ -416,7 +404,6 @@ $(document).ready(function () {
                 }
                 goToNextQuestion(14);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-15":
                 if ($('input[type=checkbox]:checked').length > 0) {
@@ -429,37 +416,31 @@ $(document).ready(function () {
                 }
                 goToNextQuestion(15);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-16":
                 // newAnswer = $("#select-16").val();
                 goToNextQuestion(16);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-17":
                 newAnswer = $("#select-17").val();
                 goToNextQuestion(17);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-18":
                 newAnswer = $("#select-18").val();
                 goToNextQuestion(18);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-19":
                 newAnswer = $("#select-19").val();
                 goToNextQuestion(19);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-20":
                 newAnswer = $("#select-20").val();
                 goToNextQuestion(20);
                 queryArray.push(newAnswer);
-                console.log(queryArray);
                 break;
             case "next-btn-21":
                 newAnswer = $("#select-21").val();
