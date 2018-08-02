@@ -553,6 +553,7 @@ module.exports = function (app) {
     app.post("/api/pet/:id", function (req, res) {
         db.Pet.create({
             pf_id: req.body.id,
+            BuyerId: req.body.BuyerId,
         })
             .then(function (result) {
                 res.json(result);

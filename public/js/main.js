@@ -520,19 +520,24 @@ $(document).ready(function () {
         // left DB part off here
         $.get("/api/pet/" + savedPetId)
             .then(function (result) {
-                // if the pet is not already in db, it adds it
+                // if the pet is not already in db, add it
                 if (!result) {
                     newPet = {
-                        id: savedPetId
+                        id: savedPetId, 
+                        BuyerId: localStorage.getItem("id")
                     }
-                    console.log("this pet is not in db")
+
                     $.post("/api/pet/" + savedPetId, newPet)
-                        // on success, run this callback
+                        //
                         .then(function (data) {
                             // log the data we found
                             console.log(data);
                             console.log("pet has been added to db")
                         })
+                } else {
+                    // $.put("/api/pet/" + savedPetId, function(req, res) {
+                    //     db.Pet.update
+                    // })
                 }
             });
 
