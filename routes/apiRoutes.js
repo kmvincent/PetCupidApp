@@ -472,23 +472,36 @@ module.exports = function (app) {
                 for (let p = 0; p < parsePetsObject.length; p++) {
 
                     smallPhoto = parsePetsObject[p].media.photos.photo[0].$t;
-                    largePhoto = parsePetsObject[p].media.photos.photo[1].$t;
+                    largePhoto = parsePetsObject[p].media.photos.photo[1].$t
                     name = parsePetsObject[p].name.$t;
                     petId = parsePetsObject[p].id.$t;
                     about = parsePetsObject[p].description.$t;
+                    email = parsePetsObject[p].contact.email.$t;
+                    phone = parsePetsObject[p].contact.phone.$t;
+                    address1 = parsePetsObject[p].contact.address1.$t;
+                    address2 = parsePetsObject[p].contact.address2.$t;
+                    city = parsePetsObject[p].contact.city.$t;
+                    state = parsePetsObject[p].contact.state.$t;
+                    zip = parsePetsObject[p].contact.zip.$t;
 
                     let pet = {
                         "smallPhoto": smallPhoto,
                         "largePhoto": largePhoto,
                         "name": name,
                         "petId": petId,
-                        "about": about
+                        "about": about,
+                        "email": email,
+                        "phone": phone,
+                        "address1": address1,
+                        "address2": address2,
+                        "city": city,
+                        "state": state,
+                        "zip": zip
                     }
 
-                    console.log(smallPhoto)
                     resultsArray.push(pet)
                 }
-                console.log("HI WE ARE HERE")
+                console.log(resultsArray)
             }
 
             //DAWGS
@@ -689,27 +702,38 @@ module.exports = function (app) {
                     name = parsePetsObject[p].name.$t;
                     petId = parsePetsObject[p].id.$t;
                     about = parsePetsObject[p].description.$t;
+                    email = parsePetsObject[p].contact.email.$t;
+                    phone = parsePetsObject[p].contact.phone.$t;
+                    address1 = parsePetsObject[p].contact.address1.$t;
+                    address2 = parsePetsObject[p].contact.address2.$t;
+                    city = parsePetsObject[p].contact.city.$t;
+                    state = parsePetsObject[p].contact.state.$t;
+                    zip = parsePetsObject[p].contact.zip.$t;
 
                     let pet = {
                         "smallPhoto": smallPhoto,
                         "largePhoto": largePhoto,
                         "name": name,
                         "petId": petId,
-                        "about": about
+                        "about": about,
+                        "email": email,
+                        "phone": phone,
+                        "address1": address1,
+                        "address2": address2,
+                        "city": city,
+                        "state": state,
+                        "zip": zip
                     }
 
                     resultsArray.push(pet)
                 }
-                
+                console.log(resultsArray)
             }
 
             // res.sendStatus(200);
             console.log("end of func")
 
         });
-
-
-
 
     });
 
