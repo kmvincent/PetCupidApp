@@ -3,23 +3,17 @@
   <div class="parallax"><img src="images/doggies.png" alt="cat and dog snuggling"></div>
 </div>
 
-
-    
 <section id="reload">
   <div class="container">
-  <h1>Thanks for visting Pets Cupid.com. We are glad to lksdjflsdjflksdjlfkdjflsdjfkdjflkdsjflskdjflsdjlkfjsdlkfjsdlfjldskjflkdsjflkdsjfklsdjflksdjflksd</h1>
-  <input id="reloadBtn" type="submit" value="Refresh Page" onClick="window.location.reload()">
-  {{!-- <a class="waves-effect waves-light btn-large" id="reloadBtn">See your results.</a> --}}
+  <h1>Thanks for visting <span style="color:rgb(63, 70, 158); font-weight: 400;">Pets Cupid.com.</span> We are glad to provide you with your top pet matches and hope that our pets can find a home with you.</h1>
+  <a id="reloadBtn" class="waves-effect waves-light btn-large" type="submit" value="See your Results">See your Results</a>
 </div>
 </section>
-
 
 <div class="section white results-section">
     <div class="row container center">
         <div class="row container center">
-          
-              <h3>Top Results</h3>
-
+              <h3 id="tab2">Top Results</h3>
           {{#each results}}
             <div class="col s12">
                 <div class="card horizontal">
@@ -29,7 +23,7 @@
 
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">{{name}}</span>
-                        <p><a href="#">Link to petfind url</a></p>
+                        <p><a target="_blank" href="{{url}}">PetFinder Url</a></p>
                     </div>
 
                     <div class="card-reveal">

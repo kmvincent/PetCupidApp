@@ -559,10 +559,13 @@ $(document).ready(function () {
 
     });
 
+    //Not working 
     $("#reloadBtn").on("click", function (event) {
-        event.preventDefault();
         console.log("clicked")
-        $("reload").addClass("hide")
-        $("#results-section").removeClass("hide");
+        // onClick="window.location.reload()
+
+        window.location.hash = 'tab2';
+        window.location.reload(true);
+   
     });
 });
