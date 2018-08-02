@@ -385,6 +385,7 @@ $(document).ready(function () {
                     console.log(data);
                 });
 
+                // redirect to results page
                 $("#results").removeClass("hide");
                 break;
 
@@ -466,6 +467,8 @@ $(document).ready(function () {
                     console.log(data);
                 });
 
+                // redirect to results page
+
                 $("#results").removeClass("hide");
                 break;
         };
@@ -476,11 +479,9 @@ $(document).ready(function () {
 
         // if user already signed in
         if (localStorage.getItem("id") != null) {
-            console.log("User ID: ", localStorage.getItem("id"))
 
             // removing "id" from save btn id to just have petID "number"
             savedPetId = $(this).attr("id").slice(2);
-            console.log(savedPetId);
             // unhiding that item from the modal list
             $("#mid" + savedPetId).removeClass("hide");
 
@@ -504,8 +505,9 @@ $(document).ready(function () {
                 // if the pet is not already in db, add it
                 if (!result) {
                     newPet = {
-                        id: savedPetId, 
-                        BuyerId: localStorage.getItem("id")
+                        id: savedPetId,
+                        AdopterId: localStorage.getItem("id"),
+                        isNew: true
                     }
 
                     $.post("/api/pet/" + savedPetId, newPet)
@@ -516,12 +518,20 @@ $(document).ready(function () {
                             console.log("pet has been added to db")
                         })
                 } else {
-                    // $.put("/api/pet/" + savedPetId, function(req, res) {
-                    //     db.Pet.update
-                    // })
+                    newInterest = {
+                        PetId: result.id,
+                        AdopterId: localStorage.getItem("id"),
+                    };
+
+                    $.post("/api/pet/" + savedPetId, newInterest)
+                        .then(function (data) {
+                            // log the data we found
+                            console.log(data);
+                            console.log("already in db")
+                        });
+                    console.log("else sttmt");
                 }
             });
-
     });
 
     // when register as new user (click register btn)
@@ -538,7 +548,7 @@ $(document).ready(function () {
 
         // send an AJAX POST-request with jQuery to save that user to DB
         $.post("/api/users", newUser)
-            
+
             .then(function (data) {
                 // then adds their user ID to local storage so their pet saves will continue to be associated with them
                 console.log(data);
