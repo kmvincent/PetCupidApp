@@ -10,6 +10,7 @@ const router = express.Router();
 let dotenv = require('dotenv').config();
 var db = require("../models");
 var request = require('request');
+var results = require('../data/results.js')
 
 
 module.exports = function (app) {
@@ -467,7 +468,26 @@ module.exports = function (app) {
                     }
                 });
                 parsePetsObject.splice(5);
-                console.log(parsePetsObject);
+                //console.log(parsePetsObject);
+                for (let p = 0; p < parsePetsObject.length; p++) {
+
+                    smallPhoto = parsePetsObject[p].media.photos.photo[0].$t;
+                    largePhoto = parsePetsObject[p].media.photos.photo[1].$t;
+                    name = parsePetsObject[p].name.$t;
+                    petId = parsePetsObject[p].id.$t;
+                    about = parsePetsObject[p].description.$t;
+
+                    let pet = {
+                        "smallPhoto": smallPhoto,
+                        "largePhoto": largePhoto,
+                        "name": name,
+                        "petId": petId,
+                        "about": about
+                    }
+
+                    console.log(smallPhoto)
+                    resultsArray.push(pet)
+                }
             }
 
             //DAWGS
@@ -655,8 +675,30 @@ module.exports = function (app) {
                         if (pet1.active > pet2.active) return 1;
                     }
                 });
+
                 parsePetsObject.splice(5);
-                console.log(parsePetsObject);
+                //console.log(parsePetsObject);
+
+                //build objects in correct format
+
+                for (let p = 0; p < parsePetsObject.length; p++) {
+
+                    smallPhoto = parsePetsObject[p].media.photos.photo[0].$t;
+                    largePhoto = parsePetsObject[p].media.photos.photo[1].$t
+                    name = parsePetsObject[p].name.$t;
+                    petId = parsePetsObject[p].id.$t;
+                    about = parsePetsObject[p].description.$t;
+
+                    let pet = {
+                        "smallPhoto": smallPhoto,
+                        "largePhoto": largePhoto,
+                        "name": name,
+                        "petId": petId,
+                        "about": about
+                    }
+
+                    resultsArray.push(pet)
+                }
             }
 
 
@@ -708,5 +750,9 @@ module.exports = function (app) {
             .then(function (result) {
                 res.json(result);
             });
+    });
+
+    app.get("/data/results", function (req, res) {
+        res.json(results);
     });
 }
