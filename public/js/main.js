@@ -1,4 +1,4 @@
-// need function that will hide/show based on parameter that matches id i think....
+// NEED to create log out btn that erases id from local memory and separate page for displaying results when logged in
 
 // onclick functions for index.html page
 $(document).ready(function () {
@@ -274,7 +274,7 @@ $(document).ready(function () {
     // reveal the first Q to begin survey
     $("#questionSection-1").removeClass("hide");
 
-    // drop down to 1st Q and hide headers
+    // drop down to 1st Q and hide headers when begin survey
     $("#questionnaireStart").on("click", function (event) {
         console.log("Start Questionnaire");
         $("#questionnaireStart").addClass("hide");
@@ -289,14 +289,14 @@ $(document).ready(function () {
         };
     });
 
-    // submit answer to survey Q
+    // when click submit btn to answer to each survey Q
     $(".survey-answer-btn").on("click", function () {
         // if didn't click the qStart button, clicking the first next-btn will hide the header as well
         $("#questionnaireStart").addClass("hide");
-        // switch case to hide/reveal each Q as user moves through survey and add to queryArray
+        // switch case to hide/reveal each Q as user moves through survey and add answer to queryArray
         switch ($(this).attr("id")) {
             case "next-btn-1":
-                // if cat answer was selected, jump down to cat Qs next
+                // if cat answer was selected, jump down to cat Qs next (start at 12)
                 if (newAnswer === "&animal=cat") {
                     $("#questionSection-1").addClass("hide");
                     $("#questionSection-12").removeClass("hide");
@@ -484,41 +484,43 @@ $(document).ready(function () {
                 $.post("/pf", catSearch).then(function (data) {
                     console.log(data);
                 });
-                $("#results").removeClass("hide");
 
+                $("#results").removeClass("hide");
                 break;
         };
     });
 
     // when click save button on results page
     $(".save-btn").on("click", function () {
-        // $(“#name-display”).text(localStorage.getItem(“name”));
-        if (localStorage.getItem("id") != null) {
-            console.log(localStorage.getItem("id"))
 
-            // removing "id" from save btn id to just have petID
+        // if user already signed in
+        if (localStorage.getItem("id") != null) {
+            console.log("User ID: ", localStorage.getItem("id"))
+
+            // removing "id" from save btn id to just have petID "number"
             savedPetId = $(this).attr("id").slice(2);
             console.log(savedPetId);
             // unhiding that item from the modal list
             $("#mid" + savedPetId).removeClass("hide");
 
-            // if logged in, savebtn should trigger modal not sign in
+            // if logged in, change the savebtn href to trigger modal not sign in
             $(".save-btn").attr("href", "#modal1")
         } else {
+            // Show the log in pop-up
             $("#userSignInSection").removeClass("hide");
-            console.log("user not signed in");
 
-            // removing "id" from save btn id to just have petID
+            // still want to unhide pet from saved modal once log in complete
             savedPetId = $(this).attr("id").slice(2);
             console.log(savedPetId);
             // unhiding that item from the modal list
             $("#mid" + savedPetId).removeClass("hide");
         }
 
-        // when click save, need to find out if pet is already in DB, if not, add it to database...even if not signed in?
+        // this is currently not making an association
+        // left DB part off here
         $.get("/api/pet/" + savedPetId)
-            // on success, run this callback
             .then(function (result) {
+                // if the pet is not already in db, it adds it
                 if (!result) {
                     newPet = {
                         id: savedPetId
@@ -536,27 +538,23 @@ $(document).ready(function () {
 
     });
 
-
+    // when register as new user (click register btn)
     $("#register-btn").on("click", function (event) {
         event.preventDefault();
 
-        // make a newCharacter obj
+        // makes a newUser obj from the info the user enters
         var newUser = {
-            // name from name input
             firstName: $("#first_name").val().trim(),
-            // role from role input
             lastName: $("#last_name").val().trim(),
-            // age from age input
             email: $("#email").val().trim(),
-            // points from force-points input
             password: $("#passwords").val()
         };
 
-        // send an AJAX POST-request with jQuery
+        // send an AJAX POST-request with jQuery to save that user to DB
         $.post("/api/users", newUser)
-            // on success, run this callback
+            
             .then(function (data) {
-                // log the data we found
+                // then adds their user ID to local storage so their pet saves will continue to be associated with them
                 console.log(data);
                 localStorage.clear();
                 localStorage.setItem("id", data);

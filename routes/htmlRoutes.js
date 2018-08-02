@@ -6,8 +6,6 @@ module.exports = function (app) {
 
     // route to display the question html pages
     app.get("/", function (req, res) {
-        res.render("index", { questions: questions, results:results});
+        res.render("index", { questions: questions, results: results });
     });
 };
-
-// can we pull more than one object?

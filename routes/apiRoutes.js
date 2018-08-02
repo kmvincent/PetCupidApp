@@ -543,7 +543,7 @@ module.exports = function (app) {
         db.Pet.findOne({
             where: {
                 pf_id: req.params.id
-            }
+            },
         })
             .then(function (result) {
                 res.json(result);
@@ -555,7 +555,6 @@ module.exports = function (app) {
             pf_id: req.body.id,
         })
             .then(function (result) {
-                console.log(result)
                 res.json(result);
             });
     });
