@@ -713,16 +713,16 @@ module.exports = function (app) {
     // POST route for saving a new user
     app.post("/api/users", function (req, res) {
         console.log(req.body);
-        db.Buyer.create({
-            buyer_first_name: req.body.firstName,
-            buyer_last_name: req.body.lastName,
-            buyer_email: req.body.email,
-            buyer_password: req.body.password,
+        db.Adopter.create({
+            adopter_first_name: req.body.firstName,
+            adopter_last_name: req.body.lastName,
+            adopter_email: req.body.email,
+            adopter_password: req.body.password,
         })
             .then(function (data) {
-                db.Buyer.findOne({
+                db.Adopter.findOne({
                     where: {
-                        buyer_email: req.body.email,
+                        adopter_email: req.body.email,
                     }
                 }).then(function (result) {
                     res.json(result.dataValues.id);
@@ -743,13 +743,28 @@ module.exports = function (app) {
     });
 
     app.post("/api/pet/:id", function (req, res) {
-        db.Pet.create({
-            pf_id: req.body.id,
-            BuyerId: req.body.BuyerId,
-        })
-            .then(function (result) {
+        if (req.body.isNew) {
+            db.Pet.create({
+                pf_id: req.body.id,
+            })
+                .then(function (result) {
+                    db.Interest.create({
+                        AdopterId: req.body.AdopterId,
+                        PetId: result.id
+                    }).then(function (result) {
+                        res.json(result);
+                    })
+
+                });
+        } else {
+            //pet already is in the DB, just add the interest
+            db.Interest.create({
+                AdopterId: req.body.AdopterId,
+                PetId: req.body.PetId,
+            }).then(function (result) {
                 res.json(result);
-            });
+            })
+        }
     });
 
     app.get("/data/results", function (req, res) {
