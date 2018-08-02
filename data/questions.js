@@ -160,6 +160,7 @@ questionArray = [
         question: "How playful is your ideal dog?",
         id: 7,
         questionNo: 7,
+        progress: "60%",
         selectOption: true,
         answers: [
             {
