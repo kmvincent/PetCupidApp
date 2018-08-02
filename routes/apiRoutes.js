@@ -801,4 +801,52 @@ module.exports = function (app) {
     app.get("/data/results", function (req, res) {
         res.json(results);
     });
+
+    // //this should send out a request to petfinder for a single pet by id when an id comes back from the database (not sure how to link it into all that)
+    // var key = process.env.PETFINDER_KEY;
+    // var id = 41407337;
+    // var queryUrl = `http://api.petfinder.com/pet.get?format=json&key=${key}&id=${id}`;
+    // request(queryUrl, function (error, response, body) {
+    //     //console.log(body);
+
+    //     let responseObject = JSON.parse(body);
+    //     let result = responseObject.petfinder.pet;
+    //     //console.log(result)
+    //     //once we can pull animal ids from database, send them to petfinder, then put the result through this loop and it will go to the saved page on front end
+       
+
+    //         smallPhoto = result.media.photos.photo[0].$t;
+    //         largePhoto = result.media.photos.photo[1].$t
+    //         name = result.name.$t;
+    //         petId = result.id.$t;
+    //         about = result.description.$t;
+    //         email = result.contact.email.$t;
+    //         phone = result.contact.phone.$t;
+    //         address1 = result.contact.address1.$t;
+    //         address2 = result.contact.address2.$t;
+    //         city = result.contact.city.$t;
+    //         state = result.contact.state.$t;
+    //         zip = result.contact.zip.$t;
+    //         url = `https://www.petfinder.com/petdetail/${result[p].id.$t}`
+
+    //         let pet = {
+    //             "smallPhoto": smallPhoto,
+    //             "largePhoto": largePhoto,
+    //             "name": name,
+    //             "petId": petId,
+    //             "about": about,
+    //             "email": email,
+    //             "phone": phone,
+    //             "address1": address1,
+    //             "address2": address2,
+    //             "city": city,
+    //             "state": state,
+    //             "zip": zip,
+    //             "url": url
+    //         }
+    //         //console.log(pet)
+    //         savedArray.push(pet)
+        
+    // })
+
 }
