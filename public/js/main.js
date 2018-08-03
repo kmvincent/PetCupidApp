@@ -477,7 +477,8 @@ $(document).ready(function () {
 
     // when click save button on results page
     $(document).on("click", ".save-btn", function () {
-
+        console.log("btn clicked")
+        $(this).addClass("green");
         // Below if statment not relevent unless quick save modal in operation...currently is not
 
         // if user already signed in
@@ -576,6 +577,14 @@ $(document).ready(function () {
             });
 
     });
+    
+    //Sign Out Button clear local storage. 
+    $(document).on("click", "#signOut", function (event) {
+        event.preventDefault();
+        console.log("logged out")
+        localStorage.clear();
+    });
+
 
     // //Not working 
     // $("#reloadBtn").on("click", function (event) {
