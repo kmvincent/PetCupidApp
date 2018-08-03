@@ -593,8 +593,11 @@ $(document).ready(function () {
     //Sign Out Button clear local storage. 
     $(document).on("click", "#signOut", function (event) {
         event.preventDefault();
-        console.log("logged out")
-        localStorage.clear();
+        if (localStorage.getItem("id") != null) {
+            localStorage.clear();
+            window.location.href = "../";
+        }
+        console.log("logged out");
     });
 
     $(document).on("click", "#viewSavedPetsBtn", function () {
