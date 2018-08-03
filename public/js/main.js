@@ -383,10 +383,12 @@ $(document).ready(function () {
                 // post to backend to be sent to petfinder
                 $.post("/pf", dogSearch).then(function (data) {
                     console.log(data);
-                });
+                    console.log("HI WE ARE HERE")
+                // window.location.replace("/results")
+            });
 
                 // redirect to results page
-                $("#results").removeClass("hide");
+                window.location.replace("/results")
                 break;
 
             // Switch to cat Qs
@@ -468,8 +470,7 @@ $(document).ready(function () {
                 });
 
                 // redirect to results page
-
-                $("#results").removeClass("hide");
+                window.location.replace("/results")
                 break;
         };
     });
@@ -572,4 +573,14 @@ $(document).ready(function () {
             });
 
     });
+
+    // //Not working 
+    // $("#reloadBtn").on("click", function (event) {
+    //     console.log("clicked")
+    //     // onClick="window.location.reload()
+
+    //     window.location.hash = 'tab2';
+    //     window.location.reload(true);
+   
+    // });
 });
