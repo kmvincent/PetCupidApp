@@ -814,40 +814,68 @@ module.exports = function (app) {
         let result = responseObject.petfinder.pet;
         //console.log(result)
         //once we can pull animal ids from database, send them to petfinder, then put the result through this loop and it will go to the saved page on front end
-       
 
-            smallPhoto = result.media.photos.photo[0].$t;
-            largePhoto = result.media.photos.photo[1].$t
-            name = result.name.$t;
-            petId = result.id.$t;
-            about = result.description.$t;
-            email = result.contact.email.$t;
-            phone = result.contact.phone.$t;
-            address1 = result.contact.address1.$t;
-            address2 = result.contact.address2.$t;
-            city = result.contact.city.$t;
-            state = result.contact.state.$t;
-            zip = result.contact.zip.$t;
-            url = `https://www.petfinder.com/petdetail/${result.id.$t}`
 
-            let pet = {
-                "smallPhoto": smallPhoto,
-                "largePhoto": largePhoto,
-                "name": name,
-                "petId": petId,
-                "about": about,
-                "email": email,
-                "phone": phone,
-                "address1": address1,
-                "address2": address2,
-                "city": city,
-                "state": state,
-                "zip": zip,
-                "url": url
-            }
-            //console.log(pet)
-            savedArray.push(pet)
-        
-    })
+        smallPhoto = result.media.photos.photo[0].$t;
+        largePhoto = result.media.photos.photo[1].$t
+        name = result.name.$t;
+        petId = result.id.$t;
+        about = result.description.$t;
+        email = result.contact.email.$t;
+        phone = result.contact.phone.$t;
+        address1 = result.contact.address1.$t;
+        address2 = result.contact.address2.$t;
+        city = result.contact.city.$t;
+        state = result.contact.state.$t;
+        zip = result.contact.zip.$t;
+        url = `https://www.petfinder.com/petdetail/${result.id.$t}`
+
+        let pet = {
+            "smallPhoto": smallPhoto,
+            "largePhoto": largePhoto,
+            "name": name,
+            "petId": petId,
+            "about": about,
+            "email": email,
+            "phone": phone,
+            "address1": address1,
+            "address2": address2,
+            "city": city,
+            "state": state,
+            "zip": zip,
+            "url": url
+        }
+        //console.log(pet)
+        savedArray.push(pet)
+
+    });
+
+
+    // working on get request from DB to display on saved page. 
+let savedPfIds = [];
+    app.get("/data/saved/:adopterId", function (req, res) {
+        db.Interest.findAll({
+            where: {
+                AdopterId: req.params.adopterId
+            },
+        })
+            .then(function (result) {
+                // console.log(result);
+                result.forEach(function (item) {
+                    console.log(item.dataValues.PetId);
+                    db.Pet.findOne({
+                        where: {
+                            id: item.dataValues.PetId
+                        }
+                    })
+                        .then(function (result) {
+                            // console.log(result);
+                            console.log(result.dataValues.pf_id);
+                            savedPfIds.push(result.dataValues.pf_id);
+                            console.log(savedPfIds)
+                        })
+                })
+            });
+    });
 
 }

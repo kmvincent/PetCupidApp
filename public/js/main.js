@@ -598,4 +598,17 @@ $(document).ready(function () {
     //     window.location.reload(true);
 
     // });
+
+    // working on get request from DB to display on saved page.
+
+    $(document).on("click", "#viewSavedPetsBtn", function () {
+        if (localStorage.getItem("id") != null) {
+            let adopterId = localStorage.getItem("id");
+            
+            $.get("/data/saved/" + adopterId)
+                .then(function (result) {
+                    console.log(result);
+                })
+        } else console.log("User not signed in");
+    });
 });
