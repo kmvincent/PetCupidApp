@@ -14,6 +14,6 @@ savedArray = [
     url: 'https://www.petfinder.com/petdetail/42363627' } 
  
 ]
-console.log(savedArray)
+//console.log(savedArray)
 
 module.exports = savedArray;
