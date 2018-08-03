@@ -478,29 +478,33 @@ $(document).ready(function () {
     // when click save button on results page
     $(document).on("click", ".save-btn", function () {
 
+        // Below if statment not relevent unless quick save modal in operation...currently is not
+
         // if user already signed in
-        if (localStorage.getItem("id") != null) {
-            console.log("user signed in already")
+        // if (localStorage.getItem("id") != null) {
+        //     console.log("user signed in already")
 
-            // removing "id" from save btn id to just have petID "number"
-            savedPetId = $(this).attr("id").slice(2);
-            // unhiding that item from the modal list
-            // $("#mid" + savedPetId).removeClass("hide");
+        //     // removing "id" from save btn id to just have petID "number"
+        //     savedPetId = $(this).attr("id").slice(2);
+        //     // unhiding that item from the modal list
+        //     $("#mid" + savedPetId).removeClass("hide");
 
-            // if logged in, change the savebtn href to trigger modal not sign in
-            // $(".save-btn").attr("href", "#modal1")
+        //     // if logged in, change the savebtn href to trigger modal not sign in
+        //     $(".save-btn").attr("href", "#modal1")
 
-        } else {
-            // Show the log in pop-up
-            $("#userSignInSection").removeClass("hide");
+        // } else {
+        //     // Show the log in pop-up
+        //     $("#userSignInSection").removeClass("hide");
 
-            // still want to unhide pet from saved modal once log in complete
-            savedPetId = $(this).attr("id").slice(2);
-            console.log(savedPetId);
-            // unhiding that item from the modal list
-            $("#mid" + savedPetId).removeClass("hide");
-        }
-        
+        //     // still want to unhide pet from saved modal once log in complete
+        //     savedPetId = $(this).attr("id").slice(2);
+        //     console.log(savedPetId);
+        //     // unhiding that item from the modal list
+        //     $("#mid" + savedPetId).removeClass("hide");
+        // }
+
+        savedPetId = $(this).attr("id").slice(2);
+
         $.get("/api/pet/" + savedPetId)
             .then(function (result) {
                 // if the pet is not already in db, add it
@@ -512,7 +516,6 @@ $(document).ready(function () {
                     }
 
                     $.post("/api/pet/" + savedPetId, newPet)
-                        //
                         .then(function (result) {
                             // log the data we found
                             console.log(result);
@@ -553,7 +556,7 @@ $(document).ready(function () {
     $(document).on("click", "#register-btn", function (event) {
         event.preventDefault();
 
-        console.log("register clicked")
+        // console.log("register clicked")
         // makes a newUser obj from the info the user enters
         var newUser = {
             firstName: $("#first_name").val().trim(),
