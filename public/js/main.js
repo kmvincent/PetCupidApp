@@ -1,7 +1,11 @@
-// NEED to create log out btn that erases id from local memory and separate page for displaying results when logged in
+// THIS CODE WILL BREAK IF TRY TO 'SAVE' A PET YOU'VE ALREADY SAVED
 
 // onclick functions for index.html page
 $(document).ready(function () {
+    if (localStorage.getItem("id") != null) {
+        $(".save-btn").removeClass("modal-trigger");
+        $(".save-btn").removeAttr("href", "#");
+    }
     // autocomplete breed options
     $('input.autocomplete').autocomplete({
         data: {
@@ -384,8 +388,8 @@ $(document).ready(function () {
                 $.post("/pf", dogSearch).then(function (data) {
                     console.log(data);
                     console.log("HI WE ARE HERE")
-                // window.location.replace("/results")
-            });
+                    // window.location.replace("/results")
+                });
 
                 // redirect to results page
                 window.location.replace("/results")
@@ -477,85 +481,93 @@ $(document).ready(function () {
 
     // when click save button on results page
     $(document).on("click", ".save-btn", function () {
-
+        $(".save-btn").removeAttr("modal-trigger");
         // Below if statment not relevent unless quick save modal in operation...currently is not
 
         // if user already signed in
-        // if (localStorage.getItem("id") != null) {
-        //     console.log("user signed in already")
+        if (localStorage.getItem("id") != null) {
+            console.log("user signed in already");
+            $("")
 
-        //     // removing "id" from save btn id to just have petID "number"
-        //     savedPetId = $(this).attr("id").slice(2);
-        //     // unhiding that item from the modal list
-        //     $("#mid" + savedPetId).removeClass("hide");
+            // removing "id" from save btn id to just have petID "number"
+            savedPetId = $(this).attr("id").slice(2);
 
-        //     // if logged in, change the savebtn href to trigger modal not sign in
-        //     $(".save-btn").attr("href", "#modal1")
+            $.get("/api/pet/" + savedPetId)
+                .then(function (result) {
+                    // if the pet is not already in db, add it
+                    if (!result) {
+                        newPet = {
+                            id: savedPetId,
+                            AdopterId: localStorage.getItem("id"),
+                            isNew: true
+                        }
 
-        // } else {
-        //     // Show the log in pop-up
-        //     $("#userSignInSection").removeClass("hide");
+                        $.post("/api/pet/" + savedPetId, newPet)
+                            .then(function (result) {
+                                // log the data we found
+                                console.log(result);
+                                console.log("pet has been added to db")
+                            })
+                            .then(function () {
+                                // console.log("working??")
+                                newInterest = {
+                                    PetId: result.id,
+                                    AdopterId: localStorage.getItem("id"),
+                                };
+                                $.post("/api/pet/" + savedPetId, newInterest)
+                                    .then(function (data) {
+                                        // log the data we found
+                                        console.log(data);
+                                        console.log("already in db")
+                                    });
+                            })
 
-        //     // still want to unhide pet from saved modal once log in complete
-        //     savedPetId = $(this).attr("id").slice(2);
-        //     console.log(savedPetId);
-        //     // unhiding that item from the modal list
-        //     $("#mid" + savedPetId).removeClass("hide");
-        // }
+                    } else {
+                        console.log("else sttmt");
+                        newInterest = {
+                            PetId: result.id,
+                            AdopterId: localStorage.getItem("id"),
+                        };
 
-        savedPetId = $(this).attr("id").slice(2);
-
-        $.get("/api/pet/" + savedPetId)
-            .then(function (result) {
-                // if the pet is not already in db, add it
-                if (!result) {
-                    newPet = {
-                        id: savedPetId,
-                        AdopterId: localStorage.getItem("id"),
-                        isNew: true
-                    }
-
-                    $.post("/api/pet/" + savedPetId, newPet)
-                        .then(function (result) {
-                            // log the data we found
-                            console.log(result);
-                            console.log("pet has been added to db")
-                        })
-                        .then(function(){
-                            console.log("working??")
-                            newInterest = {
-                                PetId: result.id,
-                                AdopterId: localStorage.getItem("id"),
-                            };
-                            $.post("/api/pet/" + savedPetId, newInterest)
+                        $.post("/api/pet/" + savedPetId, newInterest)
                             .then(function (data) {
                                 // log the data we found
                                 console.log(data);
                                 console.log("already in db")
                             });
-                        })
 
-                } else {
-                    newInterest = {
-                        PetId: result.id,
-                        AdopterId: localStorage.getItem("id"),
-                    };
+                    }
+                });
 
-                    $.post("/api/pet/" + savedPetId, newInterest)
-                        .then(function (data) {
-                            // log the data we found
-                            console.log(data);
-                            console.log("already in db")
-                        });
-                    console.log("else sttmt");
-                }
-            });
+            // unhiding that item from the modal list
+            // $("#mid" + savedPetId).removeClass("hide");
+
+            // if logged in, change the savebtn href to trigger modal not sign in
+            // $(".save-btn").attr("href", "#modal1");
+            // $(".save-btn").attr("href", "#");
+
+        } else {
+            // Show the log in pop-up
+            $("#userSignInSection").removeClass("hide");
+
+            // still want to unhide pet from saved modal once log in complete
+            savedPetId = $(this).attr("id").slice(2);
+            console.log(savedPetId);
+            // unhiding that item from the modal list
+            $("#mid" + savedPetId).removeClass("hide");
+        }
+
+        savedPetId = $(this).attr("id").slice(2);
+
+
     });
 
     // when register as new user (click register btn)
     $(document).on("click", "#register-btn", function (event) {
         event.preventDefault();
 
+        $(".save-btn").removeClass("modal-trigger");
+        $(".save-btn").removeAttr("href", "#");
         // console.log("register clicked")
         // makes a newUser obj from the info the user enters
         var newUser = {
@@ -584,6 +596,6 @@ $(document).ready(function () {
 
     //     window.location.hash = 'tab2';
     //     window.location.reload(true);
-   
+
     // });
 });
