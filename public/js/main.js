@@ -588,24 +588,26 @@ $(document).ready(function () {
                 localStorage.clear();
                 localStorage.setItem("id", data);
             });
-
     });
     
     //Sign Out Button clear local storage. 
     $(document).on("click", "#signOut", function (event) {
         event.preventDefault();
-        console.log("logged out")
-        localStorage.clear();
+        if (localStorage.getItem("id") != null) {
+            localStorage.clear();
+            window.location.href = "../";
+        }
+        console.log("logged out");
     });
 
-
-    // //Not working 
-    // $("#reloadBtn").on("click", function (event) {
-    //     console.log("clicked")
-    //     // onClick="window.location.reload()
-
-    //     window.location.hash = 'tab2';
-    //     window.location.reload(true);
-
-    // });
+    $(document).on("click", "#viewSavedPetsBtn", function () {
+        if (localStorage.getItem("id") != null) {
+            let adopterId = localStorage.getItem("id");
+            
+            $.get("/data/saved/" + adopterId)
+                .then(function (result) {
+                    console.log(result);
+                })
+        } else console.log("User not signed in");
+    });
 });
