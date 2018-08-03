@@ -6,7 +6,7 @@ module.exports = function (app) {
 
     // route to display the question html pages
     app.get("/", function (req, res) {
-        res.render("index", { questions: questions});
+        res.render("index", { questions: questions, results: results});
     });
     app.get("/results", function (req, res) {
         res.render("results", {results: results });
@@ -15,3 +15,4 @@ module.exports = function (app) {
         res.render("saved", {results: results });
     });
 };
+
