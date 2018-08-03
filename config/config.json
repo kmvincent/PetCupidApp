@@ -1,9 +1,10 @@
 {
   "development": {
-    "username": "yuumqw6oax05jprh",
-    "password": "fmtylknn5yso3erd",
-    "database": "ffh5hf8ry8s732qx",
-    "host": "y5s2h87f6ur56vae.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "username": "root",
+    "password": "root",
+    "port": 3306,
+    "database": "pets_db",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
@@ -14,10 +15,7 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "yuumqw6oax05jprh",
-    "password": "fmtylknn5yso3erd",
-    "database": "ffh5hf8ry8s732qx",
-    "host": "y5s2h87f6ur56vae.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql"
   }
 }
