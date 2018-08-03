@@ -475,10 +475,11 @@ $(document).ready(function () {
     });
 
     // when click save button on results page
-    $(".save-btn").on("click", function () {
+    $(document).on("click", ".save-btn", function () {
 
         // if user already signed in
         if (localStorage.getItem("id") != null) {
+            console.log("user signed in already")
 
             // removing "id" from save btn id to just have petID "number"
             savedPetId = $(this).attr("id").slice(2);
@@ -487,6 +488,7 @@ $(document).ready(function () {
 
             // if logged in, change the savebtn href to trigger modal not sign in
             $(".save-btn").attr("href", "#modal1")
+
         } else {
             // Show the log in pop-up
             $("#userSignInSection").removeClass("hide");
@@ -497,9 +499,7 @@ $(document).ready(function () {
             // unhiding that item from the modal list
             $("#mid" + savedPetId).removeClass("hide");
         }
-
-        // this is currently not making an association
-        // left DB part off here
+        
         $.get("/api/pet/" + savedPetId)
             .then(function (result) {
                 // if the pet is not already in db, add it
@@ -512,11 +512,25 @@ $(document).ready(function () {
 
                     $.post("/api/pet/" + savedPetId, newPet)
                         //
-                        .then(function (data) {
+                        .then(function (result) {
                             // log the data we found
-                            console.log(data);
+                            console.log(result);
                             console.log("pet has been added to db")
                         })
+                        .then(function(){
+                            console.log("working??")
+                            newInterest = {
+                                PetId: result.id,
+                                AdopterId: localStorage.getItem("id"),
+                            };
+                            $.post("/api/pet/" + savedPetId, newInterest)
+                            .then(function (data) {
+                                // log the data we found
+                                console.log(data);
+                                console.log("already in db")
+                            });
+                        })
+
                 } else {
                     newInterest = {
                         PetId: result.id,
@@ -535,9 +549,10 @@ $(document).ready(function () {
     });
 
     // when register as new user (click register btn)
-    $("#register-btn").on("click", function (event) {
+    $(document).on("click", "#register-btn", function (event) {
         event.preventDefault();
 
+        console.log("register clicked")
         // makes a newUser obj from the info the user enters
         var newUser = {
             firstName: $("#first_name").val().trim(),

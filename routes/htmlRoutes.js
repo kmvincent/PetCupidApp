@@ -6,6 +6,13 @@ module.exports = function (app) {
 
     // route to display the question html pages
     app.get("/", function (req, res) {
-        res.render("index", { questions: questions, results: results });
+        res.render("index", { questions: questions});
+    });
+    app.get("/results", function (req, res) {
+        res.render("results", {results: results });
+    });
+    app.get("/saved", function (req, res) {
+        res.render("saved", {results: results });
     });
 };
+
