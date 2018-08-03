@@ -34,9 +34,6 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes.js")(app);
 require("./routes/htmlRoutes.js")(app);
 
-// let routes = require("./routes/apiRoutes.js");
-// app.use(routes);
-
 // Starting our Express app
 // =============================================================
 //will sync all of your databases after listening to port. 

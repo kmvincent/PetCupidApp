@@ -1,9 +1,3 @@
-// so we pull the petfinder api results based on the first how many questions
-// then from there we parse the text for keywords.
-
-// how do we assign points based on keywords?
-
-// And then rank each one. 
 const express = require("express");
 const questions = require("../data/questions");
 const router = express.Router();
@@ -13,12 +7,13 @@ var request = require('request');
 var results = require('../data/results.js');
 var saved = require('../data/saved.js');
 
-
+// export routes to be used in server.js
 module.exports = function (app) {
 
-    // will pull pets from database based on quiz criteria (first section, needs to be added as variables)
+    // pet finder post route that collects user answers to questionnaire
     app.post("/pf", function (req, res) {
 
+        // saves each answer section as own variable
         let queryAddendum = req.body.queryUrlParams;
         let requiredOptions = req.body.requiredOptions;
         let personalityQ1 = req.body.personalityQ1;
@@ -27,11 +22,10 @@ module.exports = function (app) {
         let personalityQ4 = req.body.personalityQ4;
         let personalityQ5 = req.body.personalityQ5;
         let personalityQ6 = req.body.personalityQ6;
-
+        // key required to access pf api
         var key = process.env.PETFINDER_KEY;
 
         //options variables; auto-set to not trigger requirements
-
         var fixed = false;
         var shots = false;
         var housetrained = false;
@@ -67,15 +61,9 @@ module.exports = function (app) {
             if (requiredOptions[i] == 'noDogs') {
                 noDogs = true;
             }
-        }
-
-        // console.log(`fixed: ${fixed}`)
-        // console.log(`shots: ${shots}`)
-        // console.log(`housetrained: ${housetrained}`)
+        };
 
         var queryUrl = `http://api.petfinder.com/pet.find?format=json&key=${key}&output=full&count=200${queryAddendum}`;
-
-        console.log(queryUrl)
 
         request(queryUrl, function (error, response, body) {
             console.log('error:', error); // Print the error if one occurred
@@ -83,9 +71,7 @@ module.exports = function (app) {
             let responseObject = JSON.parse(body);
             let petsObject = responseObject.petfinder.pets.pet;
 
-
             //filter out "options" section in response from petfinder api
-
             let ineligibleIds = [];
 
             //loop through each pet
@@ -95,17 +81,13 @@ module.exports = function (app) {
                 if (!petsObject[i].description.$t) {
                     console.log(`${[i]}: undefined`)
                     ineligibleIds.push(petsObject[i].id.$t);
-                }
+                };
 
-
-                let petOptions = petsObject[i].options.option
-                //console.log(typeof petOptions)
+                let petOptions = petsObject[i].options.option;
                 //if nothing has been checked under a pet, insert an empty array so it doesn't break
                 if (typeof petOptions == "undefined") {
                     petOptions = [];
-                }
-                //console.log(petOptions)
-
+                };
 
                 //if user checks must be already fixed
                 if (fixed == true) {
@@ -113,145 +95,113 @@ module.exports = function (app) {
                     for (let j = 0; j < petOptions.length; j++) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'altered') {
-                            //console.log(`${petsObject[i].name.$t} is fixed!`);
                             break;
                         }
                         else {
-                            //console.log(`${petsObject[i].name.$t} ineligible`)
                             ineligibleIds.push(petsObject[i].id.$t);
                             break;
-                        }
-                        //console.log(`${petsObject[i].name.$t}: ${petOptions[j].$t}`)
-                    }
-                }
+                        };
+                    };
+                };
                 //if user checks must be already up to date on shots
                 if (shots == true) {
                     //loop through options list from api
                     for (let j = 0; j < petOptions.length; j++) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'hasShots') {
-                            //console.log(`${petsObject[i].name.$t} is up-to-date on shots!`);
                             break;
                         }
                         else {
-                            //console.log(`${petsObject[i].name.$t} ineligible`)
                             ineligibleIds.push(petsObject[i].id.$t);
                             break;
-                        }
-
-
-                    }
-                }
+                        };
+                    };
+                };
                 //if user checks must be already housetrained
                 if (housetrained == true) {
                     //loop through options list from api
                     for (let j = 0; j < petOptions.length; j++) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'housetrained') {
-                            //console.log(`${petsObject[i].name.$t} goes wee-wee in the right place!`);
                             break;
                         }
                         else {
-                            //console.log(`${petsObject[i].name.$t} ineligible`)
                             ineligibleIds.push(petsObject[i].id.$t);
                             break;
-                        }
-                    }
-                }
+                        };
+                    };
+                };
                 //if user checks must be declawed
                 if (declawed == true) {
                     //loop through options list from api
                     for (let j = 0; j < petOptions.length; j++) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'declawed') {
-                            //console.log(`${petsObject[i].name.$t} has been declawed :(`);
                             break;
                         }
                         else {
-                            //console.log(`${petsObject[i].name.$t} ineligible`)
                             ineligibleIds.push(petsObject[i].id.$t);
                             break;
-                        }
-
-                    }
-                }
+                        };
+                    };
+                };
                 //if user doesn't check special needs are ok
                 if (specialNeeds == false) {
                     //loop through options list from api
                     for (let j = 0; j < petOptions.length; j++) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'specialNeeds') {
-                            //console.log(`${petsObject[i].name.$t} has special needs and isn't suitable for this user.`);
                             ineligibleIds.push(petsObject[i].id.$t);
                             break;
-                        }
-
-                    }
-                }
+                        };
+                    };
+                };
                 //if user doesn't check no kids is ok
                 if (noKids == false) {
                     //loop through options list from api
                     for (let j = 0; j < petOptions.length; j++) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'noKids') {
-                            //console.log(`${petsObject[i].name.$t} can't be around kids and isn't suitable for this user.`);
                             ineligibleIds.push(petsObject[i].id.$t);
                             break;
-                        }
-
-                    }
-                }
+                        };
+                    };
+                };
                 //if user doesn't check no other cats is ok
                 if (noCats == false) {
                     //loop through options list from api
                     for (let j = 0; j < petOptions.length; j++) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'noCats') {
-                            //console.log(`${petsObject[i].name.$t} can't be around other cats and isn't suitable for this user.`);
                             ineligibleIds.push(petsObject[i].id.$t);
                             break;
-                        }
-
-                    }
-                }
+                        };
+                    };
+                };
                 //if user doesn't check no other dogs is ok
                 if (noDogs == false) {
                     //loop through options list from api
                     for (let j = 0; j < petOptions.length; j++) {
                         //if pet options list contains altered, return true
                         if (petOptions[j].$t == 'noDogs') {
-                            //console.log(`${petsObject[i].name.$t} can't be around other dogs and isn't suitable for this user.`);
                             ineligibleIds.push(petsObject[i].id.$t);
                             break;
-                        }
+                        };
+                    };
+                };
+            };
 
-                    }
-                }
-
-            }
-
-            //console.log(petsObject.length)
-            //console.log(ineligibleIds)
-            //console.log(ineligibleIds.length)
             for (let i = 0; i < petsObject.length; i++) {
                 let petId = petsObject[i].id.$t
                 for (let j = 0; j < ineligibleIds.length; j++) {
-                    //console.log(ineligibleIds[j])
                     if (petId == ineligibleIds[j]) {
                         petsObject.splice(i, 1);
-                        //ineligibleIds.splice(j,1);
                     }
                 }
             }
-
-            //console.log(petsObject)
-            //console.log(petsObject.length)
             let parsePetsObject = petsObject;
 
-            // console.log(parsePetsObject, "!!??")
-
             //TEXT PARSING
-
             //CATS
             if (parsePetsObject[0].animal.$t == "Cat") {
                 console.log('meow')
@@ -281,7 +231,6 @@ module.exports = function (app) {
                     let foundCautiousCatKeyWordArr = [];
                     let cautiousCount = 0;
 
-
                     //pull out string of text from each result
                     let text;
                     if (!parsePetsObject[i].description.$t) {
@@ -290,27 +239,21 @@ module.exports = function (app) {
                     else {
                         text = parsePetsObject[i].description.$t
                     };
-                    //console.log("IS THIS UNDEFINED!?!?!?!")
-                    //console.log(text)
-                    //console.log(`${parsePetsObject[i].name.$t}: ${text}`)
 
                     //for each keyword in each array, scan through each text and push into found__KeyWordArr
                     for (let j = 0; j < playfulCatKeyWordArr.length; j++) {
-                        //console.log(playfulCatKeyWordArr[j])
                         function parse() {
                             var result = text.search(playfulCatKeyWordArr[j]);
-                            //console.log(result);
                             foundPlayfulCatKeyWordArr.push(result)
                         }
                         parse();
                     }
-                    //console.log(text)
                     console.log(`playful: ${foundPlayfulCatKeyWordArr}`)
                     for (let n = 0; n < foundPlayfulCatKeyWordArr.length; n++) {
                         if (foundPlayfulCatKeyWordArr[n] != -1) {
                             playfulCount++
                         }
-                    }
+                    };
                     console.log(`playful total: ${playfulCount} out of ${foundPlayfulCatKeyWordArr.length}`)
                     for (let j = 0; j < lapCatKeyWordArr.length; j++) {
                         //console.log(lapCatKeyWordArr[j])
@@ -319,13 +262,13 @@ module.exports = function (app) {
                             foundLapCatKeyWordArr.push(result)
                         }
                         parse();
-                    }
+                    };
                     console.log(`lap: ${foundLapCatKeyWordArr}`)
                     for (let n = 0; n < foundLapCatKeyWordArr.length; n++) {
                         if (foundLapCatKeyWordArr[n] != -1) {
                             lapCount++
                         }
-                    }
+                    };
                     console.log(`lap total: ${lapCount} out of ${foundLapCatKeyWordArr.length}`)
                     for (let j = 0; j < socialCatKeyWordArr.length; j++) {
                         function parse() {
@@ -333,13 +276,13 @@ module.exports = function (app) {
                             foundSocialCatKeyWordArr.push(result)
                         }
                         parse();
-                    }
+                    };
                     console.log(`social: ${foundSocialCatKeyWordArr}`)
                     for (let n = 0; n < foundSocialCatKeyWordArr.length; n++) {
                         if (foundSocialCatKeyWordArr[n] != -1) {
                             socialCount++
                         }
-                    }
+                    };
                     console.log(`social total: ${socialCount} out of ${foundSocialCatKeyWordArr.length}`)
                     for (let j = 0; j < independentCatKeyWordArr.length; j++) {
                         function parse() {
@@ -347,13 +290,13 @@ module.exports = function (app) {
                             foundIndependentCatKeyWordArr.push(result)
                         }
                         parse();
-                    }
+                    };
                     console.log(`independent: ${foundIndependentCatKeyWordArr}`)
                     for (let n = 0; n < foundIndependentCatKeyWordArr.length; n++) {
                         if (foundIndependentCatKeyWordArr[n] != -1) {
                             independentCount++
                         }
-                    }
+                    };
                     console.log(`independent total: ${independentCount} out of ${foundIndependentCatKeyWordArr.length}`)
                     for (let j = 0; j < vocalCatKeyWordArr.length; j++) {
                         function parse() {
@@ -361,13 +304,13 @@ module.exports = function (app) {
                             foundVocalCatKeyWordArr.push(result)
                         }
                         parse();
-                    }
+                    };
                     console.log(`vocal: ${foundVocalCatKeyWordArr}`)
                     for (let n = 0; n < foundVocalCatKeyWordArr.length; n++) {
                         if (foundVocalCatKeyWordArr[n] != -1) {
                             vocalCount++
                         }
-                    }
+                    };
                     console.log(`vocal total: ${vocalCount} out of ${foundVocalCatKeyWordArr.length}`)
                     for (let j = 0; j < cautiousCatKeyWordArr.length; j++) {
                         function parse() {
@@ -375,16 +318,15 @@ module.exports = function (app) {
                             foundCautiousCatKeyWordArr.push(result)
                         }
                         parse();
-                    }
+                    };
                     console.log(`cautious: ${foundCautiousCatKeyWordArr}`)
                     for (let n = 0; n < foundCautiousCatKeyWordArr.length; n++) {
                         if (foundCautiousCatKeyWordArr[n] != -1) {
                             cautiousCount++
                         }
-                    }
+                    };
                     console.log(`cautious total: ${cautiousCount} out of ${foundCautiousCatKeyWordArr.length}`)
                     //count number of words in each array and calculate cat personality results
-
 
                     // add a new property to pet object that contains each of the % text matches
                     parsePetsObject[i].playful = Math.round(playfulCount / foundPlayfulCatKeyWordArr.length * 100);
@@ -398,10 +340,10 @@ module.exports = function (app) {
                     parsePetsObject[i].vocal = Math.round(vocalCount / foundVocalCatKeyWordArr.length * 100);
 
                     parsePetsObject[i].cautious = Math.round(cautiousCount / foundCautiousCatKeyWordArr.length * 100);
-                }
+                };
 
+                // sort filtered cat array based on personality Qs
                 parsePetsObject.sort(function (pet1, pet2) {
-
                     // sort by playful
                     // if user entered 4 or 5 want higher matches towards the top
                     if (personalityQ1 == "4" || personalityQ1 == "5") {
@@ -411,7 +353,7 @@ module.exports = function (app) {
                     } else if (personalityQ1 == "1" || personalityQ1 == "2") {
                         if (pet1.playful < pet2.playful) return -1;
                         if (pet1.playful > pet2.playful) return 1;
-                    }
+                    };
 
                     // sort by lap
                     // if user entered 4 or 5 want higher matches towards the top
@@ -422,7 +364,7 @@ module.exports = function (app) {
                     } else if (personalityQ2 == "1" || personalityQ2 == "2") {
                         if (pet1.lap < pet2.lap) return -1;
                         if (pet1.lap > pet2.lap) return 1;
-                    }
+                    };
 
                     // sort by social
                     // if user entered 4 or 5 want higher matches towards the top
@@ -433,7 +375,7 @@ module.exports = function (app) {
                     } else if (personalityQ3 == "1" || personalityQ3 == "2") {
                         if (pet1.social < pet2.social) return -1;
                         if (pet1.social > pet2.social) return 1;
-                    }
+                    };
 
                     // sort by independent
                     // if user entered 4 or 5 want higher matches towards the top
@@ -444,7 +386,7 @@ module.exports = function (app) {
                     } else if (personalityQ4 == "1" || personalityQ4 == "2") {
                         if (pet1.independent < pet2.independent) return -1;
                         if (pet1.independent > pet2.independent) return 1;
-                    }
+                    };
 
                     // sort by vocal
                     // if user entered 4 or 5 want higher matches towards the top
@@ -455,7 +397,7 @@ module.exports = function (app) {
                     } else if (personalityQ5 == "1" || personalityQ5 == "2") {
                         if (pet1.vocal < pet2.vocal) return -1;
                         if (pet1.vocal > pet2.vocal) return 1;
-                    }
+                    };
 
                     // sort by cautious
                     // if user entered 4 or 5 want higher matches towards the top
@@ -466,12 +408,13 @@ module.exports = function (app) {
                     } else if (personalityQ6 == "1" || personalityQ6 == "2") {
                         if (pet1.cautious < pet2.cautious) return -1;
                         if (pet1.cautious > pet2.cautious) return 1;
-                    }
+                    };
                 });
+                // array now ranked from best matches to worst. Splice array down to top 5 results
                 parsePetsObject.splice(5);
-                //console.log(parsePetsObject);
-                for (let p = 0; p < parsePetsObject.length; p++) {
 
+                //build objects in usable format so can be displayed with handlebars
+                for (let p = 0; p < parsePetsObject.length; p++) {
                     smallPhoto = parsePetsObject[p].media.photos.photo[0].$t;
                     largePhoto = parsePetsObject[p].media.photos.photo[1].$t
                     name = parsePetsObject[p].name.$t;
@@ -500,10 +443,9 @@ module.exports = function (app) {
                         "state": state,
                         "zip": zip,
                         "url": url
-                    }
-
+                    };
                     resultsArray.push(pet)
-                }
+                };
                 console.log(resultsArray)
             }
 
@@ -542,27 +484,21 @@ module.exports = function (app) {
                     else {
                         text = parsePetsObject[i].description.$t
                     };
-                    //console.log("IS THIS UNDEFINED!?!?!?!")
-                    //console.log(text)
-                    //console.log(`${parsePetsObject[i].name.$t}: ${text}`)
 
                     //for each keyword in each array, scan through each text and push into found__KeyWordArr
                     for (let j = 0; j < playfulDogKeyWordArr.length; j++) {
-                        //console.log(playfulCatKeyWordArr[j])
                         function parse() {
                             var result = text.search(playfulDogKeyWordArr[j]);
-                            //console.log(result);
                             foundPlayfulDogKeyWordArr.push(result)
                         }
                         parse();
-                    }
-                    //console.log(text)
+                    };
                     console.log(`playful: ${foundPlayfulDogKeyWordArr}`)
                     for (let n = 0; n < foundPlayfulDogKeyWordArr.length; n++) {
                         if (foundPlayfulDogKeyWordArr[n] != -1) {
                             playfulCount++
                         }
-                    }
+                    };
                     console.log(`playful total: ${playfulCount} out of ${foundPlayfulDogKeyWordArr.length}`)
                     for (let j = 0; j < loudDogKeyWordArr.length; j++) {
                         //console.log(lapCatKeyWordArr[j])
@@ -571,13 +507,13 @@ module.exports = function (app) {
                             foundLoudDogKeyWordArr.push(result)
                         }
                         parse();
-                    }
+                    };
                     console.log(`loud: ${foundLoudDogKeyWordArr}`)
                     for (let n = 0; n < foundLoudDogKeyWordArr.length; n++) {
                         if (foundLoudDogKeyWordArr[n] != -1) {
                             loudCount++
                         }
-                    }
+                    };
                     console.log(`loud total: ${loudCount} out of ${foundLoudDogKeyWordArr.length}`)
                     for (let j = 0; j < socialDogKeyWordArr.length; j++) {
                         function parse() {
@@ -585,13 +521,13 @@ module.exports = function (app) {
                             foundSocialDogKeyWordArr.push(result)
                         }
                         parse();
-                    }
+                    };
                     console.log(`social: ${foundSocialDogKeyWordArr}`)
                     for (let n = 0; n < foundSocialDogKeyWordArr.length; n++) {
                         if (foundSocialDogKeyWordArr[n] != -1) {
                             socialCount++
                         }
-                    }
+                    };
                     console.log(`social total: ${socialCount} out of ${foundSocialDogKeyWordArr.length}`)
                     for (let j = 0; j < independentDogKeyWordArr.length; j++) {
                         function parse() {
@@ -599,13 +535,13 @@ module.exports = function (app) {
                             foundIndependentDogKeyWordArr.push(result)
                         }
                         parse();
-                    }
+                    };
                     console.log(`independent: ${foundIndependentDogKeyWordArr}`)
                     for (let n = 0; n < foundIndependentDogKeyWordArr.length; n++) {
                         if (foundIndependentDogKeyWordArr[n] != -1) {
                             independentCount++
                         }
-                    }
+                    };
                     console.log(`independent total: ${independentCount} out of ${foundIndependentDogKeyWordArr.length}`)
                     for (let j = 0; j < activeDogKeyWordArr.length; j++) {
                         function parse() {
@@ -613,13 +549,13 @@ module.exports = function (app) {
                             foundActiveDogKeyWordArr.push(result)
                         }
                         parse();
-                    }
+                    };
                     console.log(`active: ${foundActiveDogKeyWordArr}`)
                     for (let n = 0; n < foundActiveDogKeyWordArr.length; n++) {
                         if (foundActiveDogKeyWordArr[n] != -1) {
                             activeCount++
                         }
-                    }
+                    };
                     console.log(`cautious total: ${activeCount} out of ${foundActiveDogKeyWordArr.length}`)
                     //count number of words in each array and calculate cat personality results
 
@@ -633,10 +569,10 @@ module.exports = function (app) {
                     parsePetsObject[i].independent = Math.round(independentCount / foundIndependentDogKeyWordArr.length * 100);
 
                     parsePetsObject[i].vocal = Math.round(activeCount / foundActiveDogKeyWordArr.length * 100);
-                }
+                };
 
+                // sort filtered dog array based on personality Qs
                 parsePetsObject.sort(function (pet1, pet2) {
-
                     // sort by playful
                     // if user entered 4 or 5 want higher matches towards the top
                     if (personalityQ1 == "4" || personalityQ1 == "5") {
@@ -646,7 +582,7 @@ module.exports = function (app) {
                     } else if (personalityQ1 == "1" || personalityQ1 == "2") {
                         if (pet1.playful < pet2.playful) return -1;
                         if (pet1.playful > pet2.playful) return 1;
-                    }
+                    };
 
                     // sort by loud
                     // if user entered 4 or 5 want higher matches towards the top
@@ -657,7 +593,7 @@ module.exports = function (app) {
                     } else if (personalityQ2 == "1" || personalityQ2 == "2") {
                         if (pet1.loud < pet2.loud) return -1;
                         if (pet1.loud > pet2.loud) return 1;
-                    }
+                    };
 
                     // sort by social
                     // if user entered 4 or 5 want higher matches towards the top
@@ -668,7 +604,7 @@ module.exports = function (app) {
                     } else if (personalityQ3 == "1" || personalityQ3 == "2") {
                         if (pet1.social < pet2.social) return -1;
                         if (pet1.social > pet2.social) return 1;
-                    }
+                    };
 
                     // sort by independent
                     // if user entered 4 or 5 want higher matches towards the top
@@ -679,7 +615,7 @@ module.exports = function (app) {
                     } else if (personalityQ4 == "1" || personalityQ4 == "2") {
                         if (pet1.independent < pet2.independent) return -1;
                         if (pet1.independent > pet2.independent) return 1;
-                    }
+                    };
 
                     // sort by active
                     // if user entered 4 or 5 want higher matches towards the top
@@ -690,16 +626,14 @@ module.exports = function (app) {
                     } else if (personalityQ5 == "1" || personalityQ5 == "2") {
                         if (pet1.active < pet2.active) return -1;
                         if (pet1.active > pet2.active) return 1;
-                    }
+                    };
                 });
 
+                // array now ranked from best matches to worst. Splice array down to top 5 results
                 parsePetsObject.splice(5);
-                //console.log(parsePetsObject);
 
-                //build objects in correct format
-
+                //build objects in usable format so can be displayed with handlebars
                 for (let p = 0; p < parsePetsObject.length; p++) {
-
                     smallPhoto = parsePetsObject[p].media.photos.photo[0].$t;
                     largePhoto = parsePetsObject[p].media.photos.photo[1].$t
                     name = parsePetsObject[p].name.$t;
@@ -728,23 +662,19 @@ module.exports = function (app) {
                         "state": state,
                         "zip": zip,
                         "url": url
-                    }
-
+                    };
+                    // push final pet results into results array
                     resultsArray.push(pet)
-                }
+                };
                 console.log(resultsArray)
-            }
-
-            // res.sendStatus(200);
+            };
             console.log("end of func")
-
         });
-
     });
 
-    // POST route for saving a new user
+    // POST route for saving a new user to db
     app.post("/api/users", function (req, res) {
-        console.log(req.body);
+        // create new entry in adopters table using sequelize
         db.Adopter.create({
             adopter_first_name: req.body.firstName,
             adopter_last_name: req.body.lastName,
@@ -752,11 +682,13 @@ module.exports = function (app) {
             adopter_password: req.body.password,
         })
             .then(function (data) {
+                // then find that new user based on their email
                 db.Adopter.findOne({
                     where: {
                         adopter_email: req.body.email,
                     }
                 }).then(function (result) {
+                    // send back their new sequelize-generated ID to be stored in local storage
                     res.json(result.dataValues.id);
                 });
             });
@@ -774,70 +706,69 @@ module.exports = function (app) {
             });
     });
 
+    // post route for creating new pets and interests in db
     app.post("/api/pet/:id", function (req, res) {
+        // if it's the pet has the isNew attribute, it is added to the db
         if (req.body.isNew) {
             db.Pet.create({
                 pf_id: req.body.id,
             })
+                // then an interest is created with its new sequelize generate id and the adopter id stored in local storage
                 .then(function (result) {
                     db.Interest.create({
                         AdopterId: req.body.AdopterId,
                         PetId: result.id
                     }).then(function (result) {
                         res.json(result);
-                    })
-
+                    });
                 });
         } else {
-            //pet already is in the DB, just add the interest
+            //else if, the is pet already is in the DB, just add the interest
             db.Interest.create({
                 AdopterId: req.body.AdopterId,
                 PetId: req.body.PetId,
             }).then(function (result) {
                 res.json(result);
-            })
-        }
+            });
+        };
     });
 
+    // get route to test results api
     app.get("/data/results", function (req, res) {
         res.json(results);
     });
 
-    // working on get request from DB to display on saved page. 
-    // let savedPfIds = [];
+    // route to retrieve adopters saved pets from db
     app.get("/data/saved/:adopterId", function (req, res) {
+        // first find all instances of the users id in the interest table
         db.Interest.findAll({
             where: {
                 AdopterId: req.params.adopterId
             },
         })
             .then(function (result) {
-                // console.log(result);
+                // each instance will come with a corresponding sequelize generated pet id
                 result.forEach(function (item) {
-                    console.log(item.dataValues.PetId);
+                    // then go into the pet table to find each of those pets
                     db.Pet.findOne({
                         where: {
                             id: item.dataValues.PetId
                         }
                     })
                         .then(function (result) {
-                            // console.log(result);
-                            // console.log(result.dataValues.pf_id);
+                            // once those have been retrieved, push each petfinder pet id into an array
                             let idArr = [];
                             idArr.push(result.dataValues.pf_id);
-                            
+
+                            // make a query to the petfinder api for each of those pets
                             var key = process.env.PETFINDER_KEY;
                             for (let d = 0; d < idArr.length; d++) {
-
                                 console.log('IN THE LOOP')
-                                console.log(idArr[d]);
                                 var queryUrl = `http://api.petfinder.com/pet.get?format=json&key=${key}&id=${idArr[d]}`;
-                                console.log(queryUrl)
+
                                 request(queryUrl, function (error, response, body) {
-                                    console.log(body);
-
                                     let responseObject = JSON.parse(body);
-
+                                    // if no response comes back from pf, push not found message into savedArray
                                     if (!responseObject.petfinder.pet) {
                                         let pet = {
                                             "name": "Sorry, pet not found.",
@@ -845,11 +776,11 @@ module.exports = function (app) {
                                         }
                                         savedArray.push(pet)
                                     }
+                                    // or if there is a response
                                     else if (responseObject.petfinder.pet) {
                                         let result = responseObject.petfinder.pet;
-                                        //console.log(result)
-                                        //once we can pull animal ids from database, send them to petfinder, then put the result through this loop and it will go to the saved page on front end
 
+                                        // take that response and assign each useful piece of info into a variable
                                         smallPhoto = result.media.photos.photo[0].$t;
                                         largePhoto = result.media.photos.photo[1].$t
                                         name = result.name.$t;
@@ -864,6 +795,7 @@ module.exports = function (app) {
                                         zip = result.contact.zip.$t;
                                         url = `https://www.petfinder.com/petdetail/${result.id.$t}`
 
+                                        // and put all that into a handlebars compatible object
                                         let pet = {
                                             "smallPhoto": smallPhoto,
                                             "largePhoto": largePhoto,
@@ -879,18 +811,15 @@ module.exports = function (app) {
                                             "zip": zip,
                                             "url": url
                                         }
-                                        //console.log(pet)
+                                        // push the new objects into the savedArray
                                         savedArray.push(pet)
                                         console.log(savedArray)
-                                    }
+                                    };
 
-                                })
-                            }
-
-                        })
-                })
+                                });
+                            };
+                        });
+                });
             });
     });
-
-
-}
+};

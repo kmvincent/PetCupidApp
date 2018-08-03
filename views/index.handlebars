@@ -15,6 +15,7 @@
 </header>
 
 <article>
+  {{!-- display each question on page as hidden (will be hidden/unhidden sequentially) --}}
   {{#each questions}}
     <div class="hide" id="questionSection-{{id}}">
       <div class="section-survey">
@@ -31,8 +32,8 @@
       </div>
       <div id="answers" class="row container center">
         <div class="col m12">
+          {{!-- each answer type is displayed respectively (dropdown, checkbox, autocomplete, answer-tile) --}}
           {{#if selectOption}}
-
             <div class="input-field col s12">
               <select id="select-{{id}}">
                 <option value="" disabled selected>Choose your option</option>
@@ -92,106 +93,3 @@
     {{/each}}
 </article>
 </main>
-
-{{!-- Results Handlebar Page Default Hidden
-<section id="results" class="hide">
-<div class="parallax-container">
-  <div class="parallax"><img src="images/doggies.png" alt="cat and dog snuggling"></div>
-</div>
-
-<div class="section white results-section">
-    <div class="row container center">
-        <div class="row container center">
-          
-              <h3>Top Results</h3>
-
-          {{#each results}}
-            <div class="col s12">
-                <div class="card horizontal">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class= "activator" src="{{largePhoto}}">
-                    </div>
-
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{name}}</span>
-                        <p><a href="#">Link to petfind url</a></p>
-                    </div>
-
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{name}}<i class="material-icons right">close</i></span>
-                        <p>{{about}}</p>
-                        <a class="waves-effect waves-light btn modal-trigger save-btn" href="#userSignInSection" id="id{{petID}}">Save</a>
-                    </div>
-                </div>
-            </div>
-             {{/each}}
-        </div>
-    </div>
-</div>
-</section> --}}
-
-
-  {{!-- <!-- Modal Structure Quick Save -->
-<div id="modal1" class="modal bottom-sheet">
-    <div class="modal-content">
-      <h4>Saved Pets</h4>
-        {{#each results}}
-           <div class="col s12 m8 offset-m2 l6 offset-l3 hide" id="mid{{petID}}">
-            <div class="card-panel grey lighten-5 z-depth-1 quicksave">
-              <div class="row valign-wrapper">
-                <div class="col s2">
-                  <img class="circle responsive-img saveImg" src="{{smallPhoto}}" width="100px" height="150px"> <!-- notice the "circle" class -->
-                </div>
-                <div class="col s10">
-                  <span class="black-text">
-                    You've saved {{name}}!
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div> 
-        {{/each}}
-    </div>
-</div> --}}
-
-{{!-- User SignIn Code --}}
-{{!-- <section id="userSignInSection" class="hide modal bottom-sheet">
-  <div class="container" id="userSignInBox">
-      <div class="row">
-          <form class="col s12" id="reg-form">
-            <div class="row">
-              <div class="input-field col s6">
-                <input id="first_name" type="text" class="validate" required>
-                <label for="first_name">First Name</label>
-              </div>
-              <div class="input-field col s6">
-                <input id="last_name" type="text" class="validate" required>
-                <label for="last_name">Last Name</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="email" type="email" class="validate" required>
-                <label for="email">Email</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="password" type="password" class="validate" minlength="6" required>
-                <label for="password">Password</label>
-              </div>
-            </div>
-            <div class="row">
-      
-              <div class="input-field col s6">
-                <a class="btn btn-large btn-register waves-effect waves-light modal-trigger" type="submit" name="action" id="register-btn" href="#modal1">Register
-                  <i class="material-icons right">done</i>
-                </a>
-              </div>
-            </div>
-          </form>
-        </div>
-        <a title="Login" class="ngl btn-floating btn-large waves-effect waves-light red"><i class="material-icons">input</i></a>
-      </div>
-    </section> --}}
-

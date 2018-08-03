@@ -1,7 +1,6 @@
+// separate file used for dummy object testing
 resultsArray = [
-  
- 
+    
 ]
-console.log(resultsArray)
 
 module.exports = resultsArray;

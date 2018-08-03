@@ -1,5 +1,7 @@
+// Creating sequelize model for pet that adopters want to save for later
 module.exports = function (sequelize, DataTypes) {
     var Pet = sequelize.define("Pet", {
+        // pet finder id stored here
         pf_id: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -8,7 +10,7 @@ module.exports = function (sequelize, DataTypes) {
             }
         }
     });
-
+// Creating association between pets and adopters through the interest table
     Pet.associate = function (models) {
         Pet.belongsToMany(models.Adopter,
             {
