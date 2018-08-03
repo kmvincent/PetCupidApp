@@ -10,6 +10,12 @@
         <div class="row container center">     
         <h3>My Pets</h3>
         <p>Please sign in to access your saved pets.</p>
+        <section id=“reload”>
+    <section id="reload">
+  <div class="container">
+  <input id="reloadBtn" class="waves-effect waves-light btn-large" type="submit" value="Click to See your Saved Pets" onClick="window.location.reload()">
+</div>
+</section>
           {{#each saved}}
             <div class="col s12">
                 <div class="card horizontal">
@@ -24,8 +30,7 @@
 
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{name}}<i class="material-icons right">close</i></span>
-                        <p>{{about}}</p>
-                        <a class="waves-effect waves-light btn modal-trigger save-btn" href="#userSignInSection" id="id{{petID}}">Save</a>
+                        <p>{{about}}</p>                    
                     </div>
                 </div>
             </div>

@@ -481,13 +481,15 @@ $(document).ready(function () {
 
     // when click save button on results page
     $(document).on("click", ".save-btn", function () {
+        console.log("btn clicked")
+        
         $(".save-btn").removeAttr("modal-trigger");
         // Below if statment not relevent unless quick save modal in operation...currently is not
 
         // if user already signed in
         if (localStorage.getItem("id") != null) {
             console.log("user signed in already");
-            $("")
+            $(this).addClass("green");
 
             // removing "id" from save btn id to just have petID "number"
             savedPetId = $(this).attr("id").slice(2);
@@ -586,20 +588,14 @@ $(document).ready(function () {
                 localStorage.clear();
                 localStorage.setItem("id", data);
             });
-
     });
-
-    // //Not working 
-    // $("#reloadBtn").on("click", function (event) {
-    //     console.log("clicked")
-    //     // onClick="window.location.reload()
-
-    //     window.location.hash = 'tab2';
-    //     window.location.reload(true);
-
-    // });
-
-    // working on get request from DB to display on saved page.
+    
+    //Sign Out Button clear local storage. 
+    $(document).on("click", "#signOut", function (event) {
+        event.preventDefault();
+        console.log("logged out")
+        localStorage.clear();
+    });
 
     $(document).on("click", "#viewSavedPetsBtn", function () {
         if (localStorage.getItem("id") != null) {
