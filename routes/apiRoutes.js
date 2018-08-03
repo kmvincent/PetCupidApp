@@ -10,7 +10,7 @@ const router = express.Router();
 let dotenv = require('dotenv').config();
 var db = require("../models");
 var request = require('request');
-var results = require('../data/results.js')
+var resultsArray = require('../data/results.js')
 
 
 module.exports = function (app) {

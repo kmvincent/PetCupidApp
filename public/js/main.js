@@ -485,10 +485,10 @@ $(document).ready(function () {
             // removing "id" from save btn id to just have petID "number"
             savedPetId = $(this).attr("id").slice(2);
             // unhiding that item from the modal list
-            $("#mid" + savedPetId).removeClass("hide");
+            // $("#mid" + savedPetId).removeClass("hide");
 
             // if logged in, change the savebtn href to trigger modal not sign in
-            $(".save-btn").attr("href", "#modal1")
+            // $(".save-btn").attr("href", "#modal1")
 
         } else {
             // Show the log in pop-up
