@@ -2,11 +2,13 @@
 
 // onclick functions for index.html page
 $(document).ready(function () {
+    // if the user is already signed in, remove link to sign in modal when user tries to save pet
     if (localStorage.getItem("id") != null) {
         $(".save-btn").removeClass("modal-trigger");
         $(".save-btn").removeAttr("href", "#");
     }
-    // autocomplete breed options
+
+    // autocomplete breed options for dog questionnare, all valid breed options pulled from pet finder api and added here
     $('input.autocomplete').autocomplete({
         data: {
             "Affenpinscher": null,
@@ -269,7 +271,7 @@ $(document).ready(function () {
     let queryArray = [];
     let newAnswer = "";
 
-    // hide current Q section, show the next Q section
+    // function to hide current Q section, show the next Q section
     function goToNextQuestion(currentQuestionID) {
         $("#questionSection-" + currentQuestionID).addClass("hide");
         $("#questionSection-" + (parseInt(currentQuestionID) + 1)).removeClass("hide");
@@ -278,40 +280,46 @@ $(document).ready(function () {
     // reveal the first Q to begin survey
     $("#questionSection-1").removeClass("hide");
 
-    // drop down to 1st Q and hide headers when begin survey
+    // when click start button hides header and drops down to first Q
     $("#questionnaireStart").on("click", function (event) {
         console.log("Start Questionnaire");
         $("#questionnaireStart").addClass("hide");
     });
 
-    // changes value of newAnswer to the most recently clicked answer-tile 
+    // everytime an answer-tile is clicked, newAnswer takes on its value
     $(".answer-tile").on("click", function () {
+        // if the answer-tile has a data-ajax attribute, newAnswer takes on that value
         if ($(this).data("ajax") != "") {
             newAnswer = $(this).attr("data-ajax");
         } else {
+            // otherwise newAnswer becomes the answer-tile description
             newAnswer = $(this).children("p").html();
         };
     });
 
-    // when click submit btn to answer to each survey Q
+    // onclick function that runs every time a submit btn to a survey Q is clicked
     $(".survey-answer-btn").on("click", function () {
-        // if didn't click the qStart button, clicking the first next-btn will hide the header as well
+        // first if they didn't click the start button, the header is hidden now
         $("#questionnaireStart").addClass("hide");
-        // switch case to hide/reveal each Q as user moves through survey and add answer to queryArray
+
+        // then it goes into a switch statement to hide/reveal each Q as user moves through the survey. It also grabs each answer and pushes them to the queryArray
         switch ($(this).attr("id")) {
             case "next-btn-1":
-                // if cat answer was selected, jump down to cat Qs next (start at 12)
+                // if cat answer was selected
                 if (newAnswer === "&animal=cat") {
+                    // hide current Q
                     $("#questionSection-1").addClass("hide");
+                    // jump down to cat Qs next (starts at 12)
                     $("#questionSection-12").removeClass("hide");
                 } else {
-                    // else stick with dog Qs
+                    // else hide the current Q and move on to dog Qs (starts at 2)
                     $("#questionSection-1").addClass("hide");
                     $("#questionSection-2").removeClass("hide");
                 };
                 queryArray.push(newAnswer);
                 break;
             case "next-btn-2":
+                // if they entered a breed, new answer becomes the ajax-call version of that breed
                 if ($("#autocomplete-input").val() != "") {
                     newAnswer = "&breed=" + $("#autocomplete-input").val();
                 }
@@ -327,20 +335,26 @@ $(document).ready(function () {
                 queryArray.push(newAnswer);
                 break;
             case "next-btn-5":
+                // if they leave zip code empty
                 if ($("#zip_code_5").val() === "") {
+                    // fill with dummy zip
                     newAnswer = "&location=55401";
                 } else {
+                    // else fill in with their zip
                     newAnswer = "&location=" + $("#zip_code_5").val();
                 }
                 goToNextQuestion(5);
                 queryArray.push(newAnswer);
                 break;
             case "next-btn-6":
+                // if any boxes are checked
                 if ($('input[type=checkbox]:checked').length > 0) {
+                    // create an array of those boxes values (tied to keywords used in back end)
                     var checkedQVals = $('input[type=checkbox]:checked').map(function () {
                         return this.value;
                     }).get();
                     newAnswer = checkedQVals;
+                    // otherwise leave newAnswer blank
                 } else {
                     newAnswer = "";
                 }
@@ -348,6 +362,7 @@ $(document).ready(function () {
                 queryArray.push(newAnswer);
                 break;
             case "next-btn-7":
+                // for the next 4, just grab the value of the selected option
                 newAnswer = $("#select-7").val();
                 goToNextQuestion(7);
                 queryArray.push(newAnswer);
@@ -367,13 +382,14 @@ $(document).ready(function () {
                 goToNextQuestion(10);
                 queryArray.push(newAnswer);
                 break;
+            // this is the last Q for dogs
             case "next-btn-11":
                 newAnswer = $("#select-11").val();
+                // hide the last Q
                 $("#questionSection-11").addClass("hide");
                 queryArray.push(newAnswer);
-                console.log(queryArray);
 
-                // new dog search
+                // new dog search object sent to back end
                 let dogSearch = {
                     queryUrlParams: queryArray[0] + queryArray[1] + queryArray[2] + queryArray[3] + queryArray[4],
                     requiredOptions: queryArray[5],
@@ -383,21 +399,19 @@ $(document).ready(function () {
                     personalityQ4: queryArray[9],
                     personalityQ5: queryArray[10],
                 }
-                console.log(dogSearch);
-                // post to backend to be sent to petfinder
+                // post to back end to be sent to petfinder and parsed
                 $.post("/pf", dogSearch).then(function (data) {
                     console.log(data);
-                    console.log("HI WE ARE HERE")
-                    // window.location.replace("/results")
                 });
-
                 // redirect to results page
                 window.location.replace("/results")
                 break;
 
             // Switch to cat Qs
             case "next-btn-12":
+                // same Q format for cats as above, the first few grab, hide current Q, show next
                 goToNextQuestion(12);
+                // newAnswer variable is coming from the most recently clicked answer tile
                 queryArray.push(newAnswer);
                 break;
             case "next-btn-13":
@@ -405,6 +419,7 @@ $(document).ready(function () {
                 queryArray.push(newAnswer);
                 break;
             case "next-btn-14":
+                // setting the zip if left empty, otherwise taking from user input
                 if ($("#zip_code_14").val() === "") {
                     newAnswer = "&location=55401";
                 } else {
@@ -414,6 +429,7 @@ $(document).ready(function () {
                 queryArray.push(newAnswer);
                 break;
             case "next-btn-15":
+                // if any boxes checks, saving their values into new array
                 if ($('input[type=checkbox]:checked').length > 0) {
                     var checkedQVals = $('input[type=checkbox]:checked').map(function () {
                         return this.value;
@@ -426,6 +442,7 @@ $(document).ready(function () {
                 queryArray.push(newAnswer);
                 break;
             case "next-btn-16":
+                // value set from dropdown menu selection
                 newAnswer = $("#select-16").val();
                 goToNextQuestion(16);
                 queryArray.push(newAnswer);
@@ -450,13 +467,13 @@ $(document).ready(function () {
                 goToNextQuestion(20);
                 queryArray.push(newAnswer);
                 break;
+            // last cat Q
             case "next-btn-21":
                 newAnswer = $("#select-21").val();
                 $("#questionSection-21").addClass("hide");
                 queryArray.push(newAnswer);
-                console.log(queryArray);
 
-                // new cat search
+                // new cat search object sent to back end to be api'd/filtered, sorted
                 let catSearch = {
                     queryUrlParams: queryArray[0] + queryArray[1] + queryArray[2] + queryArray[3],
                     requiredOptions: queryArray[4],
@@ -467,8 +484,7 @@ $(document).ready(function () {
                     personalityQ5: queryArray[9],
                     personalityQ6: queryArray[10],
                 }
-                console.log(catSearch);
-                // post to backend to be sent to petfinder
+                // post to back end to be sent to petfinder
                 $.post("/pf", catSearch).then(function (data) {
                     console.log(data);
                 });
@@ -481,29 +497,30 @@ $(document).ready(function () {
 
     // when click save button on results page
     $(document).on("click", ".save-btn", function () {
-        console.log("btn clicked")
-        
+        // After the btn is clicked, remove the modal trigger class from all save buttons so the log in btn only pops up the first time (this attribute was already removed on page load if user was already signed in)
         $(".save-btn").removeAttr("modal-trigger");
-        // Below if statment not relevent unless quick save modal in operation...currently is not
 
-        // if user already signed in
+        // if the user is already signed in
         if (localStorage.getItem("id") != null) {
             console.log("user signed in already");
+            // turn the save btn green after it is saved in db
             $(this).addClass("green");
 
             // removing "id" from save btn id to just have petID "number"
             savedPetId = $(this).attr("id").slice(2);
 
+            // api call to back end in search of pet in db
             $.get("/api/pet/" + savedPetId)
                 .then(function (result) {
-                    // if the pet is not already in db, add it
+                    // if the pet is not already in db
                     if (!result) {
+                        // create new pet object
                         newPet = {
                             id: savedPetId,
                             AdopterId: localStorage.getItem("id"),
                             isNew: true
                         }
-
+                        // save pet to db using sequelize in back end
                         $.post("/api/pet/" + savedPetId, newPet)
                             .then(function (result) {
                                 // log the data we found
@@ -511,11 +528,12 @@ $(document).ready(function () {
                                 console.log("pet has been added to db")
                             })
                             .then(function () {
-                                // console.log("working??")
+                                // Once the pet has been added to the db, make an interest table entry that includes both author and pet id
                                 newInterest = {
                                     PetId: result.id,
                                     AdopterId: localStorage.getItem("id"),
                                 };
+                                // send that object to back end
                                 $.post("/api/pet/" + savedPetId, newInterest)
                                     .then(function (data) {
                                         // log the data we found
@@ -523,54 +541,35 @@ $(document).ready(function () {
                                         console.log("already in db")
                                     });
                             })
-
                     } else {
-                        console.log("else sttmt");
+                        // otherwise if the pet is already in the db, just need to make a new interest connection in the interest table
                         newInterest = {
                             PetId: result.id,
                             AdopterId: localStorage.getItem("id"),
                         };
-
+                        // above is the new interest object, below is sending it to back end
                         $.post("/api/pet/" + savedPetId, newInterest)
                             .then(function (data) {
                                 // log the data we found
                                 console.log(data);
                                 console.log("already in db")
                             });
-
                     }
                 });
-
-            // unhiding that item from the modal list
-            // $("#mid" + savedPetId).removeClass("hide");
-
-            // if logged in, change the savebtn href to trigger modal not sign in
-            // $(".save-btn").attr("href", "#modal1");
-            // $(".save-btn").attr("href", "#");
-
+            // if the user is not signed in
         } else {
-            // Show the log in pop-up
+            // Show the log in pop-up, once they're logged and click save, this whole if statement will start over again
             $("#userSignInSection").removeClass("hide");
-
-            // still want to unhide pet from saved modal once log in complete
-            savedPetId = $(this).attr("id").slice(2);
-            console.log(savedPetId);
-            // unhiding that item from the modal list
-            $("#mid" + savedPetId).removeClass("hide");
         }
-
-        savedPetId = $(this).attr("id").slice(2);
-
-
     });
 
-    // when register as new user (click register btn)
+    // when click register for new user on sign-up modal
     $(document).on("click", "#register-btn", function (event) {
         event.preventDefault();
 
+        // if it hasn't happened yet, remove href and modal-trigger so the sign-up won't pop up again
         $(".save-btn").removeClass("modal-trigger");
         $(".save-btn").removeAttr("href", "#");
-        // console.log("register clicked")
         // makes a newUser obj from the info the user enters
         var newUser = {
             firstName: $("#first_name").val().trim(),
@@ -586,24 +585,27 @@ $(document).ready(function () {
                 // then adds their user ID to local storage so their pet saves will continue to be associated with them
                 console.log(data);
                 localStorage.clear();
-                localStorage.setItem("id", data);
             });
     });
-    
+
     //Sign Out Button clear local storage. 
     $(document).on("click", "#signOut", function (event) {
         event.preventDefault();
+        // if the id exists in local storage
         if (localStorage.getItem("id") != null) {
+            // clear storage and redirect to main page again
             localStorage.clear();
             window.location.href = "../";
         }
         console.log("logged out");
     });
-
+    // when click on "My pets" in main menu
     $(document).on("click", "#viewSavedPetsBtn", function () {
+        // if the user is signed in
         if (localStorage.getItem("id") != null) {
+            // grab their id out of local storage
             let adopterId = localStorage.getItem("id");
-            
+            // send an api request to back end with that adopterId
             $.get("/data/saved/" + adopterId)
                 .then(function (result) {
                     console.log(result);

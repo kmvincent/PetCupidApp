@@ -1,3 +1,4 @@
+// Creating sequelize model for adopters (users)
 module.exports = function (sequelize, DataTypes) {
   var Adopter = sequelize.define("Adopter", {
     adopter_first_name: {
@@ -29,6 +30,7 @@ module.exports = function (sequelize, DataTypes) {
     },
   });
 
+// Creating many to many relationship with pet through 3rd, interests table
   Adopter.associate = function (models) {
     Adopter.belongsToMany(models.Pet,
       {
