@@ -585,6 +585,7 @@ $(document).ready(function () {
                 // then adds their user ID to local storage so their pet saves will continue to be associated with them
                 console.log(data);
                 localStorage.clear();
+                localStorage.setItem("id", data);
             });
     });
 
