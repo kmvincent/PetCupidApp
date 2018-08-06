@@ -612,4 +612,21 @@ $(document).ready(function () {
                 })
         } else console.log("User not signed in");
     });
+
+    $(document).on("click", "#sign-in-btn", function () {
+        let signInEmail = $("#email1").val();
+        // need to search the db for their email
+        $.get("/api/adopter/" + signInEmail)
+        .then(function(result) {
+            if (result) {
+                console.log(result.id);
+                localStorage.setItem("id", result.id);
+                
+            } else {
+                console.log("user does not exist")
+            }
+            
+        });
+    });
+
 });
