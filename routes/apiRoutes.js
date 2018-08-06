@@ -706,6 +706,18 @@ module.exports = function (app) {
             });
     });
 
+    // Get route for retrieving a single user from DB
+    app.get("/api/adopter/:email", function (req, res) {
+        db.Adopter.findOne({
+            where: {
+                adopter_email: req.params.email
+            },
+        })
+            .then(function (result) {
+                res.json(result);
+            });
+    });
+
     // post route for creating new pets and interests in db
     app.post("/api/pet/:id", function (req, res) {
         // if it's the pet has the isNew attribute, it is added to the db
