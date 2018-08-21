@@ -22,7 +22,7 @@ npm install
 ## Demo
 * [Deployment via Heroku](https://petcupid.herokuapp.com/)
 * [Demo Video](https://drive.google.com/file/d/1e9KM4AWCUkxfoeddi4Kxv_gWOjRdP_dg/view?usp=sharing)
-* ![Image of Homepage](https://drive.google.com/drive/u/0/folders/1p4BHcolfOxgCPML8cjDIDN_HKKRHTvmm)
+* ![Image of Homepage](petfinder.png)
 
 
 
